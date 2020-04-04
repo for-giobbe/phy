@@ -1,6 +1,9 @@
 # Multiple Sequence Alignment & Filtering
 
 
+---
+
+
 ## intro: 
 
 All phylogenetic methods require a set of homologous characters thus the first step is to infer which nucleotides / codons / aminocid residues are homologous to each other, so that differences among these nucleotides result only from changes that convey descent information. This process is called  Multiple Sequence Alignment (MSA) and is often followed by an additional step of detection and exclusion of those alignment regions whose homology we are uncertain of.
@@ -27,7 +30,9 @@ Let's start with a look at the file with the cat command:
 Each record consists of an ID and a sequence, of which the ID is always on a single line that starts with the ">" symbol, followed by lines containing the sequence. The sequences are not aligned yet: this is the reason why they contain no gaps and differ in length.
 The use of short and simple IDs is strongly recommended because many programs or scripts may not work if you use spaces or hyphens.
 
+
 ---
+
 
 ## aligning PCGs with MAFFT
 
@@ -72,7 +77,9 @@ Also it's important to notice that one can carry out phylogenetic inference on n
 
 Last but not least: we leveraged the --auto flag of MAFFT, which automatically decides which is the best algorithm for carrying out the MSA, but several [algorithms](https://mafft.cbrc.jp/alignment/software/algorithms/algorithms.html) are implemented and the user can decide which one to rely on.
 
+
 ---
+
 
 ## aligning ncRNAs genes with MAFFT
 
@@ -106,7 +113,9 @@ We should also take a look at the outputs:
 
 As you can see M-Coffee is combining and evaluating multiple aligners into one. 
 
+
 ---
+
 
 ## the tradeoff between speed and accuracy: PSI-Coffe
 
@@ -117,7 +126,9 @@ We can easily use this method with the string:
 
 ---
 
+
 ## automation 
+
 
 In order to simplify our lessons and to gain a better understanding of the processes we restricted the number of genes to two / three. In real analyses usually hundreds or thousands of loci are used and thus the need to automate processes is quite strong. For loops are one possible solution:
  
@@ -131,7 +142,9 @@ for i in *fasta; do
 
 I am also sharing an home-made [script](https://github.com/for-giobbe/phy/blob/master/scripts/msa.sh) for the purpose, you can test it and study its structure for the next lesson.
 
+
 ---
+
 
 ## alignment filtering:
 
@@ -158,6 +171,7 @@ Other approaches for filtering are possible and useful when dealing with a large
 * occupancy
 * dNdS
 * ...
+
 
 ---
 

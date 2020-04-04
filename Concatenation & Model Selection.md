@@ -1,5 +1,9 @@
 # Concatenation & Model Selection
 
+
+---
+
+
 ## concatenation: 
 
 Currently, two divergent systematic methods are commonly applied for inferring species trees: the supermatrix approach (concatenation) and the coalescent approach (gene trees and the species tree are not co-estimated). 
@@ -36,7 +40,9 @@ Also I think it's a good idea to keep constantly using new and shiny tools.
 
 ```iqtree -s example.phy -m MFP```
 
+
 ---
+
 
 ## further reading: 
 
