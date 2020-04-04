@@ -2,9 +2,9 @@
 
 ---
 
-[requirements] (https://github.com/for-giobbe/phy/blob/master/requirements.md)
+[(requirements)] (https://github.com/for-giobbe/phy/blob/master/requirements.md)
 
-[Multiple Sequence Alignement] (https://github.com/for-giobbe/phy/blob/master/Multiple%20Sequence%20Alignement%20%26%20filtering.md)
+[(Multiple Sequence Alignement)] (https://github.com/for-giobbe/phy/blob/master/Multiple%20Sequence%20Alignement%20%26%20filtering.md)
 
 Model Selection
 
