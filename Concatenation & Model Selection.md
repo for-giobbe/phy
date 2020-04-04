@@ -2,7 +2,7 @@
 
 ## concatenation: 
 
-Currently, two divergent systematic methods are commonly applied for inferring species trees: the supermatrix approach (= concatenation) and the coalescent approach (= coalescence methods wherein gene trees and the species tree are not co-estimated). 
+Currently, two divergent systematic methods are commonly applied for inferring species trees: the supermatrix approach (concatenation) and the coalescent approach (gene trees and the species tree are not co-estimated). 
 You will find an interesting paper on the topic at the end of this tutorial, but here we will focus on the supermatrix approach. 
 After having aligned our genes, we will concatenate them using phyutility: the software has a wide array of functions and can be considere a swiss-knife for phylogeneticists.
 As you always should, when using a new software, take a look at its [manual](https://github.com/blackrim/phyutility/blob/master/manual.pdf). 
@@ -36,6 +36,6 @@ Also I think it's a good idea to keep constantly using new and shiny tools.
 
 ## further reading: 
 
-[Here](http://www.iqtree.org/doc/Tutorial) you will find great tutorials from the authors themselves on ModelFinder and IQ-Tree (which we will use in the next lesson).
+[Here](http://www.iqtree.org/doc/Tutorial) you will find great tutorials from the authors themselves on ModelFinder and IQ-Tree.
 
 [Resolution of a concatenation/coalescence kerfuffle: partitioned coalescence support and a robust family‐level tree for Mammalia](https://onlinelibrary.wiley.com/doi/full/10.1111/cla.12170?casa_token=X0ctrSm4S1AAAAAA%3AgiB9v0MtJDO6vMWOigdvW9JrgYuJTebMen6zYxg9S0nP8MWIi2zA2fwWfi-lJlMCD9Ir1MDCzkBeyVwg)
