@@ -8,7 +8,7 @@
 
 2. [Concatenation & Model Selection](https://github.com/for-giobbe/phy/blob/master/Concatenation%20%26%20Model%20Selection.md)
 
-3. [Building a Tree in a ML Framework]
+3. [Building a Tree in a ML Framework](https://github.com/for-giobbe/phy/blob/master/Building%20a%20Tree%20in%20a%20ML%20Framework.md)
 
 4. [Building a Tree in a BI Framework]
 
