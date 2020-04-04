@@ -23,6 +23,13 @@ At this stage you should have assembled your dataset into a multi-fasta file, wh
 
 As we have a handfull of loci, we can use different approaches depending on their characteristics: some genes will be protein-coding (PCGs) and others will be non-coding (ncRNA).
 
+Let's start with a look at the file with the cat command:
+
+```cat CO1.fasta ```
+
+Each record consists of an ID and a sequence, of which the ID is always on a single line that starts with the ">" symbol, followed by lines containing the sequence. The sequences are not aligned yet: this is the reason why they contain no gaps and differ in length.
+The use of short and simple IDs is strongly recommended because many programs or scripts may not work if you use spaces or hyphens.
+
 ---
 
 ## aligning PCGs with MAFFT
@@ -33,10 +40,20 @@ Let's start with a PCG, using the code:
 
 ```mafft --auto CO1.fasta > CO1_aligned.fasta```
 
-we can then inspect the outcome using Aliview: Let's take some time to see if there is any stop codon.
+MAFFT contains many parameters, which you are encouraged to explore: an important one is the gap-opening penalty which by default is 1.53. Let's try a different value, using the code:
 
+```mafft --auto CO1.fasta > CO1_aligned.fasta```
 
-Sometimes aligners which are not aware of the underlying structure of codons in PCGs can introduce some artificial stop codons, which are more often than not alignment errors. 
+We can then inspect the outcome using Aliview: let's take some time to see if:
+
+* there is any difference between the two gap-opening penalty values 
+* if we can spot any stop codon, a task which can easily be done in Aliview using the sigma button (NB: adjust the genetic code and coding-frame)
+
+Sometimes aligners which are not aware of the underlying structure of codons in PCGs can introduce some artificial stop codons, which are more often than not alignment errors.
+
+Insertions and/or deletions ("indels") with lengths that are not multiples of three will disrupt the reading frame and  cause large changes to the protein structure which are usually strongly selected against and rarely found in alignments of protein-coding sequences. SI
+n cases where the placement of indels is ambiguous, information about the reading frame can be used to optimize the positioning of these indels.
+
 To avoid this pitfall we can translate our PCG from nucleotides into aminoacid residues, align aminoacids and then retrotranslate the alignment to nucleotide:
 
 1. translation from nt to aa:
@@ -97,9 +114,10 @@ As you can see M-Coffee is combining and evaluating multiple aligners into one.
 
 ## the tradeoff between speed and accuracy: PSI-Coffe
 
-The more accurate method (IMHO) is to rely on . This approach is  It is designed for  distantly related proteins and can be a game-changer when accurate alignemnt.
+The more accurate method (IMHO) is to rely on. This approach is quite useful when dealing with distantly related proteins and can be a game-changer when accurate alignments are necessary, for example for inferences on selection regimes.
+We can easily use this method with the string:
 
-```t_coffee -seq sh3.fasta -mode psicoffee```
+```t_coffee -seq CO1.fasta -mode psicoffee```
 
 ---
 
@@ -118,6 +136,37 @@ for i in *fasta; do
 I am also sharing an home-made [script](https://github.com/for-giobbe/phy/blob/master/scripts/msa.sh) for the purpose, you can test it and study its structure for the next lesson.
 
 ---
+
+## additional filtering of alignments 
+
+The quality of multiple sequence alignments plays an important role in the accuracy of phylogenetic inference. It has been shown that removing positions which:
+show an ambiguous homology, but also other sources of bias such as highly variable (saturated) characters, can improve the overall performance of many phylogenetic reconstruction methods. 
+While dealing modern phylogenetic dataset, which consists of hundred to thousands of alignments is not possible to have a manual curation for each one, and thus it is necessary to automatically remove alignment errors.
+The use of such sites would insert noise in the phylogenetic analysis
+
+In this tutorial we will use Gblocks:  this software will select blocks of conserved sites, which can be defined with many custom parameters, described in the [manual](http://molevol.cmima.csic.es/castresana/Gblocks/Gblocks_documentation.html)
+
+* -t= p (protein) d (DNA) c (codons) 
+* -b4 Minimum Length Of A Block
+* -b5 Allowed Gap Positions
+
+```Gblocks cox1_TC.fasta_aln -t=d -b4=5 -b5=a```
+
+Many other alternatives are possible, and all this tools can be extremely helpfull in removing noise and ameliorating certain characteristic of phylogenetic datasets which can affect subsequent inferences, such as substitution saturation & compositional heterogeneity. Here are the most popular:
+
+[Aliscore](https://www.zfmk.de/de/forschung/forschungszentren-und-gruppen/aliscore) [Kück et al., 2014](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-15-294)
+[BMGE](https://research.pasteur.fr/en/software/bmge-block-mapping-and-gathering-with-entropy/) [Criscuolo & Gibaldo](https://bmcevolbiol.biomedcentral.com/articles/10.1186/1471-2148-10-210)
+
+Other approaches for filtering are possible and useful when dealing with a large number of loci, including:
+
+
+* filtering by length
+* filtering by occupancy
+* filtering by dNdS
+* ...
+
+---
+
 
 ## further reading: 
 
