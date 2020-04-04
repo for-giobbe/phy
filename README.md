@@ -8,10 +8,10 @@
 
 2. [Concatenation & Model Selection](https://github.com/for-giobbe/phy/blob/master/Concatenation%20%26%20Model%20Selection.md)
 
-3. building a ML tree
+3. [building a ML tree]
 
-4. building a BI tree
+4. [building a BI tree]
 
-5. building a time tree
+5. [inferring divergence times]
 
-6. selection regime analyses
+6. [inferring selection regimes]
