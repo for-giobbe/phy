@@ -15,6 +15,10 @@ Then take a look at the outputs:
 
 Get familiar with the nexus [format](http://informatics.nescent.org/wiki/NEXUS_Specification).
 
+
+---
+
+
 ## model of evolution & partitioning scheme selection : 
 
 To carry out the model selection we will use ModelFinder [Kalyaanamoorthy et al., 2017](https://www.nature.com/articles/nmeth.4285).
