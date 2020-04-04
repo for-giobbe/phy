@@ -137,12 +137,10 @@ I am also sharing an home-made [script](https://github.com/for-giobbe/phy/blob/m
 
 ---
 
-## additional filtering of alignments 
+## alignment filtering:
 
-The quality of multiple sequence alignments plays an important role in the accuracy of phylogenetic inference. It has been shown that removing positions which:
-show an ambiguous homology, but also other sources of bias such as highly variable (saturated) characters, can improve the overall performance of many phylogenetic reconstruction methods. 
+The quality of multiple sequence alignments plays an important role in the accuracy of phylogenetic inference. It has been shown that removing certain positions (generally the ones which show an ambiguous homology and/or are highly variable) can improve the overall performance of many phylogenetic reconstruction methods. 
 While dealing modern phylogenetic dataset, which consists of hundred to thousands of alignments is not possible to have a manual curation for each one, and thus it is necessary to automatically remove alignment errors.
-The use of such sites would insert noise in the phylogenetic analysis
 
 In this tutorial we will use Gblocks:  this software will select blocks of conserved sites, which can be defined with many custom parameters, described in the [manual](http://molevol.cmima.csic.es/castresana/Gblocks/Gblocks_documentation.html)
 
@@ -157,12 +155,12 @@ Many other alternatives are possible, and all this tools can be extremely helpfu
 [Aliscore](https://www.zfmk.de/de/forschung/forschungszentren-und-gruppen/aliscore) [Kück et al., 2014](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-15-294)
 [BMGE](https://research.pasteur.fr/en/software/bmge-block-mapping-and-gathering-with-entropy/) [Criscuolo & Gibaldo](https://bmcevolbiol.biomedcentral.com/articles/10.1186/1471-2148-10-210)
 
-Other approaches for filtering are possible and useful when dealing with a large number of loci, including:
+Other approaches for filtering are possible and useful when dealing with a large number of loci. Positions, genes and entire alignment can be filtered out on several crietria, including:
 
 
-* filtering by length
-* filtering by occupancy
-* filtering by dNdS
+* length
+* occupancy
+* dNdS
 * ...
 
 ---
