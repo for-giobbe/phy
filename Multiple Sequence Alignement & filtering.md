@@ -1,6 +1,5 @@
 # Multiple Sequence Alignment & Filtering
 
----
 
 ## intro: 
 
@@ -13,11 +12,9 @@ MAFFT [(Katoh and Standley 2013)](https://academic.oup.com/mbe/article/30/4/772/
 
 T-Coffee [(Notredame et al., 2000)](https://www.ncbi.nlm.nih.gov/pubmed/10964570)
 
-And subsequently filter the alignment using: 
+And subsequently filter the alignments using: 
 
 Gblocks [(Talavera & Castresana, 2007)](https://academic.oup.com/sysbio/article/56/4/564/1682121)
-
-
 
 At this stage you should have assembled your dataset into a multi-fasta file, which should look like [this](https://raw.githubusercontent.com/for-giobbe/phy/master/unaligned_genes/12S_total.fasta). It's very important that each one of you has it's own dastaset as this may provide natural examples of problems in analyses, but If you still do not have a dataset use [the one I am using](https://github.com/for-giobbe/phy/tree/master/unaligned_genes).
 
@@ -42,19 +39,18 @@ Let's start with a PCG, using the code:
 
 MAFFT contains many parameters, which you are encouraged to explore: an important one is the gap-opening penalty which by default is 1.53. Let's try a different value, using the code:
 
-```mafft --auto CO1.fasta > CO1_aligned.fasta```
+```mafft --auto CO1.fasta --op 2 > CO1_op2_aligned.fasta```
 
 We can then inspect the outcome using Aliview: let's take some time to see if:
 
-* there is any difference between the two gap-opening penalty values 
+* there is any difference between the two gap-opening penalty values
+
 * if we can spot any stop codon, a task which can easily be done in Aliview using the sigma button (NB: adjust the genetic code and coding-frame)
 
 Sometimes aligners which are not aware of the underlying structure of codons in PCGs can introduce some artificial stop codons, which are more often than not alignment errors.
-
-Insertions and/or deletions ("indels") with lengths that are not multiples of three will disrupt the reading frame and  cause large changes to the protein structure which are usually strongly selected against and rarely found in alignments of protein-coding sequences. SI
-n cases where the placement of indels is ambiguous, information about the reading frame can be used to optimize the positioning of these indels.
-
-To avoid this pitfall we can translate our PCG from nucleotides into aminoacid residues, align aminoacids and then retrotranslate the alignment to nucleotide:
+Insertions and/or deletions ("indels") with lengths that are not multiples of three will disrupt the reading frame and cause large changes to the protein structure which are usually strongly selected against and rarely found in alignments of protein-coding sequences.
+In cases where the placement of indels is ambiguous, information about the reading frame can be used to optimize the positioning of these indels, 
+by translating the PCG from nucleotides into aminoacids, align the aminoacids and then retrotranslate the aminoacids alignment to nucleotides:
 
 1. translation from nt to aa:
 
