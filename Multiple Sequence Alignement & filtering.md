@@ -86,16 +86,21 @@ If we type: ```t-coffee``` and scroll up a bit we can check wether the other ali
 
 We should also take a look at the outputs:
 
+
 * the .aln is the alignment file in the clustal format.
 * the .dnd file is the guide tree generated in the process.
 * the .html file mirrors the .aln file, it's just easyer to open by double clicking on it.
 
 As you can see M-Coffee is combining and evaluating multiple aligners into one. 
+
 ---
 
-## the tradeoff between speed and accuracy: 
+## the tradeoff between speed and accuracy: PSI-Coffe
 
-PSIcoffe
+The more accurate method (IMHO) is to rely on . This approach is  It is designed for  distantly related proteins and can be a game-changer when accurate alignemnt.
+
+```t_coffee -seq sh3.fasta -mode psicoffee```
+
 ---
 
 ## automation 
@@ -110,7 +115,7 @@ for i in *fasta; do
 	done
 ```
 
-I am also sharing an home-made shell script for the purpose, you can test it and study its structure for the next lesson.
+I am also sharing an home-made [script](https://github.com/for-giobbe/phy/blob/master/scripts/msa.sh) for the purpose, you can test it and study its structure for the next lesson.
 
 ---
 
