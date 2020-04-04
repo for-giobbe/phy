@@ -11,7 +11,7 @@ In this tutorial, we will use the most popular tools for multiple sequence align
 
 MAFFT [(Katoh and Standley 2013)](https://academic.oup.com/mbe/article/30/4/772/1073398)
 
-T-Coffee[(Notredame et al., 2000)](https://www.ncbi.nlm.nih.gov/pubmed/10964570)
+T-Coffee [(Notredame et al., 2000)](https://www.ncbi.nlm.nih.gov/pubmed/10964570)
 
 And subsequently filter the alignment using: 
 
@@ -19,9 +19,9 @@ Gblocks [(Talavera & Castresana, 2007)](https://academic.oup.com/sysbio/article/
 
 
 
-At this stage you should have assembled your dataset into a multi-fasta file, which should look like [this](https://raw.githubusercontent.com/for-giobbe/phy/master/unaligned_genes/12S_total.fasta). It's very important that each one of you has it's own dastaset as this may provide natural examples of problems in analyses, but If you still do not have a dataset use [this](https://github.com/for-giobbe/phy/tree/master/unaligned_genes).
+At this stage you should have assembled your dataset into a multi-fasta file, which should look like [this](https://raw.githubusercontent.com/for-giobbe/phy/master/unaligned_genes/12S_total.fasta). It's very important that each one of you has it's own dastaset as this may provide natural examples of problems in analyses, but If you still do not have a dataset use [the one I am using](https://github.com/for-giobbe/phy/tree/master/unaligned_genes).
 
-As we have a handfull of loci, the first step in MSA should be to think about their characteristics: some genes will be protein-coding genes (PCGs) and other will be non-coding (as rRNAs).
+As we have a handfull of loci, we can use different approaches depending on their characteristics: some genes will be protein-coding (PCGs) and others will be non-coding (ncRNA).
 
 ---
 
@@ -61,7 +61,7 @@ Last but not least: we leveraged the --auto flag of MAFFT, which automatically d
 
 ---
 
-## aligning ncRNA genes with MAFFT
+## aligning ncRNAs genes with MAFFT
 
 When dealing with non coding genes, we can not rely on the codon structure of the loci and it's generally more difficult to visually assess the quality of alignments. Luckily MAFFT implements specific [algorithms](https://mafft.cbrc.jp/alignment/software/source66.html) for the purpose:
 
@@ -77,10 +77,20 @@ We can execute any of the two like this:
 
 ---
 
-## one aligner to rule them all T-coffe: 
+## one aligner to rule them all: M-coffe
 
-T-Coffe has an incredibly nice [server](http://tcoffee.crg.cat/) which I strongly encourage to explore. The idea behind T-COFFE is to combine many of the more popular aligners (including MAFFT)
+T-Coffe is a popular aligner with an incredibly nice [server](http://tcoffee.crg.cat/) which I strongly encourage to explore. But today we are focusing on it's variant M-COFFEE: the idea behind M-COFFE is to combine many of the more popular aligners (including MAFFT).
+If we type: ```t-coffee``` and scroll up a bit we can check wether the other aligners have been correctly installed (they should be, thanks to the magic behind conda installing). We should spot easily the popular ones as Probcons, Muscle, Clustal and so on. We can give it a try using the default combination of aligners (Mkalign, Muscle & MAFFT) by typing:
 
+```t_coffee -seq CO1.fasta -mode fmcoffee```
+
+We should also take a look at the outputs:
+
+* the .aln is the alignment file in the clustal format.
+* the .dnd file is the guide tree generated in the process.
+* the .html file mirrors the .aln file, it's just easyer to open by double clicking on it.
+
+As you can see M-Coffee is combining and evaluating multiple aligners into one. 
 ---
 
 ## the tradeoff between speed and accuracy: 
@@ -107,5 +117,6 @@ I am also sharing an home-made shell script for the purpose, you can test it and
 ## further reading: 
 
 [Evidence of Statistical Inconsistency of Phylogenetic Methods in the Presence of Multiple Sequence Alignment Uncertainty](https://academic.oup.com/gbe/article/7/8/2102/556628)
+
 [Alignment Uncertainty and Genomic Analysis](https://science.sciencemag.org/content/319/5862/473?casa_token=t07ptffISm4AAAAA:j5l4US_y_GHOMduYw6R-MhyM7YUpa__08lw45l455DAU3tGFNKYlV40ZH0Si5w48Xl1gTEqsocLVvaE)
 
