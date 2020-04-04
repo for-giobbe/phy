@@ -2,10 +2,18 @@
 
 ## concatenation: 
 
-The more frequent approach for inferring species trees is the use of the so-called "supermatrixes", in which several loci are "concatenated" in a single string, for each OTU.
-Other approach are possible, such as inferring single gene trees and then reconciling them into a species tree using tools such as ASTRAL, but in this tutorial we will focus on the supermatrix approach.
+Currently, two divergent systematic methods are commonly applied for inferring species trees: the supermatrix approach (= concatenation) and the coalescent approach (= coalescence methods wherein gene trees and the species tree are not co-estimated). 
+You will find an interesting paper on the topic at the end of this tutorial, but here we will focus on the supermatrix approach. 
+After having aligned our genes, we will concatenate them using phyutility: the software has a wide array of functions and can be considere a swiss-knife for phylogeneticists.
+As you always should, when using a new software, take a look at its [manual](https://github.com/blackrim/phyutility/blob/master/manual.pdf). 
 
-After having aligned our genes, we need to concatenate them and we will do it using phyutility
+After adjusting the path to the java executable of phyutility, try this string:
+
+```java -jar /Applications/bio/phyutility/phyutility.jar -concat -in *.fasta -out concatenation.nxs```
+
+Then take a look at the outputs:
+
+Get familiar with the nexus [format](http://informatics.nescent.org/wiki/NEXUS_Specification).
 
 ## model of evolution & partitioning scheme selection : 
 
@@ -24,4 +32,10 @@ Also I think it's a good idea to keep constantly using new and shiny tools.
 
 ```iqtree -s example.phy -m MFP```
 
+---
 
+## further reading: 
+
+[Here](http://www.iqtree.org/doc/Tutorial) you will find great tutorials from the authors themselves on ModelFinder and IQ-Tree (which we will use in the next lesson).
+
+[Resolution of a concatenation/coalescence kerfuffle: partitioned coalescence support and a robust family‐level tree for Mammalia](https://onlinelibrary.wiley.com/doi/full/10.1111/cla.12170?casa_token=X0ctrSm4S1AAAAAA%3AgiB9v0MtJDO6vMWOigdvW9JrgYuJTebMen6zYxg9S0nP8MWIi2zA2fwWfi-lJlMCD9Ir1MDCzkBeyVwg)
