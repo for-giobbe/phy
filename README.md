@@ -2,13 +2,13 @@
 
 ---
 
-[(requirements)](https://github.com/for-giobbe/phy/blob/master/requirements.md)
+0. [requirements](https://github.com/for-giobbe/phy/blob/master/requirements.md)
 
-[(Multiple Sequence Alignement)](https://github.com/for-giobbe/phy/blob/master/Multiple%20Sequence%20Alignement%20%26%20filtering.md)
+1. [Multiple Sequence Alignement](https://github.com/for-giobbe/phy/blob/master/Multiple%20Sequence%20Alignement%20%26%20filtering.md)
 
-Model Selection
+2. Model Selection
 
-building a ML tree
+3. building a ML tree
 
-building a BI tree
+4. building a BI tree
 
