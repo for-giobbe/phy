@@ -12,7 +12,7 @@ BASH - included natively in all Mac OS X and Linux distributions
 ---
 
 
-## conda-installable packages (conda install -c bioconda package):
+# conda-installable packages (conda install -c bioconda package):
 
 T-coffe
 
@@ -34,7 +34,7 @@ PAML
 ---
 
 
-## executables:
+# executables:
 
 [Aliview](https://github.com/AliView)
 
@@ -52,7 +52,7 @@ PAML
 ---
 
 
-## dataset building:
+# dataset building:
 
 In the beginning we need to choose the group whose phylogeny will be inferred and the loci we will use for inferring their phylogeny. 
 I suggest a lineage of animals and some mitochondrial markers, for which a lot of data are available. 
