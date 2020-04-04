@@ -15,7 +15,7 @@ Gblocks [(Talavera & Castresana, 2007)](https://academic.oup.com/sysbio/article/
 
 ---
 
-At this stage you should have assembled your dataset into a multi-fasta file, which should look like this.
+At this stage you should have assembled your dataset into a multi-fasta file, which should look like [this](https://raw.githubusercontent.com/for-giobbe/phy/master/unaligned_genes/12S_total.fasta). It's very important that each one of you has it's own dastaset as this may provide natural examples of problems in analyses, but If you still do not have a dataset use [this](https://github.com/for-giobbe/phy/tree/master/unaligned_genes).
 
 As we have a handfull of loci, the first step in MSA should be to think about their characteristics: some genes will be protein-coding genes (PCGs) and other will be non-coding (as rRNAs).
 
