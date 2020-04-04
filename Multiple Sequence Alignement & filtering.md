@@ -13,5 +13,13 @@ PSI_Coffee
 
 ---
 
+
+```mkdir aligned_genes;
+
+for i in unaligned_genes/*fasta; do gene_name=$(echo $i | awk -F “.” ‘{print $1}’); mafft --auto $i > aligned_genes/$name_aligned.fasta; done
+```
+
+---
+
 ## key papers and resources: 
 
