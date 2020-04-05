@@ -13,11 +13,20 @@ As you always should, when using a new software, take a look at its [manual](htt
 
 After adjusting the path to the java executable of phyutility, try this string:
 
-```java -jar /Applications/bio/phyutility/phyutility.jar -concat -in *.fasta -out concatenation.nxs```
+```java -jar /Applications/bio/phyutility/phyutility.jar -concat -in *.fasta -out concatenation.fasta```
 
-Then take a look at the outputs:
+Then take a look at the three outputfiles:
 
-Get familiar with the nexus [format](http://informatics.nescent.org/wiki/NEXUS_Specification).
+* a fasta file which we eill use to store the sequence information. This file is not designed to store the information of gene boundaries.
+* a nexus file from which we will extract the nexus block which codes the information for the gene boundaries. 
+
+With a fast manual operation you can reformat the nexus block into something similar to [this]().
+You can also get familiar with the nexus [format](http://informatics.nescent.org/wiki/NEXUS_Specification).
+This is a step in phylogenetic pipelines which is often automated as manual editing of hundred/thousands of genes is not possible: you can explore this inhouse script which I made for the purpose. 
+Moreover future versions of IQ-Tree can accept a folder of alignments as input, completely removing the need for the user to concatenate and edit partitions. 
+
+Anyway this step is necessary for you to understand its underlying logic! For example, let's edit the partition file to take into account the different codon position (they evolve under different constrains due to the gen code degeneracy).
+Let's use a text editor as ```nano``` to transform our partition file from [this]() into [this]().
 
 
 ---
@@ -53,13 +62,12 @@ Otherwise the -m flag to specify the model name to use during the analysis, whic
 What we've seen until now is the process we call model selection, for which, given a sequence the best-fit model get chosen (according to a metric of choice).
 But in a concatenation framework we should carry out thi process on the whole concatenation instead of single alignements, but without loosing the information of the single genes. Let's try:
 
-```iqtree -s example.phy -p example.nex -m TESTMERGE```
+```iqtree -s concatenation.fasta -sp gene.prt -m MFP```
 
 This string will result in separate models for each gene or partion. But there are several reasons for which we wanto to merge partitions which can be described by similar models of evolution,
 due to several reasons which include computational burdens and better parameters estimation. To carry out simultaneously model of evolution & partitioning scheme selection let's use:
 
-```iqtree -s example.phy -p example.nex -m TESTMERGEONLY```
-
+```iqtree -s concatenation.fasta -sp gene.prt -m TESTMERGEONLY```
 
 
 ---
@@ -67,6 +75,6 @@ due to several reasons which include computational burdens and better parameters
 
 ## further reading: 
 
-[Here](http://www.iqtree.org/doc/Tutorial) great tutorials from the authors themselves on ModelFinder and IQ-Tree.
+[Here](http://www.iqtree.org/doc/Tutorial) you'll great tutorials from the authors themselves on ModelFinder and IQ-Tree.
 
-[very interesting paper on how concatenation/coalescence impact  mammalian phylogeny](https://onlinelibrary.wiley.com/doi/full/10.1111/cla.12170?casa_token=X0ctrSm4S1AAAAAA%3AgiB9v0MtJDO6vMWOigdvW9JrgYuJTebMen6zYxg9S0nP8MWIi2zA2fwWfi-lJlMCD9Ir1MDCzkBeyVwg)
+[Very interesting paper on how concatenation/coalescence impact mammalian phylogeny](https://onlinelibrary.wiley.com/doi/full/10.1111/cla.12170?casa_token=X0ctrSm4S1AAAAAA%3AgiB9v0MtJDO6vMWOigdvW9JrgYuJTebMen6zYxg9S0nP8MWIi2zA2fwWfi-lJlMCD9Ir1MDCzkBeyVwg)
