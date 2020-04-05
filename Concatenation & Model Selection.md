@@ -66,27 +66,29 @@ DNA, ND2rd = 2356-3380\3
 As you can notice the ```/3``` notation informs the program to consider each three positions, and the start of the partition needs to be adjusted as well.
 
 
-Now we have a fasta file which is the concatenation of our loci and two initial partitioning schemes.
+At the end of this part we should have 
+
+* a fasta file which contains the concatenation of our loci
+* two initial partitioning schemes, based on a priori biological information.
 
 
 ---
 
 
-## model of evolution & partitioning scheme selection : 
+## model of evolution & partitioning scheme selection: 
 
 To carry out the model selection we will use ModelFinder [Kalyaanamoorthy et al., 2017](https://www.nature.com/articles/nmeth.4285).
 As for most of the steps which are carried out to build a tree, there is a staggering choice of different tools and is sometimes difficult to decide which to use.
-The more widespread tool for model selection is PartitionFinder2 but we are using Model finder for two key reason:
+The more widespread tool for model selection is [PartitionFinder2](http://www.robertlanfear.com/partitionfinder/) but we are using ModelFinder as implemented in IQ-Tree for two key reason:
 
 * usability
 * speed
 
-Also I think it's a good idea to keep constantly using new and shiny tools. Let's try:
-
+Also I think it's a good idea to keep constantly using new and shiny tools. Let's try the string:
 
 ```iqtree -s CO1_total.fasta -m MFP```
 
-and then we can open the relevant file by:
+and then we can open the output by:
 
 ```gunzip CO1_total.fasta.model.gz; cat CO1_total.fasta.model```
 
@@ -95,17 +97,17 @@ ModelFinder computes the log-likelihoods of an initial parsimony tree for many d
 corrected Akaike information criterion (AICc), and the Bayesian information criterion (BIC). 
 Then ModelFinder chooses the model that minimizes the BIC score (you can also change to AIC or AICc by adding the option -AIC or -AICc, respectively).
 
-Otherwise the -m flag to specify the model name to use during the analysis, which can be a priori specified by the user (herse's a [list](http://www.iqtree.org/doc/Substitution-Models) of models implemented in ModelFinder).
+Otherwise the -m flag to specify a model name to use during the analysis, which can be a priori specified by the user (herse's a [list](http://www.iqtree.org/doc/Substitution-Models) of models implemented in ModelFinder).
 
 ```iqtree -s example.phy -m HKY+I+G```
 
-What we've seen until now is the process we call model selection, for which, given a sequence the best-fit model get chosen (according to a metric of choice).
-But in a concatenation framework we should carry out thi process on the whole concatenation instead of single alignements, but without loosing the information of the single genes. Let's try:
+What we've seen until now is the process through which we select the "best" model of evolution for our sequence data (according to a metric of choice).
+In a concatenation framework we should carry out the process on the whole concatenation instead of single alignements, but without loosing the information of the single genes boundaries. Let's try:
 
 ```iqtree -s concatenation.fasta -sp gene.prt -m MFP```
 
 This string will result in separate models for each gene or partion. But there are several reasons for which we wanto to merge partitions which can be described by similar models of evolution,
-due to several reasons which include computational burdens and better parameters estimation. To carry out simultaneously model of evolution & partitioning scheme selection let's use:
+due to several reasons which include computational speed and a better estimation of parameters. To carry out simultaneously model of evolution & partitioning scheme selection let's use:
 
 ```iqtree -s concatenation.fasta -sp gene.prt -m TESTMERGEONLY```
 
