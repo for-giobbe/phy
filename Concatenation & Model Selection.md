@@ -68,8 +68,8 @@ and save it as ```codon.prt```. As you can notice the ```/3``` notation informs 
 
 At the end of this part we should have 
 
-* ```concatenation.nxs``` - a necus file which contains the concatenation of our loci and
-* ```gene_and_codon.prt```: an ["a priori" partitioning scheme](https://github.com/for-giobbe/phy/blob/master/examples/codon.prt), based on a priori biological information.
+* ```concatenation.nxs``` - a nexus [file](https://github.com/for-giobbe/phy/blob/master/examples/concatenation.nxs) which contains the concatenation of our loci and
+* ```gene_and_codon.prt```: an ["a priori" partitioning scheme](https://github.com/for-giobbe/phy/blob/master/examples/gene_and_codon.prt), based on a priori biological information.
 
 
 ---
