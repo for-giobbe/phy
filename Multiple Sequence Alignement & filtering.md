@@ -179,7 +179,7 @@ Other approaches for filtering are possible and useful when dealing with a large
 
 ## further reading: 
 
-[very interesting paper on multiple sequence alignment uncertainty pt.1 ](https://academic.oup.com/gbe/article/7/8/2102/556628)
+[very interesting paper on multiple sequence alignment uncertainty pt.1 ](https://academic.oup.com/gbe/article/7/8/2102/556628).
 
-[very interesting paper on multiple sequence alignment uncertainty pt.2](https://science.sciencemag.org/content/319/5862/473?casa_token=t07ptffISm4AAAAA:j5l4US_y_GHOMduYw6R-MhyM7YUpa__08lw45l455DAU3tGFNKYlV40ZH0Si5w48Xl1gTEqsocLVvaE)
+[very interesting paper on multiple sequence alignment uncertainty pt.2](https://science.sciencemag.org/content/319/5862/473?casa_token=t07ptffISm4AAAAA:j5l4US_y_GHOMduYw6R-MhyM7YUpa__08lw45l455DAU3tGFNKYlV40ZH0Si5w48Xl1gTEqsocLVvaE).
 
