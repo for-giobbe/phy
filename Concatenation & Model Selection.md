@@ -13,7 +13,9 @@ As you always should, when using a new software, take a look at its [manual](htt
 
 After adjusting the path to the java executable of phyutility, try this string:
 
-```java -jar /Applications/bio/phyutility/phyutility.jar -concat -in *.fasta -out concatenation.fasta```
+```
+java -jar /Applications/bio/phyutility/phyutility.jar -concat -in *.fasta -out concatenation.fasta
+```
 
 Then take a look at the three outputfiles:
 
@@ -22,7 +24,9 @@ Then take a look at the three outputfiles:
 
 We can reformat the nexus line which stores the gene boundaries information 
 
-```[12S_total.fasta_gene1 1-816 CO1_total.fasta_gene2 817-2353 ND2_total.fasta_gene3 2354-3380 ]```
+```
+[12S_total.fasta_gene1 1-816 CO1_total.fasta_gene2 817-2353 ND2_total.fasta_gene3 2354-3380 ]
+```
 
 into something similar to 
 
@@ -46,7 +50,8 @@ Let's use ```nano``` to transform our partition file from
 ```
 DNA, 12S = 1-816
 DNA, CO1 = 817-2353
-DNA, ND2 = 2354-3380```
+DNA, ND2 = 2354-3380
+```
 
 into 
 
@@ -57,7 +62,8 @@ DNA, CO1nd = 818-2353\3
 DNA, CO1rd = 819-2353\3
 DNA, ND2st = 2354-3380\3
 DNA, ND2nd = 2355-3380\3
-DNA, ND2rd = 2356-3380\3```
+DNA, ND2rd = 2356-3380\3
+```
 
 
 ---
