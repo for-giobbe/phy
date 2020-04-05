@@ -38,9 +38,8 @@ DNA, ND2 = 2354-3380
 ```
 
 using an editor as ```nano```. I strongly discourage manual editing of files, but for us it's a nice way to understand the structure of different formats. Btw if you are curious you can also get familiar with the nexus [format](http://informatics.nescent.org/wiki/NEXUS_Specification).
-This is a step in phylogenetic pipelines which is often automated, as manual editing of partition files for hundred/thousands of genes is not possible: you can explore this in-house [script]() which I made for the purpose. 
-Moreover future versions of IQ-Tree can accept a folder of alignments as input, completely removing the need for the user to concatenate and edit partitions.  
-
+This is a step in phylogenetic pipelines which is often automated, as manual editing of partition files for hundred/thousands of genes is not possible. Later you can explore this in-house [script](https://github.com/for-giobbe/phy/blob/master/scripts/concatenate_partitions.sh) which I made for the purpose,
+just remember to adjust the path to phyutility in it. Moreover future versions of IQ-Tree can accept a folder of alignments as input, completely removing the need for the user to concatenate and edit partitions.  
 
 Nonetheless this step is necessary for you to understand its underlying logic! For example, let's edit the partition file to take into account the different codon position (they evolve under different constrains due to the gen code degeneracy).
 Let's use ```nano``` to transform our partition file from:
