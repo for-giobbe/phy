@@ -88,16 +88,10 @@ Also I think it's a good idea to keep constantly using new and shiny tools. Let'
 
 ```iqtree -s CO1_total.fasta -m MF```
 
-We can open the output by:
+We can read the best model from the standard output or open the relative file by ```zcat CO1_total.fasta.model```.
 
-```gunzip CO1_total.fasta.model.gz```
-
-abd then:
-
-```cat CO1_total.fasta.model```
-
-The special MF key word stands for ModelFinder, which tells IQ-TREE to perform ModelFinder:
-ModelFinder computes the log-likelihoods of an initial parsimony tree for many different models and the Akaike information criterion (AIC), 
+The MF word stands for ModelFinder, which tells IQ-TREE to perform ModelFinder:
+this tool computes the log-likelihoods of an initial parsimony tree for many different models and the Akaike information criterion (AIC), 
 corrected Akaike information criterion (AICc), and the Bayesian information criterion (BIC). 
 Then ModelFinder chooses the model that minimizes the BIC score (you can also change to AIC or AICc by adding the option -AIC or -AICc, respectively).
 
@@ -105,7 +99,10 @@ The -m flag can also specify a model name to use during the analysis, which can 
 
 ```iqtree -s example.phy -m HKY+I+G```
 
-As you see several additional parameters are possible such as ```+I``` ```+G``` and ```+R```.
+As you see several additional parameters are possible in order to:
+
+* describe base frequencies, such as ```+F	```, ```+FQ```, ```+FO```
+* model rate heterogeneity across sites: ```+I```, ```+G``` and ```+R```
 
 What we've seen until now is the process through which we select the "best" model of evolution for our sequence data, according to a metric of choice.
 In a concatenation framework we should carry out the process on the whole concatenation instead of single alignements, but without loosing the information of the single genes boundaries. Let's try:
