@@ -81,7 +81,7 @@ At the end of this part we should have
 
 ## model of evolution & partitioning scheme selection: 
 
-To carry out the model selection we will use ModelFinder [Kalyaanamoorthy et al., 2017](https://www.nature.com/articles/nmeth.4285).
+To carry out the model selection we will use ModelFinder [(Kalyaanamoorthy et al., 2017)](https://www.nature.com/articles/nmeth.4285).
 As for most of the steps which are carried out to build a tree, there is a staggering choice of different tools and is sometimes difficult to decide which to use.
 The more widespread tool for model selection is [PartitionFinder2](http://www.robertlanfear.com/partitionfinder/) but we are using ModelFinder as implemented in IQ-Tree for two key reason:
 
