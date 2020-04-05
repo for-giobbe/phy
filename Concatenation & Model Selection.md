@@ -9,7 +9,7 @@ You will find an interesting paper on the topic at the end of this tutorial, but
 
 ## concatenation: 
 
-After having aligned our genes, we will concatenate them using phyutility: the software has a wide array of functions and can be considere a swiss-knife for phylogeneticists.
+After having aligned our genes, we will concatenate them using Phyutility: the software has a wide array of functions and can be considere a swiss-knife for phylogeneticists.
 As you always should, when using a new software, take a look at its [manual](https://github.com/blackrim/phyutility/blob/master/manual.pdf). 
 
 After adjusting the path to the java executable of phyutility, try this string:
@@ -21,7 +21,7 @@ java -jar /Applications/bio/phyutility/phyutility.jar -concat -in *.fasta -out c
 Then take a look at the output files:
 
 * ```concatenation.fasta```: a fasta file which stores all sequences but no information of gene boundaries.
-* ```concatenation.nxs```: a nexus file from which we will extract the nexus block which codes the information for the gene boundaries. 
+* ```concatenation.nxs```: a nexus file from which we will extract the block which codes informations for gene boundaries. 
 
 We can reformat the nexus line which stores the gene boundaries information,
 
@@ -42,6 +42,7 @@ This is a step in phylogenetic pipelines which is often automated, as manual edi
 just remember to adjust the path to phyutility in it. Moreover future versions of IQ-Tree can accept a folder of alignments as input, completely removing the need for the user to concatenate and edit partitions.  
 
 Nonetheless this step is necessary for you to understand its underlying logic! For example, let's edit the partition file to take into account the different codon position (they evolve under different constrains due to the gen code degeneracy).
+
 Let's use ```nano``` to transform our ```gene.prt``` file from:
 
 ```
@@ -87,9 +88,13 @@ Also I think it's a good idea to keep constantly using new and shiny tools. Let'
 
 ```iqtree -s CO1_total.fasta -m MF```
 
-and then we can open the output by:
+We can open the output by:
 
-```gunzip CO1_total.fasta.model.gz; cat CO1_total.fasta.model```
+```gunzip CO1_total.fasta.model.gz```
+
+abd then:
+
+```cat CO1_total.fasta.model```
 
 The special MF key word stands for ModelFinder, which tells IQ-TREE to perform ModelFinder:
 ModelFinder computes the log-likelihoods of an initial parsimony tree for many different models and the Akaike information criterion (AIC), 
