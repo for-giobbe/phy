@@ -34,7 +34,7 @@ The use of short and simple IDs is strongly recommended because many programs or
 ---
 
 
-## aligning PCGs with MAFFT
+## aligning PCGs with MAFFT:
 
 MAFFT is a very fast tool, which implements several different algorithms which makes it also very versatile.
 
@@ -81,7 +81,7 @@ Last but not least: we leveraged the --auto flag of MAFFT, which automatically d
 ---
 
 
-## aligning ncRNAs genes with MAFFT
+## aligning ncRNAs genes with MAFFT:
 
 When dealing with non coding genes, we can not rely on the codon structure of the loci and it's generally more difficult to visually assess the quality of alignments. Luckily MAFFT implements specific [algorithms](https://mafft.cbrc.jp/alignment/software/source66.html) for the purpose:
 
@@ -97,7 +97,7 @@ We can execute any of the two like this:
 
 ---
 
-## one aligner to rule them all: M-coffe
+## one aligner to rule them all: M-coffe.
 
 T-Coffe is a popular aligner with an incredibly nice [server](http://tcoffee.crg.cat/) which I strongly encourage to explore. But today we are focusing on it's variant M-COFFEE: the idea behind M-COFFE is to combine many of the more popular aligners (including MAFFT).
 If we type: ```t-coffee``` and scroll up a bit we can check wether the other aligners have been correctly installed (they should be, thanks to the magic behind conda installing). We should spot easily the popular ones as Probcons, Muscle, Clustal and so on. We can give it a try using the default combination of aligners (Mkalign, Muscle & MAFFT) by typing:
@@ -127,7 +127,7 @@ We can easily use this method with the string:
 ---
 
 
-## automation 
+## automating MSA:
 
 
 In order to simplify our lessons and to gain a better understanding of the processes we restricted the number of genes to two / three. In real analyses usually hundreds or thousands of loci are used and thus the need to automate processes is quite strong. For loops are one possible solution:
@@ -161,8 +161,9 @@ In this tutorial we will use Gblocks:  this software will select blocks of conse
 
 Many other alternatives are possible, and all this tools can be extremely helpfull in removing noise and ameliorating certain characteristic of phylogenetic datasets which can affect subsequent inferences, such as substitution saturation & compositional heterogeneity. Here are the most popular:
 
-[Aliscore](https://www.zfmk.de/de/forschung/forschungszentren-und-gruppen/aliscore) [Kück et al., 2014](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-15-294)
-[BMGE](https://research.pasteur.fr/en/software/bmge-block-mapping-and-gathering-with-entropy/) [Criscuolo & Gibaldo](https://bmcevolbiol.biomedcentral.com/articles/10.1186/1471-2148-10-210)
+[Aliscore](https://www.zfmk.de/de/forschung/forschungszentren-und-gruppen/aliscore) [(Kück et al., 2014)](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-15-294)
+
+[BMGE](https://research.pasteur.fr/en/software/bmge-block-mapping-and-gathering-with-entropy/) [(Criscuolo & Gibaldo)](https://bmcevolbiol.biomedcentral.com/articles/10.1186/1471-2148-10-210)
 
 Other approaches for filtering are possible and useful when dealing with a large number of loci. Positions, genes and entire alignment can be filtered out on several crietria, including:
 
@@ -178,7 +179,7 @@ Other approaches for filtering are possible and useful when dealing with a large
 
 ## further reading: 
 
-[Evidence of Statistical Inconsistency of Phylogenetic Methods in the Presence of Multiple Sequence Alignment Uncertainty](https://academic.oup.com/gbe/article/7/8/2102/556628)
+[very interesting paper on multiple sequence alignment uncertainty pt.1 ](https://academic.oup.com/gbe/article/7/8/2102/556628)
 
-[Alignment Uncertainty and Genomic Analysis](https://science.sciencemag.org/content/319/5862/473?casa_token=t07ptffISm4AAAAA:j5l4US_y_GHOMduYw6R-MhyM7YUpa__08lw45l455DAU3tGFNKYlV40ZH0Si5w48Xl1gTEqsocLVvaE)
+[very interesting paper on multiple sequence alignment uncertainty pt.2](https://science.sciencemag.org/content/319/5862/473?casa_token=t07ptffISm4AAAAA:j5l4US_y_GHOMduYw6R-MhyM7YUpa__08lw45l455DAU3tGFNKYlV40ZH0Si5w48Xl1gTEqsocLVvaE)
 
