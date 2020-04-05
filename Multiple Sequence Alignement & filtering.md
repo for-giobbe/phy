@@ -19,13 +19,15 @@ And subsequently filter the alignments using:
 
 Gblocks [(Talavera & Castresana, 2007)](https://academic.oup.com/sysbio/article/56/4/564/1682121)
 
-At this stage you should have assembled your dataset into a multi-fasta file, which should look like [this](https://raw.githubusercontent.com/for-giobbe/phy/master/unaligned_genes/12S_total.fasta). It's very important that each one of you has it's own dastaset as this may provide natural examples of problems in analyses, but If you still do not have a dataset use [the one I am using](https://github.com/for-giobbe/phy/tree/master/unaligned_genes).
+At this stage you should have assembled your dataset into a multi-fasta file, which should look like [this](https://raw.githubusercontent.com/for-giobbe/phy/master/raw_genes/12S.fasta). It's very important that each one of you has it's own dastaset as this may provide natural examples of problems in analyses, but If you still do not have a dataset use [the one I am using](https://github.com/for-giobbe/phy/tree/master/raw_genes).
 
 As we have a handfull of loci, we can use different approaches depending on their characteristics: some genes will be protein-coding (PCGs) and others will be non-coding (ncRNA).
 
-Let's start with a look at the file with the cat command:
+Let's start with a look at the file with the ```cat``` command:
 
-```cat CO1.fasta ```
+```
+cat ND2.fasta
+```
 
 Each record consists of an ID and a sequence, of which the ID is always on a single line that starts with the ">" symbol, followed by lines containing the sequence. The sequences are not aligned yet: this is the reason why they contain no gaps and differ in length.
 The use of short and simple IDs is strongly recommended because many programs or scripts may not work if you use spaces or hyphens.
@@ -40,11 +42,15 @@ MAFFT is a very fast tool, which implements several different algorithms which m
 
 Let's start with a PCG, using the code:
 
-```mafft --auto CO1.fasta > CO1_aligned.fasta```
+```
+mafft --auto ND2.fasta > ND2_aligned.fasta
+```
 
 MAFFT contains many parameters, which you are encouraged to explore: an important one is the gap-opening penalty which by default is 1.53. Let's try a different value, using the code:
 
-```mafft --auto CO1.fasta --op 2 > CO1_op2_aligned.fasta```
+```
+mafft --auto ND2.fasta --op 2 > ND2_op2_aligned.fasta
+```
 
 We can then inspect the outcome using Aliview: let's take some time to see if:
 
@@ -59,15 +65,21 @@ by translating the PCG from nucleotides into aminoacids, align the aminoacids an
 
 1. translation from nt to aa:
 
-```transeq -sequence CO1.fasta -outseq CO1.p.fasta```
+```
+transeq -sequence ND2.fasta -outseq ND2.p.fasta
+```
 
 2. aa alignment:
 
-``` mafft --auto CO1.p.fasta > CO1_prot_aligned.p.fasta ```
+```
+mafft --auto ND2.p.fasta > ND2_prot_aligned.p.fasta
+```
 
 3. retrotranslation of the alignment from aa to nt:
 
-``` pal2nal.pl CO1_prot_aligned.p.fasta CO1.fasta -output fasta >> CO1_prot_aligned.n.fasta ```
+```
+pal2nal.pl ND2_prot_aligned.p.fasta ND2.fasta -output fasta >> ND2_prot_aligned.n.fasta
+```
 
 Here an underlying theme of bioinformatics starts to become clear: every file should have a name which should convey most, if not all, the information regarding it!
 
@@ -95,14 +107,18 @@ We can execute any of the two like this:
 
 ```mafft-qinsi 12S.fasta > 12S_aligned.fasta```
 
+
 ---
+
 
 ## one aligner to rule them all: M-coffe.
 
 T-Coffe is a popular aligner with an incredibly nice [server](http://tcoffee.crg.cat/) which I strongly encourage to explore. But today we are focusing on it's variant M-COFFEE: the idea behind M-COFFE is to combine many of the more popular aligners (including MAFFT).
 If we type: ```t-coffee``` and scroll up a bit we can check wether the other aligners have been correctly installed (they should be, thanks to the magic behind conda installing). We should spot easily the popular ones as Probcons, Muscle, Clustal and so on. We can give it a try using the default combination of aligners (Mkalign, Muscle & MAFFT) by typing:
 
-```t_coffee -seq CO1.fasta -mode fmcoffee```
+```
+t_coffee -seq ND2.fasta -mode fmcoffee
+```
 
 We should also take a look at the outputs:
 
@@ -122,7 +138,10 @@ As you can see M-Coffee is combining and evaluating multiple aligners into one.
 The more accurate method (IMHO) is to rely on. This approach is quite useful when dealing with distantly related proteins and can be a game-changer when accurate alignments are necessary, for example for inferences on selection regimes.
 We can easily use this method with the string:
 
-```t_coffee -seq CO1.fasta -mode psicoffee```
+```
+t_coffee -seq ND2.fasta -mode psicoffee
+```
+
 
 ---
 
@@ -132,7 +151,8 @@ We can easily use this method with the string:
 
 In order to simplify our lessons and to gain a better understanding of the processes we restricted the number of genes to two / three. In real analyses usually hundreds or thousands of loci are used and thus the need to automate processes is quite strong. For loops are one possible solution:
  
-```mkdir aligned_genes;
+```
+mkdir aligned_genes;
 
 for i in *fasta; do 
 	gene_name=$(echo $i | awk -F “.” ‘{print $1}’); 
@@ -153,11 +173,24 @@ While dealing modern phylogenetic dataset, which consists of hundred to thousand
 
 In this tutorial we will use Gblocks:  this software will select blocks of conserved sites, which can be defined with many custom parameters, described in the [manual](http://molevol.cmima.csic.es/castresana/Gblocks/Gblocks_documentation.html)
 
+We will use the susequent parameters and leave the rest to the default:
+
 * -t= p (protein) d (DNA) c (codons) 
 * -b4 Minimum Length Of A Block
 * -b5 Allowed Gap Positions
 
-```Gblocks cox1_TC.fasta_aln -t=d -b4=5 -b5=a```
+Let's use this string one PCGs gene:
+
+```
+Gblocks ND2.fasta -t=d -b4=5 -b5=a
+```
+
+and this for ncRNAs:
+
+```
+Gblocks 12S.fasta -t=d -b4=5 -b5=a
+```
+
 
 Many other alternatives are possible, and all this tools can be extremely helpfull in removing noise and ameliorating certain characteristic of phylogenetic datasets which can affect subsequent inferences, such as substitution saturation & compositional heterogeneity. Here are the most popular:
 

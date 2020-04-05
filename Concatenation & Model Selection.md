@@ -1,5 +1,11 @@
 # Concatenation & Model Selection
 
+
+---
+
+
+## intro: 
+
 Currently, two divergent systematic methods are commonly applied for inferring species trees: the supermatrix approach (concatenation) and the coalescent approach (gene trees are calculated and then reconciled in a species tree). 
 You will find an interesting paper on the topic at the end of this tutorial, but here we will focus on the supermatrix approach.
 
@@ -68,7 +74,7 @@ and save it as ```codon.prt```. As you can notice the ```/3``` notation informs 
 
 At the end of this part we should have 
 
-* ```concatenation.nxs``` - a nexus [file](https://github.com/for-giobbe/phy/blob/master/examples/concatenation.nxs) which contains the concatenation of our loci and
+* ```concatenation.nxs``` - a [nexus file](https://github.com/for-giobbe/phy/blob/master/examples/concatenation.nxs) which contains the concatenation of our loci and
 * ```gene_and_codon.prt```: an ["a priori" partitioning scheme](https://github.com/for-giobbe/phy/blob/master/examples/gene_and_codon.prt), based on a priori biological information.
 
 
@@ -129,16 +135,8 @@ Moreover, IQ-TREE provides edge-linked or edge-unlinked branch lengths between p
 * -sp  partition_file: each partition has its own set of branch lengths to account for, e.g. heterotachy (Lopez et al., 2002).
 
 -spp is recommended for typical analysis while -q is unrealistic and -sp is very parameter-rich.
-In real scenarios one should perform all three analyses and compare e.g. the BIC scores to determine the best-fit partition model, but for now we will skip this part
-and chose the more reasonable assumption of a separate evolutionary rate of each partitions.
-
-
-
-
-
-
-
-
+In real scenarios one should perform all three analyses and compare e.g. the BIC scores to determine the best-fit partition model. Even if different branchlengths strategies can have a real impact on phylogenies,
+we will skip this part and chose the more reasonable assumption of a separate evolutionary rate of each partitions.
 
 
 ---
