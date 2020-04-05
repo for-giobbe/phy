@@ -15,13 +15,13 @@ As you always should, when using a new software, take a look at its [manual](htt
 After adjusting the path to the java executable of phyutility, try this string:
 
 ```
-java -jar /Applications/bio/phyutility/phyutility.jar -concat -in *.fasta -out concatenation.fasta
+java -jar /Applications/bio/phyutility/phyutility.jar -concat -in *.fasta -out concatenation.nxs
 ```
 
-Then take a look at the output files:
+Then take a look at the output file ```concatenation.nxs```. It's a nexus file which 
 
-* ```concatenation.fasta```: a fasta file which stores all sequences but no information of gene boundaries.
-* ```concatenation.nxs```: a nexus file from which we will extract the block which codes informations for gene boundaries. 
+* stores sequence information 
+* from which we will extract the block which codes informations for gene boundaries. 
 
 We can reformat the nexus line which stores the gene boundaries information,
 
@@ -68,8 +68,8 @@ and save it as ```codon.prt```. As you can notice the ```/3``` notation informs 
 
 At the end of this part we should have 
 
-* ```concatenation.fasta``` - a fasta file which contains the concatenation of our loci and
-* ```gene.prt``` & ```codon.prt```: two "a priori" partitioning schemes, based on a priori biological information.
+* ```concatenation.nxs``` - a necus file which contains the concatenation of our loci and
+* ```gene_and_codon.prt```: an ["a priori" partitioning scheme](https://github.com/for-giobbe/phy/blob/master/examples/codon.prt), based on a priori biological information.
 
 
 ---
@@ -107,31 +107,30 @@ As you see several additional parameters are possible in order to:
 What we've seen until now is the process through which we select the "best" model of evolution for our sequence data, according to a metric of choice.
 In a concatenation framework we should carry out the process on the whole concatenation instead of single alignements, but without loosing the information of the single genes boundaries. Let's try:
 
-```iqtree -s concatenation.fasta -sp gene.prt -m MFP```
+```iqtree -s concatenation.nxs -sp gene_and_codon.prt -m MFP```
 
-This string will result in separate models for each gene or partion. But there are several reasons for which we wanto to merge partitions which can be described by similar models of evolution,
-due to several reasons which include computational speed and a better estimation of parameters. To carry out simultaneously model of evolution & partitioning scheme selection let's use:
+and the we can take a look at the file ```codon.prt.best_scheme.nex```
 
-```iqtree -s concatenation.fasta -sp gene.prt -m TESTMERGEONLY```
+The previous analysis will result in separate models for each partion. Nonetheless, there are several reasons for which we wanto to merge partitions which can be described by similar models of evolution, which include:
 
+*computational speed
+*better estimation of model parameters. 
 
+To carry out simultaneously model of evolution & partitioning scheme selection let's use:
 
+```iqtree -s concatenation.nxs -sp gene_and_codon.prt -m TESTMERGEONLY  -redo```
 
+We will overwrite the previous analysis, as the merging of partition will almost certainly result in a better model for our dataset.
 
-iqtree -s example.phy -p example.nex -m MF+MERGE
-
-
-
-
-
-In the partition model, you can specify a substitution model for each gene/character set. IQ-TREE will then estimate the model parameters separately for every partition. Moreover, IQ-TREE provides edge-linked or edge-unlinked branch lengths between partitions:
-
+Moreover, IQ-TREE provides edge-linked or edge-unlinked branch lengths between partitions:
 
 * -q   partition_file: all partitions share the same set of branch lengths.
 * -spp partition_file: like above but allowing each partition to have its own evolution rate.
 * -sp  partition_file: each partition has its own set of branch lengths to account for, e.g. heterotachy (Lopez et al., 2002).
 
--p is recommended for typical analysis. -q is unrealistic and -Q is very parameter-rich. One can also perform all three analyses and compare e.g. the BIC scores to determine the best-fit partition model.
+-spp is recommended for typical analysis while -q is unrealistic and -sp is very parameter-rich.
+In real scenarios one should perform all three analyses and compare e.g. the BIC scores to determine the best-fit partition model, but for now we will skip this part
+and chose the more reasonable assumption of a separate evolutionary rate of each partitions.
 
 
 
