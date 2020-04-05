@@ -10,7 +10,7 @@ Currently, two divergent systematic methods are commonly applied for inferring s
 You will find an interesting paper on the topic at the end of this tutorial, but here we will focus on the supermatrix approach.
 
 
-Before starting you should have two aligned & filtered MSA, or if you missed the previous lesson you can grab the ones I obtained during last lesson: [12S_xinsi_op7_aligned.gb.fasta](https://github.com/for-giobbe/phy/blob/master/examples/12S_xinsi_op7_aligned.gb.fasta) and [ND2_p_aligned.n.gb.fasta](https://github.com/for-giobbe/phy/blob/master/examples/ND2_p_aligned.n.gb.fasta).
+Before starting you should have two aligned & filtered MSA, or if you missed the previous lesson you can grab the ones I generated: [12S_xinsi_op7_aligned.gb.fasta](https://github.com/for-giobbe/phy/blob/master/examples/12S_xinsi_op7_aligned.gb.fasta) and [ND2_p_aligned.n.gb.fasta](https://github.com/for-giobbe/phy/blob/master/examples/ND2_p_aligned.n.gb.fasta).
 
 ---
 
@@ -67,13 +67,13 @@ DNA, ND2nd = 747-1768\3
 DNA, ND2rd = 748-1768\3
 ```
 
-and save it as ```gene_and_codon.prt```. As you can notice the ```/3``` notation informs the program to consider each three positions, and the start of the partition needs to be adjusted as well.
+and save it as ```gene_and_codon.prt```. As you can notice the ```\3``` notation informs the program to consider each three positions, and the start of the partition needs to be adjusted as well.
 
 
 At the end of this part we should have 
 
-* ```concatenation.nxs```: a [nexus file](https://github.com/for-giobbe/phy/blob/master/examples/concatenation.nxs) which contains the concatenation of our loci and
-* ```gene_and_codon.prt```: an ["a priori" partitioning scheme](https://github.com/for-giobbe/phy/blob/master/examples/gene_and_codon.prt), based on a priori biological information.
+* ```concatenation.nxs```:   [nexus file](https://github.com/for-giobbe/phy/blob/master/examples/concatenation.nxs) which contains the concatenation of our loci and
+* ```gene_and_codon.prt```:  [initial partitioning scheme](https://github.com/for-giobbe/phy/blob/master/examples/gene_and_codon.prt), based on a priori biological information.
 
 
 ---
@@ -90,9 +90,11 @@ The more widespread tool for model selection is [PartitionFinder2](http://www.ro
 
 Also I think it's a good idea to keep constantly using new and shiny tools. Let's try the string:
 
-```iqtree -s ND2.fasta -m MF```
+```
+iqtree -s ND2_p_aligned.n.gb.fasta -m MF
+```
 
-We can read the best model from the standard output or open the relative file by ```zcat ND2.fasta.model```.
+We can read the best model from the standard output or open the relative file by ```zcat ND2_p_aligned.n.gb.fasta.model```.
 
 The MF word stands for ModelFinder, which tells IQ-TREE to perform ModelFinder:
 this tool computes the log-likelihoods of an initial parsimony tree for many different models and the Akaike information criterion (AIC), 
@@ -101,7 +103,9 @@ Then ModelFinder chooses the model that minimizes the BIC score (you can also ch
 
 The -m flag can also specify a model name to use during the analyses, which can be a priori specified by the user (here's a [list](http://www.iqtree.org/doc/Substitution-Models) of models implemented in ModelFinder if you feel you will nail it better than ModelFinder).
 
-```iqtree -s ND2.fasta -m HKY+FQ+G```
+```
+iqtree -s ND2.fasta -m HKY+FQ+G
+```
 
 As you see several additional parameters are possible in order to:
 
@@ -111,7 +115,9 @@ As you see several additional parameters are possible in order to:
 What we've seen until now is the process through which we select the "best" model of evolution for our sequence data, according to a metric of choice.
 In a concatenation framework we should carry out the process on the whole concatenation instead of single alignements, but without loosing the information of the single genes boundaries. Let's try:
 
-```iqtree -s concatenation.nxs -sp gene_and_codon.prt -m MF```
+```
+iqtree -s concatenation.nxs -sp gene_and_codon.prt -m MF
+```
 
 and the we can take a look at the file ```gene_and_codon.prt.best_scheme.nex```.
 
@@ -122,19 +128,21 @@ The previous analysis will result in separate models for each partion. Nonethele
 
 To carry out simultaneously model of evolution & partitioning scheme selection let's use:
 
-```iqtree -s concatenation.nxs -sp gene_and_codon.prt -m MF+MERGE  -redo```
+```
+iqtree -s concatenation.nxs -sp gene_and_codon.prt -m MF+MERGE  -redo
+```
 
-We will overwrite the previous analysis, as the merging of partition will almost certainly result in a better model for our dataset.
+We have overwritten the previous analysis using the ```-redo``` flag, as the merging of partition will almost certainly result in a better model for our dataset.
+
 Let's take again a look at the file ```gene_and_codon.prt.best_scheme.nex```.
 
 
-Moreover, IQ-TREE allows different branch lengths between partitions:
+Moreover, IQ-TREE allows different branchlengths between partitions with the flags:
 
-* -q   partition_file: all partitions share the same set of branch lengths.
-* -spp partition_file: like above but allowing each partition to have its own evolution rate.
-* -sp  partition_file: each partition has its own set of branch lengths to account for heterotachy (i.e. lineage-specific evolutionary rates changing over time) .
+* -q:   all partitions share the same set of branch lengths (unrealistic).
+* -spp: allows each partition to have its own evolution rate (recommended for typical analysis).
+* -sp:  has its own set of branch lengths to account for [heterotachy](https://en.wikipedia.org/wiki/Heterotachy) (very parameter-rich).
 
--spp is recommended for typical analysis while -q is unrealistic and -sp is very parameter-rich.
 In real scenarios one should perform all three analyses and compare e.g. the BIC scores to determine the best-fit partition model. 
 Even if different branchlengths strategies can have a real impact on phylogenies,
 we will skip this part and chose the more reasonable assumption of a separate evolutionary rate of each partitions.
