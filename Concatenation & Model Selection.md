@@ -29,7 +29,8 @@ into something similar to
 ```
 DNA, 12S = 1-816
 DNA, CO1 = 817-2353
-DNA, ND2 = 2354-3380```
+DNA, ND2 = 2354-3380
+```
 
 using an editor as ```nano```.
 
