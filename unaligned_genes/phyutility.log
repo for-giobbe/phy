@@ -1,0 +1,12 @@
+starting log: 05/04/20 10:04
+concat
+in filename: 12S_total.fasta
+in filename: CO1_total.fasta
+in filename: ND2_total.fasta
+outfile: concatenation.nxs
+starting log: 05/04/20 10:05
+concat
+in filename: 12S_total.fasta
+in filename: CO1_total.fasta
+in filename: ND2_total.fasta
+outfile: concatenation.fasta
