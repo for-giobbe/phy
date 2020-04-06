@@ -120,7 +120,8 @@ How much is the gap opening penalty impacting on a ncRNA alignment?
 ## one aligner to rule them all: M-coffe.
 
 T-Coffe is a popular aligner with an incredibly nice [server](http://tcoffee.crg.cat/) which I strongly encourage to explore. But today we are focusing on it's variant M-COFFEE: the idea behind M-COFFE is to combine many of the more popular aligners (including MAFFT).
-If we type: ```t-coffee``` and scroll up a bit we can check wether the other aligners have been correctly installed (they should be, thanks to the magic behind conda installing). We should spot easily the popular ones as Probcons, Muscle, Clustal and so on. We can give it a try using the default combination of aligners (Mkalign, Muscle & MAFFT) by typing:
+If we type: ```t-coffee``` and scroll up a bit we can check wether the other aligners have been correctly installed (they should be, thanks to the magic behind conda installing). We should spot easily the popular ones as 
+[Probcons](http://probcons.stanford.edu/), [Muscle](https://www.ebi.ac.uk/Tools/msa/muscle/), [Clustal](https://www.genome.jp/tools-bin/clustalw) and so on. We can give it a try using the default combination of aligners (Mkalign, Muscle & MAFFT) by typing:
 
 ```
 t_coffee -seq 12S.fasta -mode fmcoffee
