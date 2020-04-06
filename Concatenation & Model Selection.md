@@ -7,7 +7,7 @@
 ## intro: 
 
 Currently, two divergent systematic methods are commonly applied for inferring species trees: the supermatrix approach (concatenation) and the coalescent approach (gene trees are calculated and then reconciled in a species tree). 
-You will find an interesting paper on the topic at the end of this tutorial, but here we will focus on the supermatrix approach.
+You will find a couple of interesting paper on the topic at the end of this tutorial, but here we will focus on the supermatrix approach.
 
 
 Before starting you should have two aligned & filtered MSA, or if you missed the previous lesson you can grab the ones I generated: [12S_xinsi_op7_aligned.gb.fasta](https://github.com/for-giobbe/phy/blob/master/examples/12S_xinsi_op7_aligned.gb.fasta) and [ND2_p_aligned.n.gb.fasta](https://github.com/for-giobbe/phy/blob/master/examples/ND2_p_aligned.n.gb.fasta).
@@ -121,10 +121,8 @@ iqtree -s concatenation.nxs -sp gene_and_codon.prt -m MF
 
 and the we can take a look at the file ```gene_and_codon.prt.best_scheme.nex```.
 
-The previous analysis will result in separate models for each partion. Nonetheless, there are several reasons for which we wanto to merge partitions which can be described by similar models of evolution, which include:
-
-* computational speed
-* better estimation of model parameters. 
+The previous analysis will result in separate models for each partion. Nonetheless, there are several reasons for which we wanto to merge partitions which can be described by similar models of evolution,
+possibly including a better estimation of model parameters. 
 
 To carry out simultaneously model of evolution & partitioning scheme selection let's use:
 
