@@ -246,42 +246,37 @@ Along with its non-replacement version (not very popular nowadays):
 > and branch-support values are derived as the percentage with which a certain branch is present in the jackknife topologies.
 
 Adapted (slightly) from:
-> _Michael WeißMarkus Göker, in The Yeasts (Fifth Edition), 2011_
+_Michael WeißMarkus Göker, in The Yeasts (Fifth Edition), 2011_
 
-> The approximate likelihood ratio test (aLRT) for
-> branches is closely related to the conventional LRT, with the null hypothesis
-> corresponding to the assumption that the tested branch has length 0. Standard LRT uses
-> the test statistics 2(L1 −L0), where L1 is the log-likelihood of the current tree, and L0 the
+The functioning of aLRT is quite interesting as well:
+
+> The approximate likelihood ratio test (aLRT) for branches is closely related to the conventional LRT. 
+> It uses the test statistics 2(L1 −L0), where L1 (alternative hypothesis) is the log-likelihood of the current tree and L0 (null hypothesis) is the
 > log-likelihood of the same tree, but with the branch of interest being collapsed.
-> The aLRT approximates this test statistics in a slightly conservative but practical way as 2(L1 − L2),
+> The aLRT assesses that the branch being studied provides a significant gain in likelihood,
+> in comparison with the null hypothesis that involves collapsing that branch but
+> leaving the rest of the tree topology identical. 
+> The aLRT approximates this test statistics in a slightly conservative but practical way,
 > where L2 corresponds to the second best NNI configuration around the branch of interest.
 > Such test is fast because the log-likelihood value L2 is computed by optimising only over
 > the branch of interest and the four adjacent branches, while other parameters are fixed at
 > their optimal values corresponding to the best ML tree.
-
-
-> The rational behind the aLRT clearly differs from non-parametric bootstrap. 
-> Basically, while aLRT values are derived from testing hypotheses, the
-> bootstrap proportion is a repeatability measure; when the bootstrap proportion of a given
-> clade is high, we are quite confident that this clade would be inferred again if another
-> original data sample was available and analysed by the same tree-building method (which
-> does not mean that the clade exists in the true tree). Also, computing aLRT values is
-> much faster than getting bootstrap supports and has a negligible computational cost in comparison with tree building.
-> Note however that SH-like branch supports are non-parametric, just as are the bootstrap proportions. In
-> fact, they often provide similar results as the bootstrap
-
-> The aLRT assesses that the branch being studied provides a significant gain in likelihood,
-> in comparison with the null hypothesis that involves collapsing that branch but
-> leaving the rest of the tree topology identical. Thus, the aLRT does not account for other
+ Thus, the aLRT does not account for other
 > possible topologies that would be highly likely but quite different from the current topology. 
 > This implies that the aLRT performs well when the data contains a clear phylogenetic
 > signal, but not as well in the opposite case, where it tends to give a local view on
 > the branch of interest and be liberal. Note also that parametric branch supports are
 > based on the assumption that the evolutionary model used to infer the trees is the correct one. 
+> The rational behind the aLRT clearly differs from bootstrap. 
+> Basically, while aLRT values are derived from testing hypotheses, the
+> bootstrap proportion is a repeatability measure. Also, computing aLRT values is
+> much faster than getting bootstrap supports and has a negligible computational cost in comparison with tree building.
+> Note however that SH-like branch supports are non-parametric, just as are the bootstrap proportions. In
+> fact, they often provide similar results as the bootstrap
 
 Adapted from:
->_Stéphane Guindon, Frédéric Delsuc, Jean-François Dufayard, Olivier Gascuel. Estimating maximum likelihood phylogenies with PhyML. David Posada. Bioinformatics for DNA Sequence Analysis,
-> Springer Protocols, pp.113-137, 2009, Methods in Molecular Biology._
+_Guindon et al., 2009. Estimating maximum likelihood phylogenies with PhyML. David Posada. Bioinformatics for DNA Sequence Analysis,
+ Springer Protocols, pp.113-137 Methods in Molecular Biology._
 
 ---
 
@@ -296,12 +291,10 @@ Let's get some hands-on exercises:
 	iqtree -s ND2_p_aligned.n.gb.fasta -b 100
 	```
 
-
 * Parametric bootstrap
 	
-	UFB2 - ultra fast bootstrap[Hoang et al., 2018](https://academic.oup.com/mbe/article/35/2/518/4565479)
-	-B specifies the number of bootstrap replicates where 1000 is the minimum number recommended. 
-
+	IQ-Tree implements UFB2 - Ultra Fast Bootstrap 2 described in [Hoang et al., 2018](https://academic.oup.com/mbe/article/35/2/518/4565479)
+	The ```-B``` flag specifies the number of replicates where 1000 is the minimum number recommended. 
 
 	provide a new option -bnni to reduce the risk of overestimating branch supports with UFBoot due to severe model violations. 
 	With this option UFBoot will further optimize each bootstrap tree using a hill-climbing nearest neighbor interchange (NNI) search based directly on the corresponding bootstrap alignment.
@@ -314,13 +307,13 @@ Let's get some hands-on exercises:
 
 * SH-like approximate likelihood ratio test 
 
-	a non-parametric branch support based on a Shimodaira-Hasegawa-like procedure (9); 
+	IQ-Tree implements a non-parametric approximate likelihood ratio test based on a Shimodaira-Hasegawa-like procedure (9); 
 
-	There are several metrics of support in phylogenetics and aside the traditional ones (which we just went trough) some new ones
-	get proposed and/or implemented from time to time. This is the case of gCF and sCF (genes and sites Concordance Factors) 
-	for which I left some additional information in the further reading paragraph at the end of the lesson. Remember that different
-	metrics can provide different perspective on the confidence of a clade/bipartition; 
-	moreover they can sometimes be informative of biological processes such as ILS or adaptive radiation.
+To conclude: there are several metrics of support in phylogenetics and aside the traditional ones (which we just went trough) some new ones
+get proposed and/or implemented from time to time. This is the case of gCF and sCF (genes and sites Concordance Factors) 
+for which I left some additional information in the further reading paragraph at the end of the lesson. 
+Remember that different metrics can provide different perspective on the confidence of a clade/bipartition; 
+moreover they can sometimes be informative of biological processes such as ILS (Incomplete Lineage Sorting) or adaptive radiations.
 
 ---
 
