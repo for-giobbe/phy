@@ -8,46 +8,88 @@
 
 Maximum likelihood is a general statistical method for estimating parameters of a
 probability model. A familiar one might be the normal distribution of a population with two parameters: 
-the mean and variance. In phylogenetics there are many parameters, including:
+the mean and variance. In molecular phylogenetics there are a wide plethora of parameters, which may include:
 
-* rates of transitions between states
+* rates of transitions between bases
 * base composition
-* descriptors of among sites variation
-* ...
-* most importantly, the tree itself!
+* descriptors of rate heterogeneity across sites
+* branchlengths
+* and most importantly, the tree itself!
 
 Likelihood is defined to be a quantity proportional to the probability of observing the data given
 the model: 
 ```
-
 P(D|M)
 ```
-
 Thus, if we have a model we can calculate the probability the observations would have actually been observed as a function of the model. 
 We then examine this likelihood function to see where it is at its greatest, and the value of the parameter of
 interests (usually the tree and/or branch lengths) at that point is the maximum likelihood estimate of the parameter.
 
 In this lesson we are going to compute a phylogenetic tree in a ML framework and explore a bit the relative support metrics,
-which can inform us of the confidence relative to a split.
+which can inform us of the confidence relative to a split. At this point you should have a concatenation and a partition file; 
+if not you can use mine [here](https://github.com/for-giobbe/phy/tree/master/examples).
 
 
 ## inferring gene trees - unpartitioned analyses
 
 
-During last lesson we found the best-fit partition model without doing tree reconstruction, running the line:
+During last lesson we found the best-fit model of evolution without doing tree reconstruction, running the line:
 
 ```
-iqtree -s concatenation.nxs -spp gene_and_codon.prt -m MF+MERGE  -redo
+iqtree -s ND2_p_aligned.n.gb.fasta -s  -m MFP 
 ```
 
-We can also carry out the phylogenetic inference using the ```-m TESTNEWMERGE``` flag.
-After ModelFinder found the best partition, IQ-TREE will immediately start the tree reconstruction under the best-fit partition model.
+But we can perform both the search for the best-fit model and the phylogenetic inference by just using the ```-s``` flag, so that
+after ModelFinder, IQ-TREE will immediately start the tree reconstruction under the best-fit partition model. Let's use the line:
 
 ```
 iqtree -s example.phy -spp example.nex -m TESTNEWMERGE
 ```
 
-Most phylogenetic programs produce unrooted trees as they are not aware about any biological background.
+
+Let's take a look at the results:
+
+
+Remember that most phylogenetic programs produce unrooted trees as they are not aware about any biological background.
+
+
+
+
+When large amount of loci are available for phylogenetic inference, IQ-TREE provides the -S flag to compute individual loci trees 
+given a partition file or a directory:
+
+```
+iqtree -s ALN_FILE -S PARTITION_FILE --prefix loci -T AUTO
+```
+
+or
+
+```
+iqtree -S ALN_DIR --prefix loci -T AUTO
+```
+
+In the second case, IQ-TREE automatically detects that ALN_DIR is a directory and will load all alignment files within the directory. 
+So -S takes the same argument as -p except that it performs model selection (ModelFinder) and tree inference separately for each 
+partition/alignment. The output files are similar to those from a partitioned analysis,
+except that loci.treefile now contains a set of trees.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ---
 
