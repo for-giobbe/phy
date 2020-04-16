@@ -10,7 +10,7 @@
 
 3. [Building a Tree in a ML Framework](https://github.com/for-giobbe/phy/blob/master/Building%20a%20Tree%20in%20a%20ML%20Framework.md)
 
-4. [Building a Tree in a BI Framework]
+4. [Building a Tree in a BI Framework](https://github.com/for-giobbe/phy/blob/master/Building%20a%20Tree%20in%20a%20BI%20Framework%20.md)
 
 5. [Inferring Divergence Times]
 
