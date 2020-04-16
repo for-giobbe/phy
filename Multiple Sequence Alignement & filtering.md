@@ -62,6 +62,8 @@ Sometimes aligners which are not aware of the underlying structure of codons in 
 Insertions and/or deletions ("indels") with lengths that are not multiples of three will disrupt the reading frame and cause large changes to the protein structure which are usually strongly selected against and rarely found in alignments of protein-coding sequences.
 In cases where the placement of indels is ambiguous, information about the reading frame can be used to optimize the positioning of these indels, 
 by translating the PCG from nucleotides into aminoacids, align the aminoacids and then retrotranslate the aminoacids alignment to nucleotides. 
+
+
 Beware, your unaligned fasta file should have only sequence of multiple-three length of the retrotranslation step will not work. Here it is:
 
 1. translation from nt to aa:
