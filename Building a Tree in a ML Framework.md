@@ -276,7 +276,7 @@ Let's get some hands-on exercises:
 * Nonparametric bootstrap
 
 	The standard nonparametric bootstrap is invoked by the ```-b``` option, which also specifies the number 
-	of bootstrap replicates (100 is the minimum recommended number):
+	of bootstrap replicates (100 is the minimum recommended number).
 
 	```
 	iqtree -s ND2_p_aligned.n.gb.fasta -b 100
@@ -286,11 +286,8 @@ Let's get some hands-on exercises:
 * Parametric bootstrap
 	
 	IQ-Tree implements UFB2 - Ultra Fast Bootstrap 2 described in [Hoang et al., 2018](https://academic.oup.com/mbe/article/35/2/518/4565479)
-	The ```-B``` flag specifies the number of replicates where 1000 is the minimum number recommended. 
-
-	IQ-Tree also has the option to further optimize each bootstrap tree using a hill-climbing nearest neighbor interchange (NNI) search,
-	based directly on the corresponding bootstrap alignment.
-	It's specified through the ```-bnni ``` option to reduce the risk of overestimating branch supports with UFBoot due to severe model violations. 
+	The ```-B``` flag specifies the number of replicates where 1000 is the minimum number recommended.  IQ-Tree also has the option to further optimize each bootstrap tree using a hill-climbing nearest neighbor interchange (NNI) search,
+	based directly on the corresponding bootstrap alignment. It's specified through the ```-bnni ``` option to reduce the risk of overestimating branch supports with UFBoot due to severe model violations. 
 
 	```
 	iqtree -s ND2_p_aligned.n.gb.fasta -B 1000 -bnni
@@ -300,30 +297,27 @@ Let's get some hands-on exercises:
 * SH-like approximate likelihood ratio test 
 
 	IQ-Tree implements a non-parametric approximate likelihood ratio test based on a Shimodaira-Hasegawa-like procedure via the
-	flag
+	flag ```-alrt```.
 
 	```
-	iqtree -s ND2_p_aligned.n.gb.fasta -B 1000 -bnni
+	iqtree -s ND2_p_aligned.n.gb.fasta -alrt 1000
 	```
 
 We can combine the three metrics in the same analysis and have them annotated on the "best" Maximum Likelilhood phylogeny. 
 It's then easier to observe wether the different support metrics are giving contrasting results through our phylogenies.
 
 ```
-iqtree -s ND2_p_aligned.n.gb.fasta -B 1000 -bnni -b 100 -sh 1000 -alrt 1000
+iqtree -s ND2_p_aligned.n.gb.fasta -B 1000 -bnni -b 100 -alrt 1000
 ```
 
-The values related to different metrics should be treated differently: 
+Let's take a look at the ```.iqtree``` among the other output files, bearing in mind that the values related to different metrics 
+should be treated differently: with the non-parametric bootstrap and SH-aLRT you should start to believe in a clade if 
+it has >= 80% support, while with UFBoot it should be >= 95%, 
 
-
-with the non-parametric bootstrap and SH-aLRT you should start to believe in a clade if it has >= 80% support,
-while with UFBoot it should be >= 95%, 
-
-To conclude: there are several metrics of support in phylogenetics which can provide 
-different perspective on the confidence of a clade/bipartition. Moreover they can sometimes be informative of biological processes 
-such as ILS (Incomplete Lineage Sorting) or adaptive radiations.
-Aside the traditional ones (which we just went trough) some new ones get proposed and/or implemented from time to time. 
-This is the case of gCF and sCF (genes and sites Concordance Factors) for which I left some additional information 
+To conclude: there are several metrics of support in phylogenetics which can provide different perspective on the confidence 
+of a clade/bipartition. Moreover they can sometimes be informative of biological processes such as ILS (Incomplete Lineage Sorting) 
+or adaptive radiations. Aside the traditional ones (which we just went trough) some new ones get proposed and/or implemented 
+from time to time. This is the case of gCF and sCF (genes and sites Concordance Factors) for which I left some additional information 
 in the further reading paragraph at the end of the lesson. 
 
 
