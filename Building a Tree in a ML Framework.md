@@ -188,6 +188,83 @@ NOTE: Tree is UNROOTED although outgroup taxon 'Mantis_religiosa' is drawn at ro
 Remember that most phylogenetic programs produce unrooted trees, as they are not aware about any biological background.
 
 
+---
+
+
+## ifgerring species tree - partitioned analyses
+
+
+---
+
+
+## inferring nodal support using different metrics
+
+
+Several metrics of clade support are possible and should be combined to gain more confidence.
+Here are the more frequently used in IQ-Tree:
+
+* Parametric & Nonparametric bootstrap
+* SH-like approximate likelihood ratio test 
+* ...
+
+
+Non-parametric bootstrapping was developed by Efron (1979) as a general statistical method for estimating the parameters 
+of an unknown probability distribution by resampling from an existing sample that was drawn from this distribution. 
+The method was transferred to phylogenetic reconstruction by Felsenstein (1985).
+Within molecular phylogenetics it works as follows: 
+from an alignment of length n, columns are randomly drawn with replacement n times. 
+The drawn columns are arranged in a new dataset, a bootstrapped alignment of length n. 
+From this bootstrapped alignment, a phylogenetic tree is constructed by following the same method of phylogenetic analysis 
+as was used for the analysis of the original alignment. 
+This process of constructing bootstrap alignments and bootstrap trees is repeated a large number of times,
+ and the resulting trees are stored. The percentage with which a certain bipartition of the taxon set is present in the bootstrap trees
+(the bootstrap value) can be taken as a measure of how homogeneously this bipartition of sequences 
+(i.e., the respective branch in the underlying topology) is supported by the data. 
+Bootstrap values are often summarized by constructing the majority-rule consensus from the bootstrap trees
+or by annotating them on the "best" tree.
+
+Adapted from:
+> Michael WeißMarkus Göker, in The Yeasts (Fifth Edition), 2011
+
+
+### Nonparametric bootstrap
+
+Bootstrapping is a standard statistic method used to estimate confidence intervals of a population mean by randomly 
+resampling a subset of data from within a larger data set
+
+
+The standard nonparametric bootstrap is invoked by the ```-b``` option, which also specifies the number 
+of bootstrap replicates (100 is the minimum recommended number):
+
+```
+iqtree -s ND2_p_aligned.n.gb.fasta -b 100
+```
+
+
+### Parametric bootstrap
+
+
+UFB2 - ultra fast bootstrap[Hoang et al., 2018](https://academic.oup.com/mbe/article/35/2/518/4565479)
+-B specifies the number of bootstrap replicates where 1000 is the minimum number recommended. 
+
+
+ provide a new option -bnni to reduce the risk of overestimating branch supports with UFBoot due to severe model violations. 
+ With this option UFBoot will further optimize each bootstrap tree using a hill-climbing nearest neighbor interchange (NNI) search based directly on the corresponding bootstrap alignment.
+ Thus, if severe model violations are present in the data set at hand, users are advised to append -bnni to the regular UFBoot command:
+
+```
+iqtree -s ND2_p_aligned.n.gb.fasta -B 1000 -bnni
+```
+
+
+### SH-like approximate likelihood ratio test 
+
+
+---
+
+
+## automation
+
 When large amount of loci are available for phylogenetic inference, IQ-TREE provides the -S flag to compute individual loci trees 
 given a partition file or a directory:
 
@@ -207,46 +284,11 @@ partition/alignment. The output files are similar to those from a partitioned an
 except that loci.treefile now contains a set of trees.
 
 
----
-
-
-## ingerring species tree - partitioned analyses
 
 
 ---
 
 
-## inferring nodal support using different metrics
-
-* UFB - ultra fast boootstrap
-
-The standard nonparametric bootstrap is invoked by the -b option:
-
-```
-iqtree -s example.phy -m TIM2+I+G -b 100
-```
-
--b specifies the number of bootstrap replicates where 100 is the minimum recommended number. 
-
-[Hoang et al., 2018](https://academic.oup.com/mbe/article/35/2/518/4565479)
--B specifies the number of bootstrap replicates where 1000 is the minimum number recommended. 
-
-
- provide a new option -bnni to reduce the risk of overestimating branch supports with UFBoot due to severe model violations. 
- With this option UFBoot will further optimize each bootstrap tree using a hill-climbing nearest neighbor interchange (NNI) search based directly on the corresponding bootstrap alignment.
- Thus, if severe model violations are present in the data set at hand, users are advised to append -bnni to the regular UFBoot command:
-
-```
-iqtree -s example.phy -m TIM2+I+G -B 1000 -bnni
-```
-
-
-* SH-like approximate likelihood ratio test 
-
-
-
-
----
 
 
 ## further reading: 
