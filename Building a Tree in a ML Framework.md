@@ -254,7 +254,7 @@ Along with its non-replacement version (not too popular nowadays):
 > and branch-support values are derived as the percentage with which a certain branch is present in the jackknife topologies.
 
 Adapted (slightly) from:
-_Michael WeißMarkus Göker, in The Yeasts (Fifth Edition), 2011_
+_M. David Posada. Bioinformatics for DNA Sequence Analysis, Springer Protocols, pp.113-137 Methods in Molecular Biology._
 
 The functioning of aLRT is quite interesting as well:
 
@@ -275,8 +275,7 @@ The functioning of aLRT is quite interesting as well:
 > Basically, while aLRT values are derived from testing hypotheses, the bootstrap proportion is a repeatability measure. 
 
 Adapted from:
-_Guindon et al., 2009. Estimating maximum likelihood phylogenies with PhyML. David Posada. Bioinformatics for DNA Sequence Analysis,
- Springer Protocols, pp.113-137 Methods in Molecular Biology._
+_Guindon et al., 2009. Estimating maximum likelihood phylogenies with PhyML._
 
 ---
 
