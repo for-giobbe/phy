@@ -113,14 +113,12 @@ Total tree length: 7.923
 
 Let's take a look at the outputs:
 
-* IQ-TREE report:                .iqtree
-* Maximum-likelihood tree:       .treefile
-* Likelihood distances:          .mldist
-* Screen log file:                .log
+* IQ-TREE report (.iqtree)
+* Maximum-likelihood tree (.treefile)
+* Likelihood distances (.mldist)
+* Screen log file (.log)
 
 Let's take a deeper look at the IQ-TREE report:
-
-
 
 We can find some information regarding the model of substitution:
 
@@ -209,9 +207,9 @@ Here are the more frequently used in IQ-Tree:
 
 I really like this explanation of parametric and non-parametric bootstrap:
 
-> Non-parametric bootstrapping was developed by Efron (1979) as a general statistical method for estimating the parameters 
+> Non-parametric bootstrapping was developed by Efron in 1979 as a general statistical method for estimating the parameters 
 > of an unknown probability distribution by resampling from an existing sample that was drawn from this distribution. 
-> The method was transferred to phylogenetic reconstruction by Felsenstein (1985).
+> The method was transferred to phylogenetic reconstruction by Felsenstein in [this](https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1558-5646.1985.tb00420.x) paper from 1985.
 > Within molecular phylogenetics it works as follows: 
 > from an alignment of length n, columns are randomly drawn with replacement n times. 
 > The drawn columns are arranged in a new dataset, a bootstrapped alignment of length n. 
@@ -225,7 +223,7 @@ I really like this explanation of parametric and non-parametric bootstrap:
 > or by annotating them on the "best" tree.
 
 > In a probabilistic context, there is an alternative way of generating replicate alignments from given data by computer simulation. 
-> This approach (Efron 1985) is model-based, and hence is commonly referred to as parametric bootstrapping. In its first step, 
+> This approach proposed by Efron in 1985 is model-based, and hence is commonly referred to as parametric bootstrapping. In its first step, 
 > a model of DNA substitution and a phylogenetic tree T are estimated from the original alignment X.
 > Using this model, replicate alignments Xi are generated, i.e., sequences are simulated along T. 
 > Subsequently, phylogenetic trees Ti are computed for each of the alignments Xi, and branch support values are derived 
@@ -233,13 +231,12 @@ I really like this explanation of parametric and non-parametric bootstrap:
 > Support values derived by parametric bootstrapping depend to a large extent on the model estimated from the original alignment. 
 > For this reason the method can be used for testing the model inferred from the original alignment as a null hypothesis (Goldman 1993).
 
-Along with its non-replacement version (not very popular nowadays):
+Along with its non-replacement version (not too popular nowadays):
 
 > The jackknife is a resampling method closely related to non-parametric bootstrapping. 
 > It works by randomly deleting a certain percentage of columns from the original alignment. 
-> Usually 50 per cent of the columns are deleted (delete-half jackknife; Felsenstein 1985), 
+> Usually 50 per cent of the columns are deleted (delete-half jackknife proposed by Felsenstein in 1985), 
 > which is equivalent to drawing n/2 columns from the original alignment of length n without replacement. 
-> Models deleting different percentages of columns have also been proposed (Farris et al. 1996). 
 > As in non-parametric bootstrapping, the resampling is iterated, trees are computed from the jackknife alignments, 
 > and branch-support values are derived as the percentage with which a certain branch is present in the jackknife topologies.
 
@@ -260,7 +257,6 @@ The functioning of aLRT is quite interesting as well:
 > This implies that the aLRT performs well when the data contains a clear phylogenetic
 > signal, but not as well in the opposite case, where it tends to give a local view on
 > the branch of interest only.
-
 > Note that parametric branch supports are based on the assumption that the evolutionary model used to infer the trees is the correct one. 
 > The rational behind the aLRT clearly differs from bootstrap. 
 > Basically, while aLRT values are derived from testing hypotheses, the bootstrap proportion is a repeatability measure. 
