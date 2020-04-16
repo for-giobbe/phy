@@ -191,6 +191,13 @@ Remember that most phylogenetic programs produce unrooted trees, as they are not
 
 ## inferring species tree - partitioned analyses:
 
+We can carry out the phylogenetic inference on our concatenation just by specifying the relative partition file.
+
+```
+iqtree -s concatenation.nxs -spp gene_and_codon.prt -bb 1000 -bnni -alrt 1000 -redo -m TESTNEWMERGE
+```
+
+The outputs will be the same as the ones produced by the unpartitioned analysis.
 
 ---
 
@@ -355,3 +362,6 @@ except that loci.treefile now contains a set of trees.
 
 resources on concordance factors: [paper](https://www.biorxiv.org/content/10.1101/487801v2) & [tutorial](http://www.robertlanfear.com/blog/files/concordance_factors.html)
 
+[Here](http://www.iqtree.org/doc/iqtree-doc.pdf) you'll find the manual for IQ-Tree, it's quite user-friendly and exhaustive.   
+
+[Here](http://www.iqtree.org/doc/Command-Reference) a coprensive commands list for IQ-Tree.

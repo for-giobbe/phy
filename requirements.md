@@ -6,6 +6,8 @@
 
 [conda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/#)
 
+[Here](https://docs.conda.io/projects/conda/en/4.6.0/_downloads/52a95608c49671267e40c689e0bc00ca/conda-cheatsheet.pdf) you can find a very useful conda cheat-sheet.https://docs.conda.io/projects/conda/en/4.6.0/_downloads/52a95608c49671267e40c689e0bc00ca/conda-cheatsheet.pdf
+
 BASH - included natively in all Mac OS X and Linux distributions
 
 
@@ -52,7 +54,7 @@ PAML
 ---
 
 
-## dataset building:
+# dataset building:
 
 In the beginning we need to choose the group whose phylogeny will be inferred and the loci we will use for inferring their phylogeny. 
 I suggest a lineage of animals and some mitochondrial markers, for which a lot of data are available. 
