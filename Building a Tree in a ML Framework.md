@@ -7,23 +7,22 @@
 ## intro:
 
 Maximum likelihood is a general statistical method for estimating parameters of a
-probability model. A familiar one might be the normal distribution of a population with two parameters: 
-the mean and variance. In molecular phylogenetics there are a wide plethora of parameters, which may include:
+probability model: for example a normal distribution can be described by two parameters: 
+the mean and variance. Instead, in molecular phylogenetics there are a wide plethora of parameters, which include:
 
 * rates of transitions between bases
 * base composition
 * descriptors of rate heterogeneity across sites
 * branchlengths
-* and most importantly, the tree itself!
+* the tree itself!
 
-Likelihood is defined to be a quantity proportional to the probability of observing the data given
-the model: 
+The likelihood is defined as a quantity proportional to the probability of observing the data given the model: 
 ```
 P(D|M)
 ```
-Thus, if we have a model we can calculate the probability the observations would have actually been observed as a function of the model. 
+If we have a model, we can calculate the probability the observations would have actually been observed as a function of the model. 
 We then examine this likelihood function to see where it is at its greatest, and the value of the parameter of
-interests (usually the tree and/or branch lengths) at that point is the maximum likelihood estimate of the parameter.
+interests (usually the tree and branch lengths) at that point is the maximum likelihood estimate of the parameter.
 
 In this lesson we are going to compute a phylogenetic tree in a ML framework and explore a bit the relative support metrics,
 which can inform us of the confidence relative to a split. At this point you should have a concatenation and a partition file; 
@@ -36,18 +35,18 @@ if not you can use mine [here](https://github.com/for-giobbe/phy/tree/master/exa
 During last lesson we found the best-fit model of evolution without doing tree reconstruction, running the line:
 
 ```
-iqtree -s ND2_p_aligned.n.gb.fasta -m MFP 
+iqtree -s ND2_p_aligned.n.gb.fasta -m MF 
 ```
 
-But we can perform both the search for the best-fit model and the phylogenetic inference by just using the ```-s``` flag, so that
+But we can perform both the search for the best-fit model and the phylogenetic inference by just using the ```-m MFP``` flag, so that
 after ModelFinder, IQ-TREE will immediately start the tree reconstruction under the best-fit partition model. Let's use the line:
 
 ```
-iqtree -s ND2_p_aligned.n.gb.fasta -m TESTNEWMERGE
+iqtree -s ND2_p_aligned.n.gb.fasta -m MFP
 ```
 
 As always if one takes the effort to read the standard output of a software, he/she can lean a lot. For example we can notice that
-IQ-Tree is using the model selection we previously calculated, as shown by the line:
+IQ-TREE is using the model selection we previously calculated, as shown by the line:
 
 ```
 NOTE: Restoring information from model checkpoint file ND2_p_aligned.n.gb.fasta.model.gz
@@ -183,7 +182,8 @@ Sum of internal branch lengths: 1.1308 (14.2712% of tree length)
 NOTE: Tree is UNROOTED although outgroup taxon 'Mantis_religiosa' is drawn at root
 ```
 
-Remember that most phylogenetic programs produce unrooted trees, as they are not aware about any biological background.
+Remember that most phylogenetic programs produce unrooted trees, as they are not aware about any biological background. 
+We can root them using our _a priori_ biological knowledge or use approches as the mid point rooting.
 
 
 ---
@@ -191,13 +191,19 @@ Remember that most phylogenetic programs produce unrooted trees, as they are not
 
 ## inferring species tree - partitioned analyses:
 
-We can carry out the phylogenetic inference on our concatenation just by specifying the relative partition file.
+We can carry out the phylogenetic inference on our concatenation just by specifying the relative partition file with the 
+```-spp``` flag and adding ```+MERGE``` in the model specification, so that the model tries to find the best-fit partitioning scheme
+by possibly merging partitions.
 
 ```
-iqtree -s concatenation.nxs -spp gene_and_codon.prt -bb 1000 -bnni -alrt 1000 -redo -m TESTNEWMERGE
+iqtree -s concatenation.nxs -spp gene_and_codon.prt -m MFP+MERGE -redo 
 ```
 
-The outputs will be the same as the ones produced by the unpartitioned analysis.
+The outputs generated will be the same as the ones produced by the unpartitioned analysis. 
+Among the large number of parameters which can affect the tree search process in IQ-TREE, two of the more decisive are:
+
+```-nstop```  which specify the number of unsuccessful iterations to stop. DEFAULT: 100
+```-pers```   which specify perturbation strength (between 0 and 1) for randomized NNI. DEFAULT: 0.5
 
 ---
 
@@ -206,7 +212,7 @@ The outputs will be the same as the ones produced by the unpartitioned analysis.
 
 
 Several metrics of clade support are possible and should be combined to gain more confidence.
-Here are the more frequently used in IQ-Tree:
+Here are the more frequently used in IQ-TREE:
 
 * Parametric & Nonparametric bootstrap
 * SH-like approximate likelihood ratio test 
@@ -274,7 +280,7 @@ _Guindon et al., 2009. Estimating maximum likelihood phylogenies with PhyML. Dav
 
 ---
 
-Let's get some hands-on exercises:
+Let's get some hands-on:
 
 * Nonparametric bootstrap
 
@@ -286,20 +292,20 @@ Let's get some hands-on exercises:
 	```
 
 
-* Parametric bootstrap
+* Parametric bootstrap:
 	
-	IQ-Tree implements UFB2 - Ultra Fast Bootstrap 2 described in [Hoang et al., 2018](https://academic.oup.com/mbe/article/35/2/518/4565479)
-	The ```-B``` flag specifies the number of replicates where 1000 is the minimum number recommended.  IQ-Tree also has the option to further optimize each bootstrap tree using a hill-climbing nearest neighbor interchange (NNI) search,
+	IQ-TREE implements UFB2 - Ultra Fast Bootstrap 2 described in [Hoang et al., 2018](https://academic.oup.com/mbe/article/35/2/518/4565479)
+	The ```-B``` flag specifies the number of replicates where 1000 is the minimum number recommended.  IQ-TREE also has the option to further optimize each bootstrap tree using a hill-climbing nearest neighbor interchange (NNI) search,
 	based directly on the corresponding bootstrap alignment. It's specified through the ```-bnni ``` option to reduce the risk of overestimating branch supports with UFBoot due to severe model violations. 
 
 	```
-	iqtree -s ND2_p_aligned.n.gb.fasta -B 1000 -bnni
+	iqtree -s ND2_p_aligned.n.gb.fasta -bb 1000 -bnni
 	```
 
 
-* SH-like approximate likelihood ratio test 
+* SH-like approximate likelihood ratio test:
 
-	IQ-Tree implements a non-parametric approximate likelihood ratio test based on a Shimodaira-Hasegawa-like procedure via the
+	IQ-TREE implements a non-parametric approximate likelihood ratio test based on a Shimodaira-Hasegawa-like procedure via the
 	flag ```-alrt```.
 
 	```
@@ -310,7 +316,7 @@ We can combine the three metrics in the same analysis and have them annotated on
 It's then easier to observe wether the different support metrics are giving contrasting results through our phylogenies.
 
 ```
-iqtree -s ND2_p_aligned.n.gb.fasta -B 1000 -bnni -b 100 -alrt 1000
+iqtree -s ND2_p_aligned.n.gb.fasta -bb 1000 -bnni -b 100 -alrt 1000
 ```
 
 Let's take a look at the ```.iqtree``` among the other output files, bearing in mind that the values related to different metrics 
@@ -321,7 +327,8 @@ To conclude: there are several metrics of support in phylogenetics which can pro
 of a clade/bipartition. Moreover they can sometimes be informative of biological processes such as ILS (Incomplete Lineage Sorting) 
 or adaptive radiations. Aside the traditional ones (which we just went trough) some new ones get proposed and/or implemented 
 from time to time. This is the case of gCF and sCF (genes and sites Concordance Factors) for which I left some additional information 
-in the further reading paragraph at the end of the lesson. 
+in the further reading paragraph at the end of the lesson. Moreover consider that different frameworks can have different support metrics,
+as the Posterior Probabilities (PP) in the Bayesian Inference.
 
 
 ---
@@ -358,10 +365,10 @@ except that loci.treefile now contains a set of trees.
 
 ## further reading: 
 
-[Here](http://www.iqtree.org/doc/Tutorial) you'll find great tutorials from the authors themselves on ModelFinder and IQ-Tree.
+[Here](http://www.iqtree.org/doc/Tutorial) you'll find great tutorials from the authors themselves on ModelFinder and IQ-TREE.
 
 resources on concordance factors: [paper](https://www.biorxiv.org/content/10.1101/487801v2) & [tutorial](http://www.robertlanfear.com/blog/files/concordance_factors.html)
 
-[Here](http://www.iqtree.org/doc/iqtree-doc.pdf) you'll find the manual for IQ-Tree, it's quite user-friendly and exhaustive.   
+[Here](http://www.iqtree.org/doc/iqtree-doc.pdf) you'll find the manual for IQ-TREE, it's quite user-friendly and exhaustive.   
 
-[Here](http://www.iqtree.org/doc/Command-Reference) a coprensive commands list for IQ-Tree.
+[Here](http://www.iqtree.org/doc/Command-Reference) a coprensive commands list for IQ-TREE.

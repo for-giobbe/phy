@@ -23,3 +23,11 @@ to be (i) relatively very low and (ii) stable.
 
 
 Go back to the NEXUS file and modify the last lines:
+
+
+
+
+Uncertainty can generally be observed either from scarce nodal support, polytomies  and/or  
+sensitivity to the use of independent sampling of species and analytical frameworks (Yuan et al., 2016). 
+Moreover, standard measures of clade support, such as posterior probabilities (Lewis et al., 2005) 
+and bootstrap proportions (Simmons and Norton, 2014), can support several conflicting hypotheses with high apparent confidence.
