@@ -350,7 +350,7 @@ as the Posterior Probabilities (PP) in the Bayesian Inference.
 
 
 
-## automation
+## automation:
 
 When large amount of loci are available for phylogenetic inference, IQ-TREE provides the -S flag to compute individual loci trees 
 given a partition file or a directory:
