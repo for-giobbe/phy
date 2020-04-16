@@ -18,4 +18,9 @@
 
 
 
-_arguments to include Heterotachy/ILS/Orthofinder2_
+_arguments which we ignored due to time constrains:_
+
+* [complex models](http://www.iqtree.org/doc/Complex-Models)
+* [CAT](http://www.atgc-montpellier.fr/cat/)
+* ILS
+* [Orthofinder2](https://github.com/davidemms/OrthoFinder)
