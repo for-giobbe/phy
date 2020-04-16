@@ -31,3 +31,15 @@ Uncertainty can generally be observed either from scarce nodal support, polytomi
 sensitivity to the use of independent sampling of species and analytical frameworks (Yuan et al., 2016). 
 Moreover, standard measures of clade support, such as posterior probabilities (Lewis et al., 2005) 
 and bootstrap proportions (Simmons and Norton, 2014), can support several conflicting hypotheses with high apparent confidence.
+
+
+
+
+---
+
+
+
+
+## further reading: 
+
+[Here](http://mrbayes.sourceforge.net/wiki/index.php/Manual) you will find the manual of MrBayes and some tutorials as well.

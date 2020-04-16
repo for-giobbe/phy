@@ -1,7 +1,11 @@
 # Building a Tree in a ML Framework
 
 
+
+
 ---
+
+
 
 
 ## intro:
@@ -186,7 +190,11 @@ Remember that most phylogenetic programs produce unrooted trees, as they are not
 We can root them using our _a priori_ biological knowledge or use approches as the mid point rooting.
 
 
+
+
 ---
+
+
 
 
 ## inferring species tree - partitioned analyses:
@@ -205,7 +213,12 @@ Among the large number of parameters which can affect the tree search process in
 ```-nstop```  which specify the number of unsuccessful iterations to stop. DEFAULT: 100
 ```-pers```   which specify perturbation strength (between 0 and 1) for randomized NNI. DEFAULT: 0.5
 
+
+
+
 ---
+
+
 
 
 ## inferring nodal support using different metrics:
@@ -330,7 +343,11 @@ in the further reading paragraph at the end of the lesson. Moreover consider tha
 as the Posterior Probabilities (PP) in the Bayesian Inference.
 
 
+
+
 ---
+
+
 
 
 ## automation
@@ -364,9 +381,7 @@ except that loci.treefile now contains a set of trees.
 
 ## further reading: 
 
-[Here](http://www.iqtree.org/doc/Tutorial) you'll find great tutorials from the authors themselves on ModelFinder and IQ-TREE.
-
-resources on concordance factors: [paper](https://www.biorxiv.org/content/10.1101/487801v2) & [tutorial](http://www.robertlanfear.com/blog/files/concordance_factors.html)
+Resources on concordance factors: [paper](https://www.biorxiv.org/content/10.1101/487801v2) & [tutorial](http://www.robertlanfear.com/blog/files/concordance_factors.html)
 
 [Here](http://www.iqtree.org/doc/iqtree-doc.pdf) you'll find the manual for IQ-TREE, it's quite user-friendly and exhaustive.   
 
