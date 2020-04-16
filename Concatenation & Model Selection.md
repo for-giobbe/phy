@@ -151,7 +151,9 @@ we will skip this part and chose the more reasonable assumption of a separate ev
 
 ## further reading: 
 
-[Here](http://www.iqtree.org/doc/Tutorial) you'll great tutorials from the authors themselves on ModelFinder and IQ-Tree.
+[Here](http://www.iqtree.org/doc/Tutorial) you'll find great tutorials from the authors themselves on ModelFinder and IQ-Tree.
+
+[Here](http://www.iqtree.org/doc/Frequently-Asked-Questions) you'll find few words on the composition test carried out by IQ-Tree.
 
 [Interesting paper on how concatenation/coalescence impacts mammalian phylogeny](https://onlinelibrary.wiley.com/doi/full/10.1111/cla.12170?casa_token=X0ctrSm4S1AAAAAA%3AgiB9v0MtJDO6vMWOigdvW9JrgYuJTebMen6zYxg9S0nP8MWIi2zA2fwWfi-lJlMCD9Ir1MDCzkBeyVwg).
 
