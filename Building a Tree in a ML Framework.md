@@ -235,9 +235,69 @@ I really like this explanation of parametric and non-parametric bootstrap:
 > Support values derived by parametric bootstrapping depend to a large extent on the model estimated from the original alignment. 
 > For this reason the method can be used for testing the model inferred from the original alignment as a null hypothesis (Goldman 1993).
 
-Adapted (slightly) from:
-> Michael WeißMarkus Göker, in The Yeasts (Fifth Edition), 2011
+Along with its non-replacement version (not very popular nowadays):
 
+> The jackknife is a resampling method closely related to non-parametric bootstrapping. 
+> It works by randomly deleting a certain percentage of columns from the original alignment. 
+> Usually 50 per cent of the columns are deleted (delete-half jackknife; Felsenstein 1985), 
+> which is equivalent to drawing n/2 columns from the original alignment of length n without replacement. 
+> Models deleting different percentages of columns have also been proposed (Farris et al. 1996). 
+> As in non-parametric bootstrapping, the resampling is iterated, trees are computed from the jackknife alignments, 
+> and branch-support values are derived as the percentage with which a certain branch is present in the jackknife topologies.
+
+Adapted (slightly) from:
+> _Michael WeißMarkus Göker, in The Yeasts (Fifth Edition), 2011_
+
+fast approximate likelihood ratio test (aLRT) for
+branches (8), which proves to be a good alternative to the (time-consuming) bootstrap
+analysis. The aLRT is closely related to the conventional LRT, with the null hypothesis
+6
+corresponding to the assumption that the tested branch has length 0. Standard LRT uses
+the test statistics 2(L1 −L0), where L1 is the log-likelihood of the current tree, and L0 the
+log-likelihood of the same tree, but with the branch of interest being collapsed.
+The aLRT
+approximates this test statistics in a slightly conservative but practical way as 2(L1 − L2),
+where L2 corresponds to the second best NNI configuration around the branch of interest.
+Such test is fast because the log-likelihood value L2 is computed by optimising only over
+the branch of interest and the four adjacent branches, while other parameters are fixed at
+their optimal values corresponding to the best ML tree.
+
+Three branch supports computed
+from this aLRT statistics are available in PhyML v3.0: (1) the parametric branch support,
+computed from the χ
+2 distribution (as usual with the LRT); (2) a non-parametric branch
+support based on a Shimodaira-Hasegawa-like procedure (9); 
+
+The rational behind the aLRT clearly differs from non-parametric bootstrap, as detailed in (8). Basically, while aLRT values are derived from testing hypotheses, the
+bootstrap proportion is a repeatability measure; when the bootstrap proportion of a given
+clade is high, we are quite confident that this clade would be inferred again if another
+original data sample was available and analysed by the same tree-building method (which
+does not mean that the clade exists in the true tree). Also, computing aLRT values is
+much faster than getting bootstrap supports, as PhyML is run just once, while bootstrap
+requires launching PhyML 100 to 1,000 times. In fact, computing aLRT branch supports
+has a negligible computational cost in comparison with tree building. Note however that
+SH-like branch supports are non-parametric, just as are the bootstrap proportions. In
+fact, they often provide similar results as the bootstrap
+
+The aLRT assesses that the branch being studied provides a significant gain in likelihood, in comparison with the null hypothesis that involves collapsing that branch but
+leaving the rest of the tree topology identical. Thus, the aLRT does not account for other
+possible topologies that would be highly likely but quite different from the current topology. This implies that the aLRT performs well when the data contains a clear phylogenetic
+signal, but not as well in the opposite case, where it tends to give a (too) local view on
+the branch of interest and be liberal. Note also that parametric χ
+2 branch supports are
+based on the assumption that the evolutionary model used to infer the trees is the correct
+7
+one. In that respect, the aLRT parametric interpretation is close to Bayesian posteriors
+
+Adapted from:
+>_Stéphane Guindon, Frédéric Delsuc, Jean-François Dufayard, Olivier Gascuel. Estimating maximum likelihood phylogenies with PhyML. David Posada. Bioinformatics for DNA Sequence Analysis,
+> Springer Protocols, pp.113-137, 2009, Methods in Molecular Biology._
+
+
+
+---
+
+Let's get some hands-on exercies
 
 * Nonparametric bootstrap
 
@@ -267,6 +327,11 @@ iqtree -s ND2_p_aligned.n.gb.fasta -B 1000 -bnni
 
 ### SH-like approximate likelihood ratio test 
 
+There are several metrics of support in phylogenetics and aside the traditional ones (which we just went trough) some new ones
+get proposed and/or implemented from time to time. This is the case of gCF and sCF (genes and sites Concordance Factors) 
+for which I left some additional information in the further reading paragraph at the end of the lesson. Remember that different
+metrics can provide different perspective on the confidence of a clade/bipartition; 
+moreover they can sometimes be informative of biological processes such as ILS or adaptive radiation.
 
 ---
 
