@@ -191,7 +191,7 @@ Remember that most phylogenetic programs produce unrooted trees, as they are not
 ---
 
 
-## ifgerring species tree - partitioned analyses
+## inferring species tree - partitioned analyses
 
 
 ---
@@ -207,31 +207,39 @@ Here are the more frequently used in IQ-Tree:
 * SH-like approximate likelihood ratio test 
 * ...
 
+### the bootstrap:
 
-Non-parametric bootstrapping was developed by Efron (1979) as a general statistical method for estimating the parameters 
-of an unknown probability distribution by resampling from an existing sample that was drawn from this distribution. 
-The method was transferred to phylogenetic reconstruction by Felsenstein (1985).
-Within molecular phylogenetics it works as follows: 
-from an alignment of length n, columns are randomly drawn with replacement n times. 
-The drawn columns are arranged in a new dataset, a bootstrapped alignment of length n. 
-From this bootstrapped alignment, a phylogenetic tree is constructed by following the same method of phylogenetic analysis 
-as was used for the analysis of the original alignment. 
-This process of constructing bootstrap alignments and bootstrap trees is repeated a large number of times,
- and the resulting trees are stored. The percentage with which a certain bipartition of the taxon set is present in the bootstrap trees
-(the bootstrap value) can be taken as a measure of how homogeneously this bipartition of sequences 
-(i.e., the respective branch in the underlying topology) is supported by the data. 
-Bootstrap values are often summarized by constructing the majority-rule consensus from the bootstrap trees
-or by annotating them on the "best" tree.
+I really like this explanation of parametric and non-parametric bootstrap:
 
-Adapted from:
+> Non-parametric bootstrapping was developed by Efron (1979) as a general statistical method for estimating the parameters 
+> of an unknown probability distribution by resampling from an existing sample that was drawn from this distribution. 
+> The method was transferred to phylogenetic reconstruction by Felsenstein (1985).
+> Within molecular phylogenetics it works as follows: 
+> from an alignment of length n, columns are randomly drawn with replacement n times. 
+> The drawn columns are arranged in a new dataset, a bootstrapped alignment of length n. 
+> From this bootstrapped alignment, a phylogenetic tree is constructed by following the same method of phylogenetic analysis 
+> as was used for the analysis of the original alignment. 
+> This process of constructing bootstrap alignments and bootstrap trees is repeated a large number of times,
+> and the resulting trees are stored. The percentage with which a certain bipartition of the taxon set is present in the bootstrap trees
+> (the bootstrap value) can be taken as a measure of how homogeneously this bipartition of sequences 
+> (i.e., the respective branch in the underlying topology) is supported by the data. 
+> Bootstrap values are often summarized by constructing the majority-rule consensus from the bootstrap trees
+> or by annotating them on the "best" tree.
+
+> In a probabilistic context, there is an alternative way of generating replicate alignments from given data by computer simulation. 
+> This approach (Efron 1985) is model-based, and hence is commonly referred to as parametric bootstrapping. In its first step, 
+> a model of DNA substitution and a phylogenetic tree T are estimated from the original alignment X.
+> Using this model, replicate alignments Xi are generated, i.e., sequences are simulated along T. 
+> Subsequently, phylogenetic trees Ti are computed for each of the alignments Xi, and branch support values are derived 
+> (as in non-parametric bootstrapping) by computing the percentage with which a certain branch occurs in the set of generated trees Ti.
+> Support values derived by parametric bootstrapping depend to a large extent on the model estimated from the original alignment. 
+> For this reason the method can be used for testing the model inferred from the original alignment as a null hypothesis (Goldman 1993).
+
+Adapted (slightly) from:
 > Michael WeißMarkus Göker, in The Yeasts (Fifth Edition), 2011
 
 
-### Nonparametric bootstrap
-
-Bootstrapping is a standard statistic method used to estimate confidence intervals of a population mean by randomly 
-resampling a subset of data from within a larger data set
-
+* Nonparametric bootstrap
 
 The standard nonparametric bootstrap is invoked by the ```-b``` option, which also specifies the number 
 of bootstrap replicates (100 is the minimum recommended number):
@@ -241,7 +249,7 @@ iqtree -s ND2_p_aligned.n.gb.fasta -b 100
 ```
 
 
-### Parametric bootstrap
+* Parametric bootstrap
 
 
 UFB2 - ultra fast bootstrap[Hoang et al., 2018](https://academic.oup.com/mbe/article/35/2/518/4565479)
