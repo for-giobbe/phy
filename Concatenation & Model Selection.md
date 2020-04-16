@@ -127,7 +127,7 @@ possibly including a better estimation of model parameters.
 To carry out simultaneously model of evolution & partitioning scheme selection let's use:
 
 ```
-iqtree -s concatenation.nxs -sp gene_and_codon.prt -m MF+MERGE  -redo
+iqtree -s concatenation.nxs -spp gene_and_codon.prt -m MF+MERGE  -redo
 ```
 
 We have overwritten the previous analysis using the ```-redo``` flag, as the merging of partition will almost certainly result in a better model for our dataset.
