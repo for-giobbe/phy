@@ -30,7 +30,7 @@ which can inform us of the confidence relative to a split. At this point you sho
 if not you can use mine [here](https://github.com/for-giobbe/phy/tree/master/examples).
 
 
-## inferring gene trees - unpartitioned analyses
+## inferring gene trees - unpartitioned analyses:
 
 
 During last lesson we found the best-fit model of evolution without doing tree reconstruction, running the line:
@@ -191,13 +191,13 @@ Remember that most phylogenetic programs produce unrooted trees, as they are not
 ---
 
 
-## inferring species tree - partitioned analyses
+## inferring species tree - partitioned analyses:
 
 
 ---
 
 
-## inferring nodal support using different metrics
+## inferring nodal support using different metrics:
 
 
 Several metrics of clade support are possible and should be combined to gain more confidence.
@@ -206,8 +206,6 @@ Here are the more frequently used in IQ-Tree:
 * Parametric & Nonparametric bootstrap
 * SH-like approximate likelihood ratio test 
 * ...
-
-### the bootstrap:
 
 I really like this explanation of parametric and non-parametric bootstrap:
 
