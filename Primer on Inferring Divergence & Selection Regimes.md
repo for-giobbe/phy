@@ -131,5 +131,7 @@ omega = 5 * initial omega
 ## further reading: 
 
 The **amazing** free [book](https://lukejharmon.github.io/pcm/) "Learning from trees" By Luke J Harmon, on comparative methods.
+
 The **outstanding** [platform](https://taming-the-beast.org/) for learning BEAST 2 - called "Taming the BEAST" - which includes many tutorials on divergence times estimation.
+
 [Here](http://evomicsorg.wpengine.netdna-cdn.com/wp-content/uploads/2011/08/bielawski_paml_review.pdf) you'll find more on the theoretical background of dNdS calculations. 
