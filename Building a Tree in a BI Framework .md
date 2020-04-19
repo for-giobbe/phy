@@ -14,7 +14,7 @@ In this lesson we will use MrBayes [(Ronquist et al., 2012)](https://academic.ou
 the underlying concepts of Bayesian Inference in phylogenetics. Recall that in the Bayesian framework we estimate parameters from their posterior distribution, 
 instead of finding the best point estimates as is done in a Maximum Likelihood framework.
 In the meantime we will explore a bit the command-line to convert different
-MSA formats and explore CIPRESS, the more comprehensive and outstanding computational infrastructure for phylogenetic
+MSA formats and explore [CIPRESS](http://www.phylo.org/), the more comprehensive and outstanding computational infrastructure for phylogenetic
 
 
 
@@ -27,17 +27,17 @@ MSA formats and explore CIPRESS, the more comprehensive and outstanding computat
 
 ## MSA format conversion: 
 
-At this stage we have already used ```.fas``` and ```.nxs```formats for Multiple Sequence Alignment. 
-In this lesson we will also need a ```.phy``` - a phylip-formatted file - for a tool called PartitionFinder2.
-This format name comes from a very *ancient* piece of software - called of course [PHYLIP](https://en.wikipedia.org/wiki/PHYLIP) - which is turning 40 this year :-O
-It is a very bare bone format which has in the first line the number of species and the number of characters separated by a space and then 
-one entry (whether species or specimen) for each line, with the sequence i.d. as the first element followed by a space and by the sequence itself.
+At this stage we have already used ```.fas``` and ```.nxs``` formats for Multiple Sequence Alignment. 
+In this lesson we will also need a ```.phy``` - a phylip-formatted file - which is required by [PartitionFinder2](http://www.robertlanfear.com/partitionfinder/).
+This format name comes from a very ancient piece of software - called of course [PHYLIP](https://en.wikipedia.org/wiki/PHYLIP) - which is turning 40 this year :-O
+It is a very bare bone format which has in the first line the number of species and the number of characters (nucleotides, proteins, ...) separated by a space and subsequently 
+one entry (whether species or specimen) for each line, with the sequence i.d. as the first element followed by a space and then by the sequence itself.
 
 The more format we encounter, the more we are required to convert them from one to another.
 This can be done through a ton of programs, either [online](http://sequenceconversion.bugaco.com/converter/biology/sequences/nexus_to_phylip.php), 
-or _via_ several software with a graphical interface - as Aliview. But we can learn a lot on both the shell and
-the different MSA formats by trying to handle conversions using the command-line! Here I put two one-liners which you can take a look at, written
-not to be efficient or concise, but to use a good number of common bash commands:
+or _via_ several software with a graphical interface, as Aliview. But we can learn a lot on both the shell and
+the different MSA formats by trying to handle conversions using the command-line! Here I put two one-liners which you can take a look at - written
+not to be efficient or concise - but to use a good number of the more usefull bash commands:
 
 from ```.nxs``` to ```.fasta```:
 
@@ -55,7 +55,7 @@ n_car=$(grep -A 1 "MATRIX" $nxs | tail -1 | awk -F "\t" '{print $3}' | wc -c);
 echo $n_sp $n_car > first_line.tmp; cat first_line.tmp tmp.phy > concatenation.phy; rm *tmp*
 ```
 
-For now we can just use the latter to convert our concatenation file from ```.nxs``` to ```.fasta```, 
+For now we can just use the latter to convert our concatenation file from ```.nxs``` to ```.phy```, 
 but you can rewrite them in a more efficient way and/or add the missing conversion from ```.fas``` to ```.nxs``` and from ```.phy``` to ```.nxs```. 
 it's a funny exercise I guess, and I can add your code here so it will be available for us all.
 
@@ -71,23 +71,23 @@ it's a funny exercise I guess, and I can add your code here so it will be availa
 
 Before the phylogenetic Bayesian Inference (BI), we have to carry out model selection again, mainly for two reasons:
 
-* MrBayes supports slightly different models than ModelFinder (_e.g._ no base frequencies additional parameters) and
+* MrBayes supports slightly different models than ModelFinder (_e.g._ no base frequencies additional parameters)
 
 * even if possible it's really painfull to translate / approximate models from ModelFinder to MrBayes.
 
-Thus we will take advantage of this situation to leverage PartitionFinder2 [(Lanfear et al., 2016)]( https://doi.org/10.1093/molbev/msw260) 
+We will take advantage of this situation to leverage PartitionFinder2 [(Lanfear et al., 2016)]( https://doi.org/10.1093/molbev/msw260) 
 which can carry out the model selection specifically for MrBayes. This situation teaches us a lesson on usability and how sometimes phylogenetic 
 pipeline consist in a straight process (ModelFinder -> IQ-TREE), but sometimes they result in a quite fragmented workflow with multiple tools
 and steps in between them.
 
 The input of PartitionFinder2 are a ```.phy``` and a ```.cfg```.
-```.cfg``` stands for configuration and is a quite widespread approach to customise analyses while using several pieces of software;
+The latter stands for configuration and is a quite widespread approach to customise analyses while using several pieces of software:
 all the options are found inside the configuration file, including all the inputs required for the analysis. For convenience,
 the input alignment is usually placed in the same folder where the configuration file is located, but a path can be specified as well.
 
 
 You should e already familiar with many of the options, as they are quite similar to the ones of ModelFinder.
-Here is how I _configured_ my ```.cfg```:
+Here is how I configured my ```.cfg```:
 
 
 ```
@@ -117,15 +117,15 @@ ND2rd = 748-1768/3;
 search = greedy;
 ```
 
-As anticipated before, we are running this analysis on CIPRESS For this reason, we need to specify ```infile.phy``` as the alignment, 
-independently to whichever name we chose for our alignment: this is due to how CIPRESS handles the processes and files. 
+As anticipated before, we will be running this analysis on CIPRESS. For this reason, we need to specify ```infile.phy``` as the alignment, 
+independently to whichever name we chose for it: this is due to how CIPRESS handles the processes and files. 
 We can then upload the ```.cfg``` and ```.phy``` and launch the analysis. If you need them you can find mine respectively 
 [here](https://github.com/for-giobbe/phy/blob/master/examples/concatenation.phy) and 
 [here](https://github.com/for-giobbe/phy/blob/master/examples/gene_and_codon_PF2.cfg).
 
 As you can see CIPRESS is providing us with an almost perfect 1:1 trasposition of the program running, 
 including the standard output, error and intermediate files! When the analysis is finished download the ```analysis.zip``` folder and 
-open the ```best_scheme.txt```. As you can see this file contains similar information to ModelFinder:
+open the ```best_scheme.txt```. This file contains similar information to ModelFinder:
 
 ```
 Best partitioning scheme
@@ -146,13 +146,13 @@ Subset | Best Model | # sites    | subset id                        | Partition 
 
 In my case the model selection is quite similar to the one carried out by ModelFinder, which was:
 ```
-    GTR+F+G4: 12S,
-    TN+F+I+G4: ND2st,
-    HKY+F+G4: ND2nd,
-    TIM2+F+R2: ND2rd;
+GTR+F+G4: 12S,
+TN+F+I+G4: ND2st,
+HKY+F+G4: ND2nd,
+TIM2+F+R2: ND2rd;
 ```
 
-The ```best_scheme.txt``` also includes the MrBayes block:
+The ```best_scheme.txt``` also includes the MrBayes nexus block:
 
 ```
 begin mrbayes;
@@ -178,14 +178,15 @@ end;
 
 In this way of describing substitution models ```nst=6 rates=invgamma``` means ```GTR+I+G```. 
 Here ```nst=6``` is the number of transition rates between nucleotides, exactly describing a General Time Reversible model.
-
-
-
+<br/>
+<br/>
+<br/>
+<br/>
 ---
-
-
-
-
+<br/>
+<br/>
+<br/>
+<br/>
 ## Bayesian Inference: 
 
 Now we can proceed to append the model selection to the concatenation ```.nxs``` file - which is the format required by MrBayes.
