@@ -181,11 +181,9 @@ Here ```nst=6``` is the number of transition rates between nucleotides, exactly 
 
 <br/>
 <br/>
-<br/>
-<br/>
+
 ---
-<br/>
-<br/>
+
 <br/>
 <br/>
 
