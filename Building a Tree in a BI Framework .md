@@ -178,6 +178,7 @@ end;
 
 In this way of describing substitution models ```nst=6 rates=invgamma``` means ```GTR+I+G```. 
 Here ```nst=6``` is the number of transition rates between nucleotides, exactly describing a General Time Reversible model.
+
 <br/>
 <br/>
 <br/>
@@ -187,6 +188,7 @@ Here ```nst=6``` is the number of transition rates between nucleotides, exactly 
 <br/>
 <br/>
 <br/>
+
 ## Bayesian Inference: 
 
 Now we can proceed to append the model selection to the concatenation ```.nxs``` file - which is the format required by MrBayes.
