@@ -11,12 +11,11 @@
 ## intro: 
 
 In this lesson we will use MrBayes [(Ronquist et al., 2012)](https://academic.oup.com/sysbio/article/61/3/539/1674894) to understand
-the underlying concepts of Bayesian Inference in phylogenetics. In the meantime we will explore a bit the command-line to convert different
+the underlying concepts of Bayesian Inference in phylogenetics. Recall that in the Bayesian framework we estimate parameters from their posterior distribution, 
+instead of finding the best point estimates as is done in a Maximum Likelihood framework.
+In the meantime we will explore a bit the command-line to convert different
 MSA formats and explore CIPRESS, the more comprehensive and outstanding computational infrastructure for phylogenetic
 
-
-
- is to use the method known as MCMCMC ("Metropolis-coupled Markov chain Monte Carlo") to empirically determine the posterior probability distribution of trees, branch lengths and substitution parameters. Recall that in the Bayesian framework this is how we learn about parameter values: instead of finding the best point estimates, we typically want to quantify the probability of the entire range of possible values. 
 
 
 
@@ -29,31 +28,35 @@ MSA formats and explore CIPRESS, the more comprehensive and outstanding computat
 ## MSA format conversion: 
 
 At this stage we have already used ```.fas``` and ```.nxs```formats for Multiple Sequence Alignment. 
-In this lesson we will also need a ```.phy``` - which is known as phylip-formatted file - for a tool called PartitionFinder2.
+In this lesson we will also need a ```.phy``` - a phylip-formatted file - for a tool called PartitionFinder2.
 This format name comes from a very *ancient* piece of software - called of course [PHYLIP](https://en.wikipedia.org/wiki/PHYLIP) - which is turning 40 this year :-O
-It is a very bare bone format which has in the firt line the number of species and the number of charachters separated by a space and then 
-one entry for each line, with the sequence i.d. as the first element followed by a space and by the sequence itself.
+It is a very bare bone format which has in the first line the number of species and the number of characters separated by a space and then 
+one entry (whether species or specimen) for each line, with the sequence i.d. as the first element followed by a space and by the sequence itself.
+
 The more format we encounter, the more we are required to convert them from one to another.
 This can be done through a ton of programs, either [online](http://sequenceconversion.bugaco.com/converter/biology/sequences/nexus_to_phylip.php), 
-with a graphical interface - as Aliview - or _via_ the command-line. We can learn a lot on the shell and
-on phylogenetic formats by trying to handle conversions using bash! Here I put two one-liners which you can take a look at, written
+or _via_ several software with a graphical interface - as Aliview. But we can learn a lot on both the shell and
+the different MSA formats by trying to handle conversions using the command-line! Here I put two one-liners which you can take a look at, written
 not to be efficient or concise, but to use a good number of common bash commands:
 
 from ```.nxs``` to ```.fasta```:
 
 ```
-awk '/MATRIX/,EOF { print $0 }' concatenation.nxs | tail +2 | tr  \\t ' ' | sed -e 's/^ />/' 
-| tr ' ' '\n' | sed '$d' | sed '$d' | sed '$d' > concatenation.fasta
+awk '/MATRIX/,EOF { print $0 }' concatenation.nxs | tail +2 | tr  \\t ' ' | sed -e 's/^ />/' | tr ' ' '\n' | sed '$d' | sed '$d' | sed '$d' > concatenation.fasta
 ```
 
 from ```.nxs``` to ```.phy```:
 
 ```
-nxs=concatenation.nxs; awk '/MATRIX/,EOF { print $0 }' $nxs | tail +2 | tr  \\t ' ' | sed '$d' | sed '$d' | sed '$d' > tmp.phy; 
-n_sp=$(wc -l tmp.phy); n_car=$(grep -A 1 "MATRIX" $nxs | tail -1 | awk -F "\t" '{print $3}' | wc -c); cat tmp.ph
+nxs=concatenation.nxs;
+awk '/MATRIX/,EOF { print $0 }' $nxs | tail +2 | tr  \\t ' ' | sed 's/^ //g' | sed '$d' | sed '$d' | sed '$d' > tmp.phy; 
+n_sp=$(wc -l tmp.phy | awk '{print $1}'); 
+n_car=$(grep -A 1 "MATRIX" $nxs | tail -1 | awk -F "\t" '{print $3}' | wc -c); 
+echo $n_sp $n_car > first_line.tmp; cat first_line.tmp tmp.phy > concatenation.phy; rm *tmp*
 ```
 
-You can rewrite them in a more efficient way and/or add the missing conversion from ```.fas``` to ```.nxs``` and from ```.phy``` to ```.nxs```. 
+For now we can just use the latter to convert our concatenation file from ```.nxs``` to ```.fasta```, 
+but you can rewrite them in a more efficient way and/or add the missing conversion from ```.fas``` to ```.nxs``` and from ```.phy``` to ```.nxs```. 
 it's a funny exercise I guess, and I can add your code here so it will be available for us all.
 
 
@@ -120,8 +123,6 @@ We can then upload the ```.cfg``` and ```.phy``` and launch the analysis. If you
 [here](https://github.com/for-giobbe/phy/blob/master/examples/concatenation.phy) and 
 [here](https://github.com/for-giobbe/phy/blob/master/examples/gene_and_codon_PF2.cfg).
 
-
-
 As you can see CIPRESS is providing us with an almost perfect 1:1 trasposition of the program running, 
 including the standard output, error and intermediate files! When the analysis is finished download the ```analysis.zip``` folder and 
 open the ```best_scheme.txt```. As you can see this file contains similar information to ModelFinder:
@@ -176,15 +177,6 @@ begin mrbayes;
 
 end;
 ```
-
-
-
-Warning: MrBayes only allows a relatively small collection of models. If any model in your analysis is not one that is included in MrBayes 
-(e.g. by setting nst = 1, 2, or 6 for DNA sequences; or is not in the available list of protein models for MrBayes)then this MrBayes block 
-will just set that model to nst = 6 for DNA, or 'wag' for Protein. Similarly, the only additional parameters that this 
-MrBayes block will include are +I and +G. Other  parameters, such as +F and +X, are ignored. If you want to use this MrBayes block for 
-your analysis, please make sure to check it carefully before you use it we've done our best to make it accurate, 
-but there may be errors that remain!
 
 
 
