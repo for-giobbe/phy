@@ -12,7 +12,7 @@
 
 In this lesson we will use MrBayes [(Ronquist et al., 2012)](https://academic.oup.com/sysbio/article/61/3/539/1674894) to understand
 the underlying concepts of Bayesian Inference in phylogenetics. In the meantime we will explore a bit the command-line to convert different
-MSA formats and explore CIPRESS, the more comprehensive and outstanding computational infrastructure for hylogenetic
+MSA formats and explore CIPRESS, the more comprehensive and outstanding computational infrastructure for phylogenetic
 
 
 
@@ -34,22 +34,22 @@ with a graphical interface - as Aliview - or _via_ the command-line. We can lear
 on phylogenetic formats by trying to handle conversions using bash! Here I put two one-liners which you can take a look at, written
 not to be efficient or concise, but to use a good number of common bash commands:
 
-from .nxs to .fasta:
+from ```.nxs``` to ```.fasta```:
 
 ```
 awk '/MATRIX/,EOF { print $0 }' concatenation.nxs | tail +2 | tr  \\t ' ' | sed -e 's/^ />/' 
 | tr ' ' '\n' | sed '$d' | sed '$d' | sed '$d' > concatenation.fasta
 ```
 
-from .nxs to .phy:
+from ```.nxs``` to ```.phy```:
 
 ```
 nxs=concatenation.nxs; awk '/MATRIX/,EOF { print $0 }' $nxs | tail +2 | tr  \\t ' ' | sed '$d' | sed '$d' | sed '$d' > tmp.phy; 
 n_sp=$(wc -l tmp.phy); n_car=$(grep -A 1 "MATRIX" $nxs | tail -1 | awk -F "\t" '{print $3}' | wc -c); cat tmp.ph
 ```
 
-You can rewrite them in a more efficient way and/or add the missing conversion from .fas to.nxs and from .phy to .nxs, 
-it's a funny exercise I guess.
+You can rewrite them in a more efficient way and/or add the missing conversion from ```.fas``` to ```.nxs``` and from ```.phy``` to ```.nxs```. 
+it's a funny exercise I guess, and I can add your code here so it will be available for us all.
 
 
 
@@ -72,11 +72,14 @@ which can carry out the model selection specifically for MrBayes. This situation
 pipeline consist in a straight process (ModelFinder -> IQ-TREE), but sometimes they result in a quite fragmented workflow with multiple tools
 and steps in between them.
 
-The input of PartitionFinder2 is a ```.cfg``` file. You can find the one I will use [here](https://github.com/for-giobbe/phy/blob/master/examples/gene_and_codon_PF2.cfg).
+The input of PartitionFinder2 are a ```.phy``` and a ```.cfg```.
 ```.cfg``` stands for configuration and is a quite widespread approach to customise analyses while using several pieces of software;
-all the options are included in the configuration file, including all the inputs required for the analysis. For convenience,
+all the options are found inside the configuration file, including all the inputs required for the analysis. For convenience,
 the input alignment is usually placed in the same folder where the configuration file is located, but a path can be specified as well.
-Here is how I _configured_ my ```.cfg```
+
+
+You should e already familiar with many of the options, as they are quite similar to the ones of ModelFinder.
+Here is how I _configured_ my ```.cfg```:
 
 
 ```
@@ -106,16 +109,17 @@ ND2rd = 748-1768/3;
 search = greedy;
 ```
 
-CIPRESS
+As anticipated before, we are running this analysis on CIPRESS For this reason, we need to specify ```infile.phy``` as the alignment, 
+independently to whichever name we chose for our alignment: this is due to how CIPRESS handles the processes and files. 
+We can then upload the ```.cfg``` and ```.phy``` and launch the analysis. If you need them you can find mine respectively 
+[here](https://github.com/for-giobbe/phy/blob/master/examples/concatenation.phy) and 
+[here](https://github.com/for-giobbe/phy/blob/master/examples/gene_and_codon_PF2.cfg).
 
-In our case - as we are using CIPRESS - we need to specify ```infile.phy```, independently to whichever name we chose for our alignment:
-this is due to how CIPRESS handles the processes and files. We can then upload the ```.cfg``` and ```.phy``` and launch the analysis.
+
 
 As you can see CIPRESS is providing us with an almost perfect 1:1 trasposition of the program running, 
-including the standard output, error and intermediate files! 
-
-When the analysis is finished download the ```analysis.zip``` folder and open the ```best_scheme.txt```. As you can see this file contains
-similar information to ModelFinder:
+including the standard output, error and intermediate files! When the analysis is finished download the ```analysis.zip``` folder and 
+open the ```best_scheme.txt```. As you can see this file contains similar information to ModelFinder:
 
 ```
 Best partitioning scheme
@@ -127,11 +131,11 @@ Number of params  : 69
 Number of sites   : 1768
 Number of subsets : 4
 
-Subset | Best Model | # sites    | subset id                        | Partition names                                                                                     
-1      | GTR+G      | 745        | 4c7442519ef19b615b794f84797e2a90 | 12S                                                                                                 
-2      | GTR+I+G    | 341        | 4405b051e7d135949d8131c87a543e99 | ND2st                                                                                               
-3      | HKY+G      | 341        | 94d689124e5f756113ab5b5b286bf9fd | ND2nd                                                                                               
-4      | GTR+G      | 341        | 576f3ac022d60c482c4ed21eb1fdaeae | ND2rd                                                                                               
+Subset | Best Model | # sites    | subset id                        | Partition names
+1      | GTR+G      | 745        | 4c7442519ef19b615b794f84797e2a90 | 12S
+2      | GTR+I+G    | 341        | 4405b051e7d135949d8131c87a543e99 | ND2st
+3      | HKY+G      | 341        | 94d689124e5f756113ab5b5b286bf9fd | ND2nd
+4      | GTR+G      | 341        | 576f3ac022d60c482c4ed21eb1fdaeae | ND2rd
 ```
 
 In my case the model selection is quite similar to the one carried out by ModelFinder, which was:
@@ -170,6 +174,15 @@ end;
 
 
 
+Warning: MrBayes only allows a relatively small collection of models. If any model in your analysis is not one that is included in MrBayes 
+(e.g. by setting nst = 1, 2, or 6 for DNA sequences; or is not in the available list of protein models for MrBayes)then this MrBayes block 
+will just set that model to nst = 6 for DNA, or 'wag' for Protein. Similarly, the only additional parameters that this 
+MrBayes block will include are +I and +G. Other  parameters, such as +F and +X, are ignored. If you want to use this MrBayes block for 
+your analysis, please make sure to check it carefully before you use it we've done our best to make it accurate, 
+but there may be errors that remain!
+
+
+
 
 ---
 
@@ -177,22 +190,22 @@ end;
 
 
 
-Now we can proceed to append the model selection to the concatenatio nexus file - which is the file format required by MrBayes.
-You should have one generated by phyutility or you can use [mine](https://github.com/for-giobbe/phy/blob/master/examples/concatenation.nxs).
+Now we can proceed to append the model selection to the concatenation ```.nxs``` file - which is the format required by MrBayes.
+You should have the one generated by phyutility or you can use [mine](https://github.com/for-giobbe/phy/blob/master/examples/concatenation.nxs).
 
-Finally, we need to put the parameters for the search and run it. Go back to the NEXUS file and add as last lines:
+Finally, we need to put the parameters for the search and run it. Go back to the NEXUS file and add at the end of the MrBayes block:
 
 ```
-mcmc ngen=50000 printfreq=5000 samplefreq=5000 nruns=2 nchains=8 temp=0.02;
+mcmc ngen=500000 printfreq=5000 samplefreq=5000 nruns=2 nchains=8 temp=0.02;
 ```
 
 This specifies that:
 
-* the analysis must run for 50k generations
+* the analysis must run for 500k generations
 * every 5k parameters are printed to standard output
-* every 5k parameters are printed to standard output
-* two independent runs are run
-* each run is composed of 8 chains
+* every 5k parameters are sampled
+* two independent runs are carried out
+* each run is composed of 8 different chains
 * the temperature of the hot chain is 0.02
 
 In the end the nexus file for MrBayes should look like [this]()
