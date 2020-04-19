@@ -1,7 +1,5 @@
 # Building a Tree in a BI Framework
 
-<br/>
-<br/>
 
 ---
 
@@ -16,8 +14,6 @@ instead of finding the best point estimates as is done in a Maximum Likelihood f
 In the meantime we will explore a bit the command-line to convert different
 MSA formats and explore [CIPRESS](http://www.phylo.org/), the more comprehensive and outstanding computational infrastructure for phylogenetic
 
-<br/>
-<br/>
 
 ---
 
@@ -58,8 +54,6 @@ For now we can just use the latter to convert our concatenation file from ```.nx
 but you can rewrite them in a more efficient way and/or add the missing conversion from ```.fas``` to ```.nxs``` and from ```.phy``` to ```.nxs```. 
 it's a funny exercise I guess, and I can add your code here so it will be available for us all.
 
-<br/>
-<br/>
 
 ---
 
@@ -178,8 +172,6 @@ end;
 In this way of describing substitution models ```nst=6 rates=invgamma``` means ```GTR+I+G```. 
 Here ```nst=6``` is the number of transition rates between nucleotides, exactly describing a General Time Reversible model.
 
-<br/>
-<br/>
 
 ---
 
@@ -345,8 +337,6 @@ As we have stopped our analysis before its end, we can use a small trick to carr
 
 If the analysis is finished, you don't need to modify anything and you can just proceed.
 
-<br/>
-<br/>
 
 ---
 
@@ -457,8 +447,6 @@ commands can be faster when working on remote acces servers, as to use Tracer we
 In Tracer we want to see the famous "fuzzy caterpillar" - by far the most loved animals by phylogeneticists -
 which implies that there's no autocorrelation in our analysis and that it has reached stationarity.
 
-<br/>
-<br/>
 
 ---
 
@@ -470,8 +458,6 @@ sensitivity to the use of independent sampling of species and analytical framewo
 Moreover, standard measures of clade support, such as posterior probabilities (Lewis et al., 2005) 
 and bootstrap proportions (Simmons and Norton, 2014), can support several conflicting hypotheses with high apparent confidence.
 
-<br/>
-<br/>
 
 ---
 
