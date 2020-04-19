@@ -206,8 +206,8 @@ iqtree -s concatenation.nxs -spp gene_and_codon.prt -m MFP+MERGE -redo
 The outputs generated will be the same as the ones produced by the unpartitioned analysis. 
 Among the large number of parameters which can affect the tree search process in IQ-TREE, two of the more decisive are:
 
-```-nstop```  which specify the number of unsuccessful iterations to stop. DEFAULT: 100
-```-pers```   which specify perturbation strength (between 0 and 1) for randomized NNI. DEFAULT: 0.5
+* ```-nstop```  which specify the number of unsuccessful iterations to stop, default is 200.
+* ```-pers```   which specify perturbation strength (between 0 and 1) for randomized NNI, default is 0.5.
 
 ---
 
