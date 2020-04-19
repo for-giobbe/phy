@@ -21,7 +21,7 @@ Syllabus:
 
 4. [Building a Tree in a BI Framework](https://github.com/for-giobbe/phy/blob/master/Building%20a%20Tree%20in%20a%20BI%20Framework%20.md)
 
-5. [Primer on Inferring Divergence Times & Selection Regimes](https://github.com/for-giobbe/phy/blob/master/Primer%20on%20Inferring%20Divergence%20%26%20Selection%20Regimes.md)
+5. [Post Phylogenetic Inference & Selection Regimes Inference](https://github.com/for-giobbe/phy/blob/master/Primer%20on%20Inferring%20Divergence%20%26%20Selection%20Regimes.md)
 
 
 
@@ -30,7 +30,5 @@ Syllabus:
 
 
 _arguments which we ignored due to time constrains:_
-
-* [complex models](http://www.iqtree.org/doc/Complex-Models)
 
 * [Orthofinder2](https://github.com/davidemms/OrthoFinder)
