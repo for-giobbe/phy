@@ -1,7 +1,11 @@
 # general requirements
 
 
+
+
 ---
+
+
 
 
 [conda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/#)
@@ -11,7 +15,11 @@
 BASH - included natively in all Mac OS X and Linux distributions
 
 
+
+
 ---
+
+
 
 
 ## conda-installable packages (conda install -c bioconda package):
@@ -33,7 +41,11 @@ pal2nal
 PAML
 
 
+
+
 ---
+
+
 
 
 ## executables:
@@ -51,7 +63,25 @@ PAML
 [FigTree](http://tree.bio.ed.ac.uk/software/figtree/)
 
 
+
+
+
+
 ---
+
+
+
+
+## online resources:
+
+[CIPRES](http://www.phylo.org/)
+
+
+
+
+---
+
+
 
 
 # dataset building:
