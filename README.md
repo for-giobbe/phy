@@ -31,4 +31,4 @@ Syllabus:
 
 _arguments which we ignored due to time constrains:_
 
-* [Orthofinder2](https://github.com/davidemms/OrthoFinder)
+* [Orthology inference](https://github.com/davidemms/OrthoFinder)

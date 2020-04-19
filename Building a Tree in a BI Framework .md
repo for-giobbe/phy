@@ -16,8 +16,13 @@ MSA formats and explore CIPRESS, the more comprehensive and outstanding computat
 
 
 
+ is to use the method known as MCMCMC ("Metropolis-coupled Markov chain Monte Carlo") to empirically determine the posterior probability distribution of trees, branch lengths and substitution parameters. Recall that in the Bayesian framework this is how we learn about parameter values: instead of finding the best point estimates, we typically want to quantify the probability of the entire range of possible values. 
+
+
+
 
 ---
+
 
 
 
@@ -208,20 +213,79 @@ This specifies that:
 * each run is composed of 8 different chains
 * the temperature of the hot chain is 0.02
 
+While the first five parameters are quite straight forward, temp can be a little bit more obscure in the beginning 
+(being somehow similar to the perturbance in IQTREE).
+The higher the temperature, the more likely the heated chains are to move between isolated peaks in the posterior distribution. 
+However, excessive heating may lead to very low acceptance rates for swaps between different chains.
+
 In the end the nexus file for MrBayes should look like [this](https://github.com/for-giobbe/phy/blob/master/examples/concatenation_mrbayes.nxs)
 
 
 Then to run MrBayes you should type ```mb``` and then ```exe .nxs``` which in my case is ```exe concatenation_mrbayes.nxs```.
+The origram will instantly start writing to the standard output:
 
 
-While running, MrBayes will print the (estimated) remaining time at the end of each line, showing the chain parameters, which
-are also printed to the .mcmc file in the same folder of the NEXUS file. At the end of the run, you can check for convergence 
-by plotting the last column of that file: the burnin must be selected when the standard deviation of average split frequencies starts
-to be (i) relatively very low and (ii) stable.
+Here there is a nice _resumee_ of model parameters:
+
+```
+      Active parameters: 
+
+                             Partition(s)
+         Parameters          1  2  3  4
+         ------------------------------
+         Tratio              .  .  1  .
+         Revmat              2  3  .  4
+         Statefreq           5  6  7  8
+         Shape               9 10 11 12
+         Pinvar              . 13  .  .
+         Ratemultiplier     14 14 14 14
+         Topology           15 15 15 15
+         Brlens             16 16 16 16
+         ------------------------------
+```
+
+Here are the initial lnL of the eight chains relative to the two runs:
+
+```
+      Initial log likelihoods and log prior probs for run 1:
+         Chain 1 -- -20685.580631 -- 67.855733
+         Chain 2 -- -20960.717367 -- 67.855733
+         Chain 3 -- -21280.231843 -- 67.855733
+         Chain 4 -- -21439.401204 -- 67.855733
+         Chain 5 -- -20776.225714 -- 67.855733
+         Chain 6 -- -20936.729510 -- 67.855733
+         Chain 7 -- -21255.572979 -- 67.855733
+         Chain 8 -- -21218.825526 -- 67.855733
+
+      Initial log likelihoods and log prior probs for run 2:
+         Chain 1 -- -20688.742427 -- 67.855733
+         Chain 2 -- -20962.169831 -- 67.855733
+         Chain 3 -- -21057.290134 -- 67.855733
+         Chain 4 -- -21436.439803 -- 67.855733
+         Chain 5 -- -21181.932110 -- 67.855733
+         Chain 6 -- -21330.400414 -- 67.855733
+         Chain 7 -- -21155.010820 -- 67.855733
+         Chain 8 -- -21001.961738 -- 67.855733
+```
+
+While running, MrBayes will print the the chain parameters, which are also printed to the ```.p``` files. 
+Also the average standard deviation of split frequencies are printed: this values is a measure of similarity the tree toplogies sampled 
+by the two independent runs and is highly informative of analysis convergence.
+It's usually considered that average standard deviation below 0.01 are quite good, values between 0.01 and 0.05 may be adequate 
+depending on the purpose of your analysis, while higher value shouldn't be accepted.
 
 
+At the end of each line there's also the estimated remaining time.
 
 
+```
+190000 -- (-14392.295) (-14392.776) [-14389.627] (-14388.005) (-14383.686) (-14391.499) (-14386.012) (-14393.668) * [...8 more local chains...] (...0 remote chains...) -- 0:29:40
+
+Average standard deviation of split frequencies: 0.048766
+```
+
+
+We will then stop the run, as half a million generations are way out of reach with our computational resources.
 
 
 ---
@@ -231,9 +295,13 @@ to be (i) relatively very low and (ii) stable.
 
 ## Post-Inference diagnotics: 
 
+sump 
+
+sumt
+
 Tracer
 
-
+autocorrelation
 
 
 ---

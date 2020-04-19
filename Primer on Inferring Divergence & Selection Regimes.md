@@ -11,17 +11,17 @@
 ## intro: 
 
 Phylogenetic systematics aims is to reconstruct the patterns of relationships among different organisms. 
-And while phylogenetic trees can be considered by themselves the results of such investigations they can also be
+And while phylogenetic trees can be considered by themselves the results of such investigations, they can also be
 used to study evolutionary processes with a myriad of possibilities. This is not a comprensive list by any mean, 
 just what I stumbled upon during my research:
 
 * molecular evolution / selection regimes
 * divergence time analyses
-* mapping traits on phylogenies (_i.e._ comparative methods)
+* mapping traits on phylogenies _i.e._ comparative methods
 
 Due to the severe time constrains of the course, we just have time to deal with the analysis of selection regimes,
 which may be the topic which is more fit for this course. But remember that the interaction of
-molecular phylogenetics and palaeontology & morphological studies is extremely exciting and
+molecular phylogenetics and paleontology & morphological studies is extremely exciting and
 relies on very serious informatics skills as well. I have selected two papers (respectively on
 [molecular dating](https://doi.org/10.1111/brv.12390) and [comparative methods]()), 
 along with two excellent tutorials which you will find in the last section of this class.

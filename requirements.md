@@ -22,7 +22,9 @@ BASH - included natively in all Mac OS X and Linux distributions
 
 
 
-## conda-installable packages (conda install -c bioconda package):
+## conda-installable packages:
+
+You should type ```conda install -c bioconda package```.
 
 T-coffe
 
