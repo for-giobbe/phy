@@ -11,7 +11,8 @@
 ## intro: 
 
 In this lesson we will use MrBayes [(Ronquist et al., 2012)](https://academic.oup.com/sysbio/article/61/3/539/1674894) to understand
-the underlying concepts of Bayesian Inference in phylogenetics.
+the underlying concepts of Bayesian Inference in phylogenetics. In the meantime we will explore a bit the command-line to convert different
+MSA formats and explore CIPRESS, the more comprehensive and outstanding computational infrastructure for hylogenetic
 
 
 
@@ -20,9 +21,9 @@ the underlying concepts of Bayesian Inference in phylogenetics.
 
 
 
-## msa format conversion: 
+## MSA format conversion: 
 
-At this stage we have already used ```.nsatsa``` and ```.nxs```formats for Multiple Sequence Alignment. 
+At this stage we have already used ```.fas``` and ```.nxs```formats for Multiple Sequence Alignment. 
 In this lesson we will also need a ```.phy``` - which is known as phylip-formatted file - for a tool called PartitionFinder2.
 This format name comes from a very *ancient* piece of software - called of course [PHYLIP](https://en.wikipedia.org/wiki/PHYLIP) - which is turning 40 this year :-O
 It is a very bare bone format which has in the firt line the number of species and the number of charachters separated by a space and then 
