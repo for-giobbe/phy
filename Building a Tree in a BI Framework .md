@@ -444,7 +444,6 @@ commands can be faster when working on remote acces servers, as to use Tracer we
 In Tracer we want to see the famous "fuzzy caterpillar" - by far the most loved animals by phylogeneticists -
 which implies that there's no autocorrelation in our analysis and that it has reached stationarity.
 
-
 ---
 
 <br/>
@@ -455,6 +454,20 @@ sensitivity to the use of independent sampling of species and analytical framewo
 Moreover, standard measures of clade support, such as posterior probabilities (Lewis et al., 2005) 
 and bootstrap proportions (Simmons and Norton, 2014), can support several conflicting hypotheses with high apparent confidence.
 
+---
+
+<br/>
+<br/>
+
+## conclusions: 
+
+In this lesson we did quite a lot:
+
+* explore a bit the command-line
+* analyzed the different MSA formats
+* used the more established and comprehensive online platform for phylogenetics
+* did some hands on with BI and the relative post-inference diagnostics
+* focused on how we should treat carefully nodal support metrics, as PPs
 
 ---
 
