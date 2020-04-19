@@ -29,7 +29,8 @@ Let's start with a look at the file with the ```cat``` command:
 cat ND2.n.fasta
 ```
 
-Each record consists of an ID and a sequence, of which the ID is always on a single line that starts with the ">" symbol, followed by lines containing the sequence. The sequences are not aligned yet: this is the reason why they contain no gaps and differ in length.
+As you can see, in the [fasta format](https://en.wikipedia.org/wiki/FASTA_format) each record consists of an ID and a sequence, of which the ID is always on a single line that starts with the ">" symbol, followed by lines containing the sequence. 
+The sequences are not aligned yet: this is the reason why they contain no gaps and differ in length.
 The use of short and simple IDs is strongly recommended because many programs or scripts may not work if you use spaces or hyphens.
 
 
