@@ -3,11 +3,6 @@
 <br/>
 <br/>
 
----
-
-<br/>
-<br/>
-
 ## intro:
 
 Maximum likelihood is a general statistical method for estimating parameters of a
@@ -32,6 +27,10 @@ In this lesson we are going to compute a phylogenetic tree in a ML framework and
 which can inform us of the confidence relative to a split. At this point you should have a concatenation and a partition file; 
 if not you can use mine [here](https://github.com/for-giobbe/phy/tree/master/examples).
 
+---
+
+<br/>
+<br/>
 
 ## inferring gene trees - unpartitioned analyses:
 
@@ -189,9 +188,6 @@ NOTE: Tree is UNROOTED although outgroup taxon 'Mantis_religiosa' is drawn at ro
 Remember that most phylogenetic programs produce unrooted trees, as they are not aware about any biological background. 
 We can root them using our _a priori_ biological knowledge or use approches as the mid point rooting.
 
-<br/>
-<br/>
-
 ---
 
 <br/>
@@ -212,9 +208,6 @@ Among the large number of parameters which can affect the tree search process in
 
 ```-nstop```  which specify the number of unsuccessful iterations to stop. DEFAULT: 100
 ```-pers```   which specify perturbation strength (between 0 and 1) for randomized NNI. DEFAULT: 0.5
-
-<br/>
-<br/>
 
 ---
 
@@ -290,7 +283,6 @@ The functioning of aLRT is quite interesting as well:
 Adapted from:
 _Guindon et al., 2009. Estimating maximum likelihood phylogenies with PhyML._
 
----
 
 Let's get some hands-on:
 
@@ -342,9 +334,6 @@ from time to time. This is the case of gCF and sCF (genes and sites Concordance 
 in the further reading paragraph at the end of the lesson. Moreover consider that different frameworks can have different support metrics,
 as the Posterior Probabilities (PP) in the Bayesian Inference.
 
-<br/>
-<br/>
-
 ---
 
 <br/>
@@ -370,9 +359,6 @@ IQ-TREE automatically detects that ALN_DIR is a directory and will load all alig
 The -S takes the same argument as -s except that it performs model selection and tree inference separately for each 
 partition or alignment. The output files are similar to those from a partitioned analysis,
 except that loci.treefile now contains a set of trees.
-
-<br/>
-<br/>
 
 ---
 
