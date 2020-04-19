@@ -1,12 +1,12 @@
 # Building a Tree in a ML Framework
 
-
-
+<br/>
+<br/>
 
 ---
 
-
-
+<br/>
+<br/>
 
 ## intro:
 
@@ -189,13 +189,13 @@ NOTE: Tree is UNROOTED although outgroup taxon 'Mantis_religiosa' is drawn at ro
 Remember that most phylogenetic programs produce unrooted trees, as they are not aware about any biological background. 
 We can root them using our _a priori_ biological knowledge or use approches as the mid point rooting.
 
-
-
+<br/>
+<br/>
 
 ---
 
-
-
+<br/>
+<br/>
 
 ## inferring species tree - partitioned analyses:
 
@@ -213,13 +213,13 @@ Among the large number of parameters which can affect the tree search process in
 ```-nstop```  which specify the number of unsuccessful iterations to stop. DEFAULT: 100
 ```-pers```   which specify perturbation strength (between 0 and 1) for randomized NNI. DEFAULT: 0.5
 
-
-
+<br/>
+<br/>
 
 ---
 
-
-
+<br/>
+<br/>
 
 ## inferring nodal support using different metrics:
 
@@ -342,13 +342,13 @@ from time to time. This is the case of gCF and sCF (genes and sites Concordance 
 in the further reading paragraph at the end of the lesson. Moreover consider that different frameworks can have different support metrics,
 as the Posterior Probabilities (PP) in the Bayesian Inference.
 
-
-
+<br/>
+<br/>
 
 ---
 
-
-
+<br/>
+<br/>
 
 ## automation:
 
@@ -371,13 +371,13 @@ The -S takes the same argument as -s except that it performs model selection and
 partition or alignment. The output files are similar to those from a partitioned analysis,
 except that loci.treefile now contains a set of trees.
 
-
-
+<br/>
+<br/>
 
 ---
 
-
-
+<br/>
+<br/>
 
 ## further reading: 
 
