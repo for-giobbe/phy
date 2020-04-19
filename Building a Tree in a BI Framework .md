@@ -6,8 +6,8 @@
 ## intro: 
 
 In this lesson we will use MrBayes [(Ronquist et al., 2012)](https://academic.oup.com/sysbio/article/61/3/539/1674894) to understand
-the underlying concepts of Bayesian Inference in phylogenetics. Recall that in the Bayesian framework we estimate parameters from their posterior distribution, 
-instead of finding the best point estimates as is done in a Maximum Likelihood framework.
+the underlying concepts of Bayesian Inference in phylogenetics. Remember that in s Bayesian framework we estimate parameters from their posterior distribution, 
+instead of finding the best single estimates as in a Maximum Likelihood framework.
 In the meantime we will explore a bit the command-line to convert different
 MSA formats and explore [CIPRESS](http://www.phylo.org/), the more comprehensive and outstanding computational infrastructure for phylogenetic
 
