@@ -9,7 +9,7 @@ Maximum likelihood is a general statistical method for estimating parameters of 
 probability model: for example a normal distribution can be described by two parameters: 
 the mean and variance. Instead, in molecular phylogenetics there are a wide plethora of parameters, which include:
 
-* rates of transitions between bases
+* rates of transitions / trasversions / ... between bases
 * base composition
 * descriptors of rate heterogeneity across sites
 * branchlengths
@@ -21,7 +21,7 @@ P(D|M)
 ```
 If we have a model, we can calculate the probability the observations would have actually been observed as a function of the model. 
 We then examine this likelihood function to see where it is at its greatest, and the value of the parameter of
-interests (usually the tree and branch lengths) at that point is the maximum likelihood estimate of the parameter.
+interests at that point is the maximum likelihood estimate of the parameter (_e.g._ the tree and branch lengths).
 
 In this lesson we are going to compute a phylogenetic tree in a ML framework and explore a bit the relative support metrics,
 which can inform us of the confidence relative to a split. At this point you should have a concatenation and a partition file; 
@@ -113,16 +113,17 @@ Total tree length: 7.923
 
 ```
 
-Let's take a look at the outputs:
+Here are the outputs:
 
-* IQ-TREE report (.iqtree)
-* Maximum-likelihood tree (.treefile)
-* Likelihood distances (.mldist)
-* Screen log file (.log)
+* ```.iqtree``` is the analysis report
+* ```.model.gz``` is the evolutionary model 
+* ```.treefile``` ia the Maximum Likelihood tree
+* ```.bionj``` is a ["better"](https://doi.org/10.1093/oxfordjournals.molbev.a025808) Neighbour Joining tree
+* ```.mldist``` are the Likelihood distances 
+* ```.log``` is the screen log 
+* ```.ckp.gz``` is just a checkpoint file 
 
 Let's take a deeper look at the IQ-TREE report:
-
-We can find some information regarding the model of substitution:
 
 ```
 SUBSTITUTION PROCESS
@@ -165,8 +166,7 @@ Gamma shape alpha: 0.7223
   4         3.214          0.2033
 Relative rates are computed as MEAN of the portion of the Gamma distribution falling in the category.
 ```
-
-along with the best tree:
+As you can see above, we can find some very neat information regarding the model of substitution,
 
 ```
 MAXIMUM LIKELIHOOD TREE
@@ -185,7 +185,7 @@ Sum of internal branch lengths: 1.1308 (14.2712% of tree length)
 NOTE: Tree is UNROOTED although outgroup taxon 'Mantis_religiosa' is drawn at root
 ```
 
-Remember that most phylogenetic programs produce unrooted trees, as they are not aware about any biological background. 
+along with the best tree. Remember that most phylogenetic programs produce unrooted trees, as they are not aware about any biological background. 
 We can root them using our _a priori_ biological knowledge or use approches as the mid point rooting.
 
 ---
@@ -196,8 +196,8 @@ We can root them using our _a priori_ biological knowledge or use approches as t
 ## inferring species tree - partitioned analyses:
 
 We can carry out the phylogenetic inference on our concatenation just by specifying the relative partition file with the 
-```-spp``` flag and adding ```+MERGE``` in the model specification, so that the model tries to find the best-fit partitioning scheme
-by possibly merging partitions.
+```-spp``` (or either ```-q``` or ```-sp```) flag and adding ```+MERGE``` to the ```MFP``` flag for model specification, 
+so that the model tries to find the best-fit partitioning scheme by possibly merging partitions.
 
 ```
 iqtree -s concatenation.nxs -spp gene_and_codon.prt -m MFP+MERGE -redo 
@@ -217,12 +217,12 @@ Among the large number of parameters which can affect the tree search process in
 ## inferring nodal support using different metrics:
 
 
-Several metrics of clade support are possible and should be combined to gain more confidence.
-Here are the more frequently used in IQ-TREE:
+Phylogenetic trees are almost always just hypotheses and they should be treated us such. In this perspective, it's important to know
+how much we can be confident in respect to our findings: there are several possibilities which take into consideration the whole tree,
+but it's also possible to calculating several metrics of clade support, specifically for each node. Here are the more frequently used in IQ-TREE:
 
 * Parametric & Nonparametric bootstrap
 * SH-like approximate likelihood ratio test 
-* ...
 
 I really like this explanation of parametric and non-parametric bootstrap:
 
@@ -320,7 +320,7 @@ We can combine the three metrics in the same analysis and have them annotated on
 It's then easier to observe wether the different support metrics are giving contrasting results through our phylogenies.
 
 ```
-iqtree -s ND2_p_aligned.n.gb.fasta -bb 1000 -bnni -b 100 -alrt 1000
+iqtree -s ND2_p_aligned.n.gb.fasta -bb 1000 -bnni -b 10 -alrt 1000 -redo
 ```
 
 Let's take a look at the ```.iqtree``` among the other output files, bearing in mind that the values related to different metrics 
@@ -328,8 +328,8 @@ should be treated differently: with the non-parametric bootstrap and SH-aLRT you
 it has >= 80% support, while with UFBoot it should be >= 95%, 
 
 To conclude: there are several metrics of support in phylogenetics which can provide different perspective on the confidence 
-of a clade/bipartition. Moreover they can sometimes be informative of biological processes such as ILS (Incomplete Lineage Sorting) 
-or adaptive radiations. Aside the traditional ones (which we just went trough) some new ones get proposed and/or implemented 
+of a clade/bipartition. Moreover they can sometimes be informative of biological processes! 
+Aside the traditional ones (which we just went trough) some new ones get proposed and/or implemented 
 from time to time. This is the case of gCF and sCF (genes and sites Concordance Factors) for which I left some additional information 
 in the further reading paragraph at the end of the lesson. Moreover consider that different frameworks can have different support metrics,
 as the Posterior Probabilities (PP) in the Bayesian Inference.
@@ -365,10 +365,59 @@ except that loci.treefile now contains a set of trees.
 <br/>
 <br/>
 
+## The Newick format:
+
+The Newick is by far the most used format to store trees and it has a [quite funny origin](http://newicks.com/).
+It is substantially a combinations of parentheses and punctuation, such as:
+
+```(((A,B),(C,D)),E);```
+
+I'll leave to the wikipedia [page](https://en.wikipedia.org/wiki/Newick_format) the explanation on its structure. 
+
+Such a simple format has several implications. If  N = n. species, there are:
+
+* N terminal branches
+* 2N-3 total branches
+* N-3 internal branches
+* N-2 internal nodes
+
+
+
+| Leaves        | Unrooted trees           | Rooted trees  |
+| ------------- |:------------------------:| -------------:|
+| 3             | 1                        | 3             |
+| 5             | 15                       | 105           |
+| 7             | 945                      | 10,395        |
+| 9             | 135,135                  | 2,027,025     |
+| 10            | 2,027,025                | 34,459,425    |
+
+
+
+* for each unrooted there are 2N-3 times as many rooted trees.
+
+
+Regarding the number of trees which can possibly describe the relationships between a given number of terminal nodes (_e.g._ species),
+it  ultimately depends on the tree type:
+
+* there are always more multifurcating than bifurcating trees
+* for each unrooted tree there are 2N-3 times as many rooted trees
+
+Last but not least, remember that ```.nwk``` trees are not unique representations, 
+and that relationships between terminals can be written in several different ways.
+
+
+
+We can visualize ```.nwk``` files either [online](https://itol.embl.de/upload.cgi) or using software as [FigTree](http://tree.bio.ed.ac.uk/software/figtree/).
+
+---
+
+<br/>
+<br/>
+
 ## further reading: 
 
-Resources on concordance factors: [paper](https://www.biorxiv.org/content/10.1101/487801v2) & [tutorial](http://www.robertlanfear.com/blog/files/concordance_factors.html)
+Resources on concordance factors: [paper](https://www.biorxiv.org/content/10.1101/487801v2) & [tutorial](http://www.robertlanfear.com/blog/files/concordance_factors.html).
 
-[Here](http://www.iqtree.org/doc/iqtree-doc.pdf) you'll find the manual for IQ-TREE, it's quite user-friendly and exhaustive.   
+[Here](http://www.iqtree.org/doc/iqtree-doc.pdf) you'll find the manual for IQ-TREE, it's quite user-friendly and exhaustive.
 
 [Here](http://www.iqtree.org/doc/Command-Reference) a coprensive commands list for IQ-TREE.
