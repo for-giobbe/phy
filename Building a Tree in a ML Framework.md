@@ -189,7 +189,7 @@ along with the best tree. Remember that most phylogenetic programs produce unroo
 We can root them using our _a priori_ biological knowledge or use approches as the mid point rooting.
 
 
-TIP: Wwhen large amount of loci are available for phylogenetic inference, IQ-TREE provides the -S flag to compute individual loci trees 
+TIP: when large amount of loci are available for phylogenetic inference, IQ-TREE provides the -S flag to compute individual loci trees 
 given a partition file or a directory:
 
 ```
@@ -391,6 +391,19 @@ Last but not least, remember that ```.nwk``` trees are not unique representation
 and that relationships between terminals can be written in several different ways.
 
 We can visualize ```.nwk``` files either [online](https://itol.embl.de/upload.cgi) or using software as [FigTree](http://tree.bio.ed.ac.uk/software/figtree/).
+
+---
+
+<br/>
+<br/>
+
+## conclusions: 
+
+In this lesson we:
+
+* carried out a ML phylogenetic inference on both single loci and concatenation.
+* explored metrics of nodal support which are often associated to ML analyses (parametri and non-parametri BP,ALRT).
+* got confident with the ```.nwk``` format for writing phylogenetic trees.
 
 ---
 

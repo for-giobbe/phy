@@ -466,7 +466,7 @@ very distant topological configuration
 In this lesson we did quite a lot:
 
 * explore a bit the command-line
-* analyzed the different MSA formats
+* analysed the different MSA formats
 * used the more established and comprehensive online platform for phylogenetics
 * did some hands on with BI and the relative post-inference diagnostics
 * focused on how we should treat carefully nodal support metrics, as PPs
