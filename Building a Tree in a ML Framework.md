@@ -188,6 +188,26 @@ NOTE: Tree is UNROOTED although outgroup taxon 'Mantis_religiosa' is drawn at ro
 along with the best tree. Remember that most phylogenetic programs produce unrooted trees, as they are not aware about any biological background. 
 We can root them using our _a priori_ biological knowledge or use approches as the mid point rooting.
 
+
+TIP: Wwhen large amount of loci are available for phylogenetic inference, IQ-TREE provides the -S flag to compute individual loci trees 
+given a partition file or a directory:
+
+```
+iqtree -s ALN_FILE -S PARTITION_FILE --prefix loci -T AUTO
+```
+
+or
+
+```
+iqtree -S ALN_DIR --prefix loci -T AUTO
+
+```
+
+IQ-TREE automatically detects that ALN_DIR is a directory and will load all alignments within the directory. 
+The -S takes the same argument as -s except that it performs model selection and tree inference separately for each 
+partition or alignment. The output files are similar to those from a partitioned analysis,
+except that loci.treefile now contains a set of trees.
+
 ---
 
 <br/>
@@ -339,32 +359,6 @@ as the Posterior Probabilities (PP) in the Bayesian Inference.
 <br/>
 <br/>
 
-## automation:
-
-When large amount of loci are available for phylogenetic inference, IQ-TREE provides the -S flag to compute individual loci trees 
-given a partition file or a directory:
-
-```
-iqtree -s ALN_FILE -S PARTITION_FILE --prefix loci -T AUTO
-```
-
-or
-
-```
-iqtree -S ALN_DIR --prefix loci -T AUTO
-
-```
-
-IQ-TREE automatically detects that ALN_DIR is a directory and will load all alignments within the directory. 
-The -S takes the same argument as -s except that it performs model selection and tree inference separately for each 
-partition or alignment. The output files are similar to those from a partitioned analysis,
-except that loci.treefile now contains a set of trees.
-
----
-
-<br/>
-<br/>
-
 ## The Newick format:
 
 The Newick is by far the most used format to store trees and it has a [quite funny origin](http://newicks.com/).
@@ -374,14 +368,16 @@ It is substantially a combinations of parentheses and punctuation, such as:
 
 I'll leave to the wikipedia [page](https://en.wikipedia.org/wiki/Newick_format) the explanation on its structure. 
 
-Such a simple format has several implications. If  N = n. species, there are:
+Such a simple format has several interesting implications. If N = n. species, there are:
 
 * N terminal branches
 * 2N-3 total branches
 * N-3 internal branches
 * N-2 internal nodes
 
-
+Regarding the number of trees which can possibly describe the relationships between a given number of terminal nodes (_e.g._ species),
+I'll just say that is a number which goes up quite quickly. This even more true for trees with a root, as 
+for each unrooted there are 2N-3 times as many rooted trees. The possibility of multifurcating trees can 
 
 | Leaves        | Unrooted trees           | Rooted trees  |
 | ------------- |:------------------------:| -------------:|
@@ -391,21 +387,8 @@ Such a simple format has several implications. If  N = n. species, there are:
 | 9             | 135,135                  | 2,027,025     |
 | 10            | 2,027,025                | 34,459,425    |
 
-
-
-* for each unrooted there are 2N-3 times as many rooted trees.
-
-
-Regarding the number of trees which can possibly describe the relationships between a given number of terminal nodes (_e.g._ species),
-it  ultimately depends on the tree type:
-
-* there are always more multifurcating than bifurcating trees
-* for each unrooted tree there are 2N-3 times as many rooted trees
-
 Last but not least, remember that ```.nwk``` trees are not unique representations, 
 and that relationships between terminals can be written in several different ways.
-
-
 
 We can visualize ```.nwk``` files either [online](https://itol.embl.de/upload.cgi) or using software as [FigTree](http://tree.bio.ed.ac.uk/software/figtree/).
 
