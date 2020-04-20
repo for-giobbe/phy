@@ -361,8 +361,8 @@ as the Posterior Probabilities (PP) in the Bayesian Inference.
 
 ## The Newick format:
 
-The Newick is by far the most used format to store trees and it has a [quite funny origin](http://newicks.com/).
-It is substantially a combinations of parentheses and punctuation:
+The Newick is by far the most used format to store trees and it substantially is a combinations of parentheses, punctuation, numbers & letters.
+The format name is known to have a [quite funny origin](http://newicks.com/). Lets take a look at some possibilities the ```.nwk``` offers:
 
 
 ```
@@ -383,9 +383,6 @@ It is substantially a combinations of parentheses and punctuation:
 ((B:0.2,(C:0.3,D:0.4)E:0.5)A:0.1)F; 	      a tree rooted on a leaf node (rare)
 ```
 
-
-I'll leave to the wikipedia [page](https://en.wikipedia.org/wiki/Newick_format) the explanation on its structure. 
-
 Such a simple format has several interesting implications. If N = n. species, there are:
 
 * N terminal branches
@@ -395,7 +392,7 @@ Such a simple format has several interesting implications. If N = n. species, th
 
 Regarding the number of trees which can possibly describe the relationships between a given number of terminal nodes (_e.g._ species),
 I'll just say that is a number which goes up quite quickly. This even more true for trees with a root, as 
-for each unrooted there are 2N-3 times as many rooted trees. The possibility of multifurcating trees can 
+for each unrooted there are 2N-3 times as many rooted trees. Here are some numbers: 
 
 | Leaves        | Unrooted trees           | Rooted trees  |
 | ------------- |:------------------------:| -------------:|
