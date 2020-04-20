@@ -167,7 +167,7 @@ end;
 ```
 
 In this way of describing substitution models ```nst=6 rates=invgamma``` means ```GTR+I+G```. 
-Here ```nst=6``` is the number of transition rates between nucleotides, exactly describing a General Time Reversible model.
+Here ```nst``` stands for number of substitution type and ```nst=6``` exactly describing a General Time Reversible model.
 
 
 ---
@@ -454,6 +454,8 @@ sensitivity to the use of independent sampling of species and analytical framewo
 Moreover, standard measures of clade support, such as posterior probabilities (Lewis et al., 2005) 
 and bootstrap proportions (Simmons and Norton, 2014), can support several conflicting hypotheses with high apparent confidence.
 
+very distant topological configuration
+
 ---
 
 <br/>
@@ -477,3 +479,4 @@ In this lesson we did quite a lot:
 ## further reading: 
 
 [Here](http://mrbayes.sourceforge.net/wiki/index.php/Manual) you will find the manual of MrBayes and some tutorials as well.
+[Here](http://mrbayes.sourceforge.net/Help/) a very usefull help page for MrBayes.
