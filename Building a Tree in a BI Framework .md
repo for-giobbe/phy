@@ -6,7 +6,7 @@
 ## intro: 
 
 In this lesson we will use MrBayes [(Ronquist et al., 2012)](https://academic.oup.com/sysbio/article/61/3/539/1674894) to understand
-the underlying concepts of Bayesian Inference in phylogenetics. Remember that in s Bayesian framework we estimate parameters from their posterior distribution, 
+the underlying concepts of Bayesian Inference in phylogenetics. Remember that in a Bayesian framework we estimate parameters from their posterior distribution, 
 instead of finding the best single estimates as in a Maximum Likelihood framework.
 In the meantime we will explore a bit the command-line to convert different
 MSA formats and explore [CIPRESS](http://www.phylo.org/), the more comprehensive and outstanding computational infrastructure for phylogenetic
@@ -449,10 +449,12 @@ which implies that there's no autocorrelation in our analysis and that it has re
 <br/>
 <br/>
 
-Uncertainty can generally be observed either from scarce nodal support, polytomies  and/or  
-sensitivity to the use of independent sampling of species and analytical frameworks (Yuan et al., 2016). 
-Moreover, standard measures of clade support, such as posterior probabilities (Lewis et al., 2005) 
-and bootstrap proportions (Simmons and Norton, 2014), can support several conflicting hypotheses with high apparent confidence.
+## Posterior Probabilities & nodal support overestimation: 
+
+Phylogenetics uncertainty can generally be observed either from scarce nodal support, polytomies  and/or  
+sensitivity to the use of independent sampling of species and analytical frameworks. 
+Moreover, standard measures of clade support, such as posterior probabilities 
+and bootstrap proportions, can support several conflicting hypotheses with high apparent confidence.
 
 very distant topological configuration
 
@@ -479,4 +481,7 @@ In this lesson we did quite a lot:
 ## further reading: 
 
 [Here](http://mrbayes.sourceforge.net/wiki/index.php/Manual) you will find the manual of MrBayes and some tutorials as well.
+
 [Here](http://mrbayes.sourceforge.net/Help/) a very usefull help page for MrBayes.
+
+A couple of nice papers on how the nodal support can be overestimated by [BP](https://doi.org/10.1016/j.ympev.2014.01.018) and [PP](https://doi.org/10.1080/10635150590924208). 
