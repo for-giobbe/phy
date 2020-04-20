@@ -378,9 +378,9 @@ It is substantially a combinations of parentheses and punctuation:
 
 (A:0.1,B:0.2,(C:0.3,D:0.4):0.5);    	      distances and leaf names (popular)
 
-(A:0.1,B:0.2,(C:0.3,D:0.4)E:0.5)F; 	     distances and all names
+(A:0.1,B:0.2,(C:0.3,D:0.4)E:0.5)F; 	      distances and all names
 
-((B:0.2,(C:0.3,D:0.4)E:0.5)A:0.1)F; 	     a tree rooted on a leaf node (rare)
+((B:0.2,(C:0.3,D:0.4)E:0.5)A:0.1)F; 	      a tree rooted on a leaf node (rare)
 ```
 
 
