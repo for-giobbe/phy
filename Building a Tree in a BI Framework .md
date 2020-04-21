@@ -42,9 +42,10 @@ from ```.nxs``` to ```.phy```:
 ```
 nxs=concatenation.nxs;
 awk '/MATRIX/,EOF { print $0 }' $nxs | tail +2 | tr  \\t ' ' | sed 's/^ //g' | sed '$d' | sed '$d' | sed '$d' > tmp.phy; 
-n_sp=$(wc -l tmp.phy | awk '{print $1}'); 
-n_car=$(grep -A 1 "MATRIX" $nxs | tail -1 | awk -F "\t" '{print $3}' | wc -c); 
-echo $n_sp $n_car > first_line.tmp; cat first_line.tmp tmp.phy > concatenation.phy; rm *tmp*
+n_tax=$(head -4 $nxs | tail -1 | awk -F "NTAX=" '{print $2}' | awk '{print $1}');
+n_car=$(head -4 $nxs | tail -1 | awk -F "NCHAR=" '{print $2}' | tr -d ";");
+echo $n_tax $n_car > first_line.tmp; cat first_line.tmp tmp.phy > concatenation.phy; 
+rm *tmp*
 ```
 
 For now we can just use the latter to convert our concatenation file from ```.nxs``` to ```.phy```, 
@@ -467,7 +468,7 @@ very distant topological configuration
 
 In this lesson we did quite a lot:
 
-* explore a bit the command-line
+* explored a bit the command-line
 * analysed the different MSA formats
 * used the more established and comprehensive online platform for phylogenetics
 * did some hands on with BI and the relative post-inference diagnostics
