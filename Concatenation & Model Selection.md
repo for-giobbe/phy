@@ -185,7 +185,7 @@ we will skip this part and chose the more reasonable assumption of a separate ev
 
 ## further reading: 
 
-Some great [basic](http://www.iqtree.org/doc/Tutorial)and [advanced](http://www.iqtree.org/doc/Advanced-Tutorial) tutorials are available from the authors themselves on ModelFinder and IQ-TREE.
+Some great [basic](http://www.iqtree.org/doc/Tutorial) and [advanced](http://www.iqtree.org/doc/Advanced-Tutorial) tutorials are available from the authors themselves on ModelFinder and IQ-TREE.
 
 [Here](http://www.iqtree.org/doc/Complex-Models) is a very nice tutorial on complex models in IQ-TREE.
 
