@@ -91,9 +91,9 @@ We just miss the ```.ctl```, which stads for control and has a similar role to t
 Here is how the .ctl file looks like:
 
 ```
-seqfile = 						* sequence data filename
-treefile = 						* tree structure file name
-outfile = 							* main result file name
+seqfile = 								* sequence data filename
+treefile = 								* tree structure file name
+outfile = 								* main result file name
 noisy = 								* 0,1,2,3,9: how much rubbish on the screen
 verbose = 								* 1:detailed output
 runmode = 								* 0:user defined tree
