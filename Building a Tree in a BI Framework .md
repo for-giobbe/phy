@@ -344,9 +344,12 @@ If the analysis is finished, you don't need to modify anything and you can just 
 ## Post-Inference diagnostics: 
 
 While there is also plenty of Post-Inference diagnostics approaches which can be applied also to ML analyses, 
-in BI framework they are definitively compulsory. We can start by recalling MrBayes with ```mb```; btw if you forgot to 
+in BI framework they are definitively compulsory. 
+
+
+We can start by recalling MrBayes with ```mb```; btw if you forgot to 
 comment the line which specifies the parameters of the runs / chains the analysis will start again!
-We can then type ```sump``` which stands for SUMmary of Parameters. 
+We can then type ```sump``` which stands for Summary of Parameters. 
 The summary statistics will be calculate using a relative burnin of 0.25 and a written to a ```.nxs.pstat``` file.
 Nonetheless some interesting information are also printed to the standard output, such as this nice plot of
 the generation (x-axis) versus the lnL (y-axis). This plot is useful to both decide a sensible burn in for the analysis
@@ -429,11 +432,157 @@ An additional convergence diagnostic are the Potential scale Reduction Factor (P
    ---------------------------------------------------------------------------------------------------- 
 ```
 
-We can then type the ```sumt``` command which - in a similar way to the ```sump``` command - summarises the tree and branch length informations.
-Among other things, the sumt command will output summary statistics for the trees nodes (or splits or bipartitions): 
-dots for the taxa that are on one side of the partition and stars for the taxa on the other side. Through the ```sumt``` command, 
-a tree file with clade credibility (posterior probability) will also be written.
+We can then type the ```sumt``` command which - in a similar way to the ```sump``` command - summarises 
+the tree and branch length informations. Here are the files which are created:
 
+* ```.trprobs``` trees that were found during the MCMC search, sorted by posterior probability
+* ```.con.tre```  tree file with clade credibility / posterior probability values
+* ```.vstat```    summary statistics for all branch and node parameters
+* ```.tstat``` summary statistics for informative (_i.d._ non terminals) taxon bipartitions
+* ```.parts``` bibartitions
+
+We can also observe the more important informations for summary statistics from the standard output.
+
+Here there is a depiction of the trees nodes (or splits or bipartitions), with
+dots for the taxa that are on one side of the partition and stars for the taxa on the other side. 
+As you can observe bipartitions 1 to 18 represent terminal branches (they divide the dataset into a subset with one species
+and another subset with all the other species), while the total number of branches (46) and of internal branches (32).
+
+```
+   Key to taxon bipartitions (saved to file "concatenation_mrbayes.nxs.parts"):
+
+   ID -- Partition
+   ------------------------
+    1 -- .*****************
+    2 -- .*................
+    3 -- ..*...............
+    4 -- ...*..............
+    5 -- ....*.............
+    6 -- .....*............
+    7 -- ......*...........
+    8 -- .......*..........
+    9 -- ........*.........
+   10 -- .........*........
+   11 -- ..........*.......
+   12 -- ...........*......
+   13 -- ............*.....
+   14 -- .............*....
+   15 -- ..............*...
+   16 -- ...............*..
+   17 -- ................*.
+   18 -- .................*
+   19 -- ............*.**..
+   20 -- ................**
+   21 -- ..............**..
+   22 -- .......**.........
+   23 -- ......**********..
+   24 -- ..........*..*....
+   25 -- .....***********..
+   26 -- .......*********..
+   27 -- .......****.****..
+   28 -- .***.*************
+   29 -- .**.............**
+   30 -- .......***........
+   31 -- .**..*************
+   32 -- ..*.............**
+   33 -- .**...............
+   34 -- .......****..*....
+   35 -- .......**...*.**..
+   36 -- .*..............**
+   37 -- .......***..*.**..
+   38 -- .***............**
+   39 -- ..........*.****..
+   40 -- .......**.*.****..
+   41 -- ...**.............
+   42 -- .........**..*....
+   43 -- ...*************..
+   44 -- ..*..*************
+   45 -- ...*.***********..
+   46 -- .......**.*..*....
+   ------------------------
+```
+
+This interesting rapresentation can be better interpreted using the conversion table associated:
+
+```
+   List of taxa in bipartitions:                                                 
+                                                                                   
+      1 -- Mantis_religiosa
+      2 -- Carasisus_morosus
+      3 -- Phyllium_siccifollium
+      4 -- Peruphasma_schultei
+      5 -- Aretaon_asperrimus
+      6 -- Dryococelus_australis
+      7 -- Spinotectarchus_acornutus
+      8 -- Micrarchus_hystriculeus
+      9 -- Micrarchus_sp
+     10 -- Tectarchus_salebrosus
+     11 -- Asteliaphasma_jucundum
+     12 -- Tectarchus_ovobsessus
+     13 -- Clitarchus_hookeri
+     14 -- Niveaphasma_anulata
+     15 -- Acanthoxyla_sp
+     16 -- Argosarchus_horridus
+     17 -- Rumulus_artemis
+     18 -- Medauroidea_extradentata
+```
+
+You can also find
+
+```
+
+                                                95% HPD Interval
+                                              --------------------
+   Parameter           Mean       Variance     Lower       Upper       Median     PSRF+  Nruns
+   -------------------------------------------------------------------------------------------
+   length{all}[1]     5.025501    1.327553    2.619254    6.749607    5.014459    1.011    2
+   length{all}[2]     1.024853    0.053413    0.606395    1.327899    1.043001    0.998    2
+   length{all}[3]     1.019522    0.043750    0.652923    1.376403    1.015712    1.048    2
+   length{all}[4]     0.789487    0.029700    0.472181    1.102621    0.791617    1.030    2
+   length{all}[5]     0.682053    0.046966    0.288199    1.034160    0.656724    1.060    2
+   length{all}[6]     0.358092    0.007500    0.204460    0.509097    0.364765    1.035    2
+   length{all}[7]     0.227501    0.002687    0.130121    0.327046    0.228461    1.001    2
+   length{all}[8]     0.072925    0.000324    0.040592    0.101965    0.071365    1.033    2
+   length{all}[9]     0.083527    0.000396    0.046631    0.118552    0.082402    0.995    2
+   length{all}[10]    0.135941    0.001019    0.071498    0.175128    0.138679    1.074    2
+   length{all}[11]    0.185187    0.001602    0.122649    0.267603    0.186121    1.023    2
+   length{all}[12]    0.100245    0.000737    0.054195    0.149384    0.094959    0.988    2
+   length{all}[13]    0.118501    0.000849    0.058337    0.164487    0.115537    1.066    2
+   length{all}[14]    0.179818    0.001594    0.111610    0.249414    0.177530    1.037    2
+   length{all}[15]    0.088897    0.000619    0.047591    0.128974    0.086298    1.037    2
+   length{all}[16]    0.132697    0.000825    0.081025    0.186584    0.133709    0.988    2
+   length{all}[17]    0.537564    0.011663    0.320523    0.732439    0.533183    1.063    2
+   length{all}[18]    0.383215    0.007115    0.212846    0.529269    0.381975    1.001    2
+   length{all}[19]    0.029015    0.000225    0.006395    0.052787    0.027513    1.005    2
+   length{all}[20]    0.309560    0.006009    0.167760    0.449037    0.301577    1.019    2
+   length{all}[21]    0.033070    0.000115    0.017839    0.053328    0.031480    0.987    2
+   length{all}[22]    0.172255    0.001205    0.115284    0.243705    0.175538    1.002    2
+   length{all}[23]    0.157918    0.002174    0.093674    0.253700    0.155782    0.995    2
+   length{all}[24]    0.027919    0.000154    0.008089    0.050635    0.025864    1.015    2
+   length{all}[25]    0.238083    0.005005    0.131511    0.364093    0.239854    1.073    2
+   length{all}[26]    0.118525    0.001017    0.061124    0.166572    0.118054    1.065    2
+   length{all}[27]    0.025352    0.000253    0.003968    0.058422    0.021665    0.989    2
+   length{all}[28]    0.303126    0.023794    0.003661    0.604934    0.276902    0.993    2
+   length{all}[29]    0.087030    0.001194    0.025831    0.148802    0.084464    0.998    2
+   length{all}[30]    0.022545    0.000133    0.003588    0.046518    0.021492    1.003    2
+   length{all}[31]    0.055789    0.001557    0.002338    0.129540    0.048530    0.983    2
+   length{all}[32]    0.053285    0.001650    0.002934    0.143063    0.048980    0.976    2
+   length{all}[33]    0.048459    0.001004    0.000941    0.097250    0.047258    0.959    2
+   length{all}[34]    0.010545    0.000028    0.003047    0.021410    0.009932    0.996    2
+   length{all}[35]    0.016982    0.000094    0.004665    0.032884    0.017381    0.965    2
+   length{all}[36]    0.044277    0.001206    0.003212    0.114249    0.036272    1.026    2
+   length{all}[37]    0.008014    0.000061    0.000202    0.014316    0.007694    0.989    2
+   length{all}[38]    0.029960    0.001162    0.003229    0.098225    0.012157    0.926    2
+   length{all}[39]    0.009688    0.000029    0.001456    0.016265    0.009671    0.915    2
+   length{all}[40]    0.014688    0.000169    0.000390    0.031141    0.008365    1.042    2
+   length{all}[41]    0.102426    0.009390    0.003782    0.305491    0.073976    1.297    2
+   length{all}[42]    0.008689    0.000090    0.001916    0.029206    0.004243    0.915    2
+   length{all}[43]    0.065419    0.002263    0.003368    0.131051    0.070553    1.091    2
+   length{all}[44]    0.072598    0.000653    0.039144    0.099471    0.079721    0.775    2
+   length{all}[45]    0.014515    0.000017    0.008626    0.017673    0.016896     NA      1 *
+   length{all}[46]    0.007429    0.000024    0.002922    0.014292    0.007063     NA      1 *
+   -------------------------------------------------------------------------------------------
+```
 
 For both command the burnin can be modified in absolute terms ```burnin = 4000``` (will remove the first 4k generations) or relative terms ```burnin = 0.4``` (will remove the first 40% generations)
 by adding this arguments to either  ```sump``` or  ```sumt```.
@@ -452,12 +601,18 @@ which implies that there's no autocorrelation in our analysis and that it has re
 
 ## Posterior Probabilities & nodal support overestimation: 
 
-Phylogenetics uncertainty can generally be observed either from scarce nodal support, polytomies  and/or  
-sensitivity to the use of independent sampling of species and analytical frameworks. 
-Moreover, standard measures of clade support, such as posterior probabilities 
-and bootstrap proportions, can support several conflicting hypotheses with high apparent confidence.
+As we have seen before, different metrics of nodal support are associated with different approaches to the phylogenetic inference.
+BI analyses are associated to Posterior Probabilities - also called credibility - which are calculated from the frequencies 
+with which they occur in the trees sampled within the stationary state, and range from 0 to 1. 
 
-very distant topological configuration
+Nonetheless, as we said before, 
+different metrics have different pitfalls and PPs habe been often associated with an overestimation 
+of support especially when data sets with a lot of characters are used and in the presence of small branchlenghts.
+Generally speaking, standard measures of clade support, such as posterior probabilities 
+and bootstrap proportions, can support several conflicting hypotheses with high support.
+But this apparent confidence can hinder phylogenetic uncertainty, which can be observed when different metrics are compared
+and trying to investigate the degree of reproducibility of ou results (different analytical frameworks and inference parameters).
+You'll find a couple of interesting papers down below!
 
 ---
 
@@ -469,10 +624,10 @@ very distant topological configuration
 In this lesson we did quite a lot:
 
 * explored a bit the command-line
-* analysed the different MSA formats
+* revised the different MSA formats
 * used the more established and comprehensive online platform for phylogenetics
 * did some hands on with BI and the relative post-inference diagnostics
-* focused on how we should treat carefully nodal support metrics, as PPs
+* focused on how we should treat carefully nodal support metrics, such as PPs
 
 ---
 
