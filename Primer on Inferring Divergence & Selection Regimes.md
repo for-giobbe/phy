@@ -88,7 +88,7 @@ but you can also use my [tree](https://github.com/for-giobbe/phy/blob/master/exa
 
 
 We just miss the ```.ctl```, which stads for control and has a similar role to the ```.ctl``` we've seen earlier.
-Here is how the .ctl file looks like:
+Here is how it looks like:
 
 ```
 seqfile = 								* sequence data filename
@@ -110,8 +110,9 @@ omega =  								* initial omega
 
 In our first analysis we are going to compare two models -
 one with omega = 0.1 and one with omega 2.0 - using a Likelihood Ratio Test (LRT). 
-First we need to modify a ```.ctl``` files to have ```omega = 0.1```, like this:
 
+
+First we need to modify a ```.ctl``` files to have ```omega = 0.1```, like this:
 
 ```
 seqfile = ND2_p_aligned.n.gb.fasta					* sequence data filename
@@ -133,7 +134,7 @@ omega = 0.1 								* initial omega
 
 which we can then save as ```ND2_omega_0.1.ctl```.
 
- 
+
 Then we need to have another ```.ctl``` with ```omega = 2```     
 
  
@@ -157,6 +158,7 @@ omega = 2 								* initial omega
  
 and we can save it as ```ND2_omega_2.0.ctl```.
 
+
 Remember to give different names to the ```outfile``` parameter so that the outputs do not get overwritten. 
 Also take care in selecting the correct gencode, otherwise it's likely that stop codons will be found and CODEML will give an error 
 - I used 5 which is the correct one for the mitogenomes of arthropoda.
@@ -170,6 +172,9 @@ all of the options are already in the codeml.ctl file, including all the other i
 
 Let's take a look at the outputs:
 
+* ```.out```
+* ```rub```, ```rst``` and ```rst1```
+*
 
 
 Subsequently we can compare which was the best model. Of course this is just an example and
