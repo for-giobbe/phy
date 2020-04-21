@@ -331,7 +331,7 @@ As we have stopped our analysis before its end, we can use a small trick to carr
 1. open the ```.p``` and ```.t``` file: if they have reached the same number of generations go to (3), if not go (2)
 2. trim both files at the same number of generations
 3. append a line with ```end;``` to both ```.t``` file
-4. punt an hashtag in the line which specifies the parameters of the runs / chains.
+4. delete the line which specifies the parameters of the runs / chains.
 
 If the analysis is finished, you don't need to modify anything and you can just proceed.
 
@@ -346,14 +346,14 @@ If the analysis is finished, you don't need to modify anything and you can just 
 While there is also plenty of Post-Inference diagnostics approaches which can be applied also to ML analyses, 
 in BI framework they are definitively compulsory. 
 
-
 We can start by recalling MrBayes with ```mb```; btw if you forgot to 
-comment the line which specifies the parameters of the runs / chains the analysis will start again!
+cancel the line which specifies the parameters of the runs / chains the analysis will start again!
 We can then type ```sump``` which stands for Summary of Parameters. 
 The summary statistics will be calculate using a relative burnin of 0.25 and a written to a ```.nxs.pstat``` file.
 Nonetheless some interesting information are also printed to the standard output, such as this nice plot of
 the generation (x-axis) versus the lnL (y-axis). This plot is useful to both decide a sensible burn in for the analysis
-and to assess the stationarity of the inference. 
+and to assess the stationarity of the inference. The numbers refer to the two chain and when their value overlap,
+an asterisk get printed.
    
 ```
    +------------------------------------------------------------+ -14372.88
@@ -449,8 +449,6 @@ As you can observe bipartitions 1 to 18 represent terminal branches (they divide
 and another subset with all the other species), while the total number of branches (46) and of internal branches (32).
 
 ```
-   Key to taxon bipartitions (saved to file "concatenation_mrbayes.nxs.parts"):
-
    ID -- Partition
    ------------------------
     1 -- .*****************
@@ -530,7 +528,6 @@ This interesting rapresentation can be better interpreted using the conversion t
 You can also find
 
 ```
-
                                                 95% HPD Interval
                                               --------------------
    Parameter           Mean       Variance     Lower       Upper       Median     PSRF+  Nruns
