@@ -439,14 +439,18 @@ the tree and branch length informations. Here are the files which are created:
 * ```.con.tre```  tree file with clade credibility / posterior probability values
 * ```.vstat```    summary statistics for all branch and node parameters
 * ```.tstat``` summary statistics for informative (_i.d._ non terminals) taxon bipartitions
-* ```.parts``` bibartitions
+* ```.parts``` bipartitions
 
-We can also observe the more important informations for summary statistics from the standard output.
+We can also observe the more important summary statistics from the standard output.
 
-Here there is a depiction of the trees nodes (or splits or bipartitions), with
-dots for the taxa that are on one side of the partition and stars for the taxa on the other side. 
+Here there is a depiction of bipartitions: a taxon bipartition is defined by removing a branch on the tree, 
+dividing the tree into those taxa to the left and right of the removed branch.
+In this representation, dots are the taxa that are on one side of the partition and stars are the taxa on the other side. 
 As you can observe bipartitions 1 to 18 represent terminal branches (they divide the dataset into a subset with one species
 and another subset with all the other species), while the total number of branches (46) and of internal branches (32).
+As you can see there are more bipartitions than the 36 branches which we expect ( recall the ```2* n. species -3``` formula).
+This is because different trees are sampled throughout the analysis, which have different topologies and a number of 
+possible bipartitions grater than the number of bipartitions in a single tree.
 
 ```
    ID -- Partition
@@ -500,7 +504,7 @@ and another subset with all the other species), while the total number of branch
    ------------------------
 ```
 
-This interesting rapresentation can be better interpreted using the conversion table associated:
+This interesting representation can be better interpreted using the conversion table associated:
 
 ```
    List of taxa in bipartitions:                                                 
@@ -525,7 +529,45 @@ This interesting rapresentation can be better interpreted using the conversion t
      18 -- Medauroidea_extradentata
 ```
 
-You can also find
+You can also find some statistics for informative taxon bipartitions, where ```#obs``` stands for
+how many times a bipartition has been observed. The asterisk denote bipartition which were just found in 
+a single run out of the two.
+
+```
+   ID   #obs    Probab.     Sd(s)+      Min(s)      Max(s)   Nruns 
+   ----------------------------------------------------------------
+   19    78    1.000000    0.000000    1.000000    1.000000    2
+   20    78    1.000000    0.000000    1.000000    1.000000    2
+   21    78    1.000000    0.000000    1.000000    1.000000    2
+   22    78    1.000000    0.000000    1.000000    1.000000    2
+   23    78    1.000000    0.000000    1.000000    1.000000    2
+   24    78    1.000000    0.000000    1.000000    1.000000    2
+   25    78    1.000000    0.000000    1.000000    1.000000    2
+   26    78    1.000000    0.000000    1.000000    1.000000    2
+   27    64    0.820513    0.036262    0.794872    0.846154    2
+   28    64    0.820513    0.036262    0.794872    0.846154    2
+   29    59    0.756410    0.090655    0.692308    0.820513    2
+   30    46    0.589744    0.072524    0.538462    0.641026    2
+   31    43    0.551282    0.126917    0.461538    0.641026    2
+   32    28    0.358974    0.036262    0.333333    0.384615    2
+   33    24    0.307692    0.000000    0.307692    0.307692    2
+   34    22    0.282051    0.072524    0.230769    0.333333    2
+   35    22    0.282051    0.036262    0.256410    0.307692    2
+   36    20    0.256410    0.000000    0.256410    0.256410    2
+   37    16    0.205128    0.072524    0.153846    0.256410    2
+   38    14    0.179487    0.000000    0.179487    0.179487    2
+   39    12    0.153846    0.072524    0.102564    0.205128    2
+   40    11    0.141026    0.054393    0.102564    0.179487    2
+   41     7    0.089744    0.018131    0.076923    0.102564    2
+   42     7    0.089744    0.054393    0.051282    0.128205    2
+   43     6    0.076923    0.036262    0.051282    0.102564    2
+   44     5    0.064103    0.054393    0.025641    0.102564    2
+   45     4    0.051282    0.072524    0.000000    0.102564    1 *
+   46     4    0.051282    0.072524    0.000000    0.102564    1 *
+   ----------------------------------------------------------------
+```
+
+And here are the summary statistics for branch and node parameters:
 
 ```
                                                 95% HPD Interval
@@ -580,6 +622,16 @@ You can also find
    length{all}[46]    0.007429    0.000024    0.002922    0.014292    0.007063     NA      1 *
    -------------------------------------------------------------------------------------------
 ```
+At last it is also telling us how may trees sum up to a cumulated probability of 50%, 90% and so on:
+
+```
+
+   Credible sets of trees (63 trees sampled):
+      50 % credible set contains 24 trees
+      90 % credible set contains 56 trees
+      95 % credible set contains 60 trees
+      99 % credible set contains 63 trees
+```
 
 For both command the burnin can be modified in absolute terms ```burnin = 4000``` (will remove the first 4k generations) or relative terms ```burnin = 0.4``` (will remove the first 40% generations)
 by adding this arguments to either  ```sump``` or  ```sumt```.
@@ -599,8 +651,9 @@ which implies that there's no autocorrelation in our analysis and that it has re
 ## Posterior Probabilities & nodal support overestimation: 
 
 As we have seen before, different metrics of nodal support are associated with different approaches to the phylogenetic inference.
-BI analyses are associated to Posterior Probabilities - also called credibility - which are calculated from the frequencies 
-with which they occur in the trees sampled within the stationary state, and range from 0 to 1. 
+BI analyses are associated to Posterior Probabilities - also called clade credibility values - which are calculated from the frequencies 
+with which they occur in the trees sampled at the stationary state, ranging from 0 to 1. PPs are substantially the proportion of the time 
+that a bipartition is found and should be considered as an approximation of the posterior probability of the bipartition.
 
 Nonetheless, as we said before, 
 different metrics have different pitfalls and PPs habe been often associated with an overestimation 
