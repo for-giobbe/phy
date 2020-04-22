@@ -341,16 +341,22 @@ These values are very rarely associated to real positive selection events but ca
 fenomena as pseudogenization and misalignment. The latter concept recalls our first lesson, where 
 we learned that among the many ways of filtering MSA dNdS was a possibility.
 
+---
 
+<br/>
+<br/>
 
+## conclusions: 
 
-
-
+* building a phylogeny is both a result by itself & the basis for other investigations
+* we carried out a comparison of two model with different dN/dS in a ML framework
+* we found which was the be best-fit model for our data
+* analysing regimes of selection can have real applications
 
 ---
 
-
-
+<br/>
+<br/>
 
 ## further reading: 
 
