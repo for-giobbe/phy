@@ -80,7 +80,7 @@ Anyway, let's check what we need in order to run CODEML:
 * a ```.ctl``` file 
 
 Since the last tree we calculated for our PCG contains bootstrap we can quickly recalculate it using
-```iqtree -s ND2_p_aligned.n.gb.fasta```. Anyway my[alignment](https://github.com/for-giobbe/phy/blob/master/examples/ND2_p_aligned.n.gb.fasta) and 
+```iqtree -s ND2_p_aligned.n.gb.fasta```. Anyway my [alignment](https://github.com/for-giobbe/phy/blob/master/examples/ND2_p_aligned.n.gb.fasta) and 
 [tree]() are available.  Another possible option could be to to use ```sed``` and a [regexp](https://en.wikipedia.org/wiki/Regular_expression) (```sed "s/\)[0-9]/)/g"```)
 on the command-line to remove bootstrap values.
 
@@ -108,7 +108,10 @@ omega =  								* initial omega
 
 
 In the ```.ctl``` found right up here just few parameters are present and it's possible to customize analyses
-more deeply. In this analysis we are going to compare two models - one with omega = 0.1 and one with omega 2.0 - 
+even more deeply. 
+
+
+In this analysis we are going to compare two models - one with omega = 0.1 and one with omega 2.0 - 
 and subsequently compare their likelihoods, to asses which is the best fit for our data. 
 
 
@@ -159,8 +162,8 @@ and we can save it as ```ND2_omega_2.0.ctl```.
 
 
 Remember to give different names to the ```outfile``` parameter so that the outputs do not get overwritten. 
-Also take care in selecting the correct gencode, otherwise it's likely that stop codons will be found and CODEML will give an error 
-- I used 4 which is the correct one for the mitogenomes of arthropods but here is the full list:
+Also take care in selecting the correct gencode, otherwise it's likely that stop codons will be found and CODEML will give an error. 
+I used 4 which is the correct one for the mitogenomes of arthropods but here is the full list:
 
 * 0 for the universal code
 * 1 for the mammalian mitochondrial code
@@ -189,9 +192,7 @@ Let's take a look at the outputs:
 * ```4fold.nuc``` 4-fold [degenerate](https://en.wikipedia.org/wiki/Codon_degeneracy) sites
 * ```rub```, ```rst```, ```rst1``` and ```lnf``` are some rather misterios intermediate files
 
-Here is the line we are interested in from the ```.out``` files:
-
-But the outputs contain many other interesting informations, such as:
+The outputs contain many other interesting informations, such as:
 
 a summary of codon usage counts:
 ```
