@@ -192,7 +192,7 @@ Let's take a look at the outputs:
 * ```4fold.nuc``` 4-fold [degenerate](https://en.wikipedia.org/wiki/Codon_degeneracy) sites
 * ```rub```, ```rst```, ```rst1``` and ```lnf``` are some rather misterios intermediate files
 
-The outputs contain many other interesting informations, such as:
+The outputs contain many interesting informations, such as:
 
 a summary of codon usage counts:
 ```
@@ -228,8 +228,6 @@ Average         T:0.36065    C:0.11325    A:0.44752    G:0.07858
 ```
 
 along with the statistics for each branch in the tree,
-
-for a fixed omega of 0.1
 ```
  branch          t       N       S   dN/dS      dN      dS  N*dN  S*dS
 
@@ -270,8 +268,9 @@ for a fixed omega of 0.1
 tree length for dN:       2.3465
 tree length for dS:      23.4648
 ```
+for a fixed omega of 0.1.
 
-and for a fixed omega of 2.0
+
 ```
  branch          t       N       S   dN/dS      dN      dS  N*dN  S*dS
 
@@ -312,6 +311,8 @@ and for a fixed omega of 2.0
 tree length for dN:       3.4156
 tree length for dS:       1.7078
 ```
+for a fixed omega of 2.0.
+
 
 But we can extract the more important information using respectively:
 
@@ -328,27 +329,34 @@ lnL(ntime: 33  np: 34): -11041.325358      +0.000000
 ```
 
 Of course this is just an example and if we are really interested in the dNdS value which better describes our data, 
-we should definitively try more values. Anyway, in this analysis we can compare which was the best-fit model & assumption by just comparing the lnL. 
-This is always possible when the two models have the same number of parameters, as you can see from ```np: 34```;
-when comparing model with different number of parameters a Likelihood Ratio Test (LRT) should be used.
+we should definitively try more values. Anyway, in this analysis we can compare which was the best-fit model & assumption by just comparing the lnL values.
+In this case the lnL associated to the model which assumes dN/dS = 0.1 is an absolute smaller number (less negative) than
+the lnL associated to the model which assumes dN/dS = 2.0 (absolute bigger number / more negative) and thus the first
+model is a better fit. This comparison is possible when the two models have the same number of parameters, as you can see from ```np: 34```;
+when comparing nested model with different number of parameters a Likelihood Ratio Test (LRT) should be used.
 
 
-As we can see 0.1 is a much better fit for our data compared to 2, implying that the gene selection regime 
-is better described by a strong purifying selection, instead of a positive selection regime. This result is
-expected when dealing with a mitochondrial PCG. If tne NADH-coenzyme Q oxidoreductase was 
+The fact that 0.1 is a much better fit for our data compared to 2.0 implies that the gene selection regime 
+is better described by a strong purifying selection regime - in which coding mutations are strongly counterselected -
+and the gene do not appear to have experienced any positive selection throughout our clade. This result is
+kind of expected when dealing with a mitochondrial PCG: ff tne NADH-coenzyme Q oxidoreductase was 
 accumulating so many coding mutations it would hugely affect the [OXPHOS pathway](https://en.wikipedia.org/wiki/Oxidative_phosphorylation#NADH-coenzyme_Q_oxidoreductase_(complex_I))!
+Nonetheless at the bottom of this page you'll find on interesting paper on mitogenomes selection regimes in electric fishes,
+in which they used CODEML.
 
+Finally, I wanna make you focus ono a couple things: 
+in this kind of analysis dNdS values are averaged throughout all codons and all branches of our data
+But we know that selection can differ widely between different functional domains of a protein & between different lineages
+of a clade. 
 
-Finally, I wanna make you focus ono a couple more things: 
-in this kind of analysis dNdS values are averaged all throughout a sequence -
-typically a gene - but we know that selection can differ widely between different subsets, such as
-functional domains or specific codons. In this perspective a value of 2 is highly unrealistic, as it would 
-imply that every codon of the alignment is accumulating 2X coding mutation than non coding. 
-These values are very rarely associated to real positive selection events but can be used to detect 
-fenomena as pseudogenization and misalignment. The latter concept recalls our first lesson, where 
-we learned that among the many ways of filtering MSA dNdS was a possibility.
+In this perspective a value of 2 is highly unrealistic, as it would 
+imply that most of the codons of the alignment and lineages of the tree are accumulating 2X coding mutations in respect to non-coding mutations. 
+These values are very rarely associated to real positive selection events but can be instead used to detect 
+fenomena as pseudogenization and misalignment, which can definitely negatively affect phylogenetic inferences.
+The concept recalls our first lesson, where  we learned that among the many ways of filtering MSA dNdS was a possibility.
 
-
+These assumption that every site and every branch are undergoing the same selection regime
+can be relaxe independently - using branch and sites models - or at the same time - using the branch-site model.
 
 ---
 
@@ -360,7 +368,7 @@ we learned that among the many ways of filtering MSA dNdS was a possibility.
 * building a phylogeny is both a result by itself & the basis for other investigations
 * we carried out a comparison of two model with different dN/dS in a ML framework
 * we found which was the be best-fit model for our data
-* analysing regimes of selection can have real applications
+* analysing regimes of selection can have real applications!
 
 ---
 
@@ -374,3 +382,5 @@ The free [book](https://lukejharmon.github.io/pcm/) "Learning from trees" By Luk
 The "Taming the BEAST" [platform](https://taming-the-beast.org/) which includes many tutorials on divergence times estimation using BEAST 2.
 
 [Here](http://evomicsorg.wpengine.netdna-cdn.com/wp-content/uploads/2011/08/bielawski_paml_review.pdf) you'll find more on the theoretical background of dNdS calculations. 
+
+[Convergent patterns of evolution of mitochondrial oxidative phosphorylation (OXPHOS) genes in electric fishes](https://doi.org/10.1098/rstb.2019.0179)
