@@ -641,7 +641,10 @@ A nicer way to carry out this post-inference diagnostics (which sometimes are al
 which offers a much easier way to explore what's going on in our inference. Nonetheless sometimes using the ```sump```and ```sumt```
 commands can be faster when working on remote acces servers, as to use Tracer we have to move very large files. 
 In Tracer we want to see the famous "fuzzy caterpillar" - by far the most loved animals by phylogeneticists -
-which implies that there's no autocorrelation in our analysis and that it has reached stationarity.
+which implies that there's no autocorrelation in our analysis and that it has reached stationarity. You can 
+take a look  in Tracer at an [awful](https://github.com/for-giobbe/phy/raw/master/examples/bad_trace_example.p) 
+and [cool](https://github.com/for-giobbe/phy/raw/master/examples/good_trace_example.p) sampling coming fromt two
+distinct runs of MrBayes, to get a sense of how much they can be different.
 
 ---
 
