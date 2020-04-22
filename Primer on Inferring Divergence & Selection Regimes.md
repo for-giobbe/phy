@@ -330,8 +330,12 @@ Of course this is just an example and if we are really interested in the dNdS va
 we should definitively try more values. Anyway, in this analysis we can compare which was the best-fit model & assumption by just comparing the lnL. 
 This is always possible when the two models have the same number of parameters, as you can see from ```np: 34```;
 when comparing model with different number of parameters a Likelihood Ratio Test (LRT) should be used.
+
+
 As we can see 0.1 is a much better fit for our data compared to 2, implying that the gene selection regime 
-is better described by a strong purifying selection, instead of a positive selection regime. 
+is better described by a strong purifying selection, instead of a positive selection regime. This result is
+expected when dealing with a mitochondrial PCG. If tne NADH-coenzyme Q oxidoreductase was 
+accumulating so many coding mutations it would hugely affect the [OXPHOS pathway](https://en.wikipedia.org/wiki/Oxidative_phosphorylation#NADH-coenzyme_Q_oxidoreductase_(complex_I))!
 
 
 Finally, I wanna make you focus ono a couple more things: 
@@ -342,6 +346,8 @@ imply that every codon of the alignment is accumulating 2X coding mutation than 
 These values are very rarely associated to real positive selection events but can be used to detect 
 fenomena as pseudogenization and misalignment. The latter concept recalls our first lesson, where 
 we learned that among the many ways of filtering MSA dNdS was a possibility.
+
+
 
 ---
 
