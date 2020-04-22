@@ -66,7 +66,7 @@ Just an extensive reding of the [manual](http://abacus.gene.ucl.ac.uk/software/p
 of its possibilities! 
 
 
-Several great and newer alternative exist, the most notable being HyPhy which is also
+Several great and newer alternative exist, the most notable being HyPhy [(Pond et al., 2019)](https://doi.org/10.1093/molbev/msz197) which is also
 implemented in the Datamonkey [web server](https://www.datamonkey.org/). The server is currently down because it's being fully used 
 to study COVID-19: you can follow this effort [here](http://covid19.datamonkey.org/). It includes an almost real-time update on which sites 
 are found to be undergoing postive selection, which is quite [impressive](https://observablehq.com/@spond/natural-selection-analysis-of-sars-cov-2-covid-19).
