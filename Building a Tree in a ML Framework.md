@@ -417,7 +417,7 @@ We can visualize ```.nwk``` files either [online](https://itol.embl.de/upload.cg
 In this lesson we:
 
 * carried out a ML phylogenetic inference on both single loci and concatenation.
-* explored metrics of nodal support which are often associated to ML analyses (parametri and non-parametri BP,ALRT).
+* explored metrics of nodal support which are often associated to ML analyses (parametric and non-parametric BP,ALRT).
 * got confident with the ```.nwk``` format for writing phylogenetic trees.
 
 ---
