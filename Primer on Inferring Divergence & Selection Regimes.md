@@ -108,8 +108,8 @@ omega =  								* initial omega
 
 
 In the ```.ctl``` found right up here just few parameters are present and it's possible to customize analyses
-more deeply. In our first analysis we are going to compare two models - one with omega = 0.1 and one with omega 2.0 - 
-using a Likelihood Ratio Test (LRT). 
+more deeply. In this analysis we are going to compare two models - one with omega = 0.1 and one with omega 2.0 - 
+and subsequently compare their likelihoods, to asses which is the best fit for our data. 
 
 
 First we need to modify a ```.ctl``` files to have ```omega = 0.1```, like this:
@@ -191,7 +191,7 @@ Let's take a look at the outputs:
 
 Here is the line we are interested in from the ```.out``` files:
 
-But the outputs contain many other interesting informationss, such as:
+But the outputs contain many other interesting informations, such as:
 
 a summary of codon usage counts:
 ```
@@ -324,25 +324,17 @@ But we can extract the more important information using respectively:
 
 ```lnL(ntime: 33  np: 34): -11041.325358      +0.000000```
 
-Subsequently we can compare which was the best model. Of course this is just an example and
-if we are really interested in the dNdS value which better describes our data, we should definitively
-try more values. We can also make hypotheses different than omega, for example if the 
-transition rates k or NSsites.
-
-```
-LRT <- -2*(likelihood.summary$Model1LnL-likelihood.summary$Model2LnL)
-degrees.of.freedom <- likelihood.summary$Model2np-likelihood.summary$Model1np
-p.value <- 1-pchisq(LRT,df=degrees.of.freedom)
-adj.p.value <- p.adjust(p.value, method = "hochberg", n = length(p.value))
-```
-
+Of course this is just an example and if we are really interested in the dNdS value which better describes our data, 
+we should definitively try more values. Anyway, in this analysis we can compare which was the best-fit model & assumption by just comparing the lnL. 
+This is always possible when the two models have the same number of parameters, as you can see from ```np: 34```;
+when comparing model with different number of parameters a Likelihood Ratio Test (LRT) should be used.
 As we can see 0.1 is a much better fit for our data compared to 2, implying that the gene selection regime 
 is better described by a strong purifying selection, instead of a positive selection regime. 
 
 
 Finally, I wanna make you focus ono a couple more things: 
 in this kind of analysis dNdS values are averaged all throughout a sequence -
-tipically a gene - but we know that selection can differ widely between different subsets, such as
+typically a gene - but we know that selection can differ widely between different subsets, such as
 functional domains or specific codons. In this perspective a value of 2 is highly unrealistic, as it would 
 imply that every codon of the alignment is accumulating 2X coding mutation than non coding. 
 These values are very rarely associated to real positive selection events but can be used to detect 
