@@ -39,7 +39,7 @@ along with two excellent tutorials which you will find in the last section of th
 A powerful approach to molecular evolution comes from the comparison of 
 the relative rates of synonymous and nonsynonymous substitutions: dN & dS).
 dN are the ratio of the number of nonsynonymous substitutions per non-synonymous site while
-ds are the ratio of the number of synonymous substitutions per synonymous site.
+dS are the ratio of the number of synonymous substitutions per synonymous site.
 Synonymous mutations do not change the amino acid sequence; hence their substitution rate (dS) is assumed to be neutral 
 with respect to selective pressure on the protein product of a gene (_n.b._ this assumption is heavily contested).
 Nonsynonymous mutations do change the amino acid sequence, so their substitution rate (dN) is a
@@ -51,7 +51,7 @@ are advantageous they will be fixed at a higher rate than synonymous mutations, 
 be greater than 1. A dN/dS ratio equal to one is consistent with neutral evolution.
 
 
-Here we are going to carry out likelihood estimations of the dN/dS ratio [Goldman and Yang 1994](https://doi.org/10.1093/oxfordjournals.molbev.a040153) using
+Here we are going to carry out likelihood estimations of the dN/dS ratio [(Goldman and Yang 1994)](https://doi.org/10.1093/oxfordjournals.molbev.a040153) using
 CODEML, which is part of the PAML package [(Ziheng Yang, 2007)](https://academic.oup.com/mbe/article/24/8/1586/1103731). 
 PAML is an extremely versatile piece of software whose features include:
 
