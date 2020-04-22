@@ -82,12 +82,12 @@ Anyway, let's check what we need in order to run CODEML:
 * a ```.nwk``` tree
 * a ```.ctl``` file 
 
+Since the last tree we calculated for our PCG contains bootstrap we can quickly recalculate it using
+```iqtree -s ND2_p_aligned.n.gb.fasta```. Anyway my[alignment](https://github.com/for-giobbe/phy/blob/master/examples/ND2_p_aligned.n.gb.fasta) and 
+[tree]() are available.  Another possible option could be to to use something similar to ```sed "s/\)[0-9]/)/g"``` on the command-line.
 
-We should already have an alignement file and a tree file from our previous lessons, 
-but you can also use my [tree](https://github.com/for-giobbe/phy/blob/master/examples/ND2_p_aligned.n.gb.fasta.treefile) & [alignment](https://github.com/for-giobbe/phy/blob/master/examples/ND2_p_aligned.n.gb.fasta).
 
-
-We just miss the ```.ctl```, which stads for control and has a similar role to the ```.ctl``` we've seen earlier.
+Now we just miss the ```.ctl```, which stads for control and has a similar role to the ```.ctl``` we've seen earlier.
 Here is how it looks like:
 
 ```
@@ -108,8 +108,10 @@ fix_omega = 								* 1:omega fixed, 0:omega to be estimated
 omega =  								* initial omega
  ```
 
-In our first analysis we are going to compare two models -
-one with omega = 0.1 and one with omega 2.0 - using a Likelihood Ratio Test (LRT). 
+
+In the ```.ctl``` found right up here just few parameters are present and it's possible to customize analyses
+more deeply. In our first analysis we are going to compare two models - one with omega = 0.1 and one with omega 2.0 - 
+using a Likelihood Ratio Test (LRT). 
 
 
 First we need to modify a ```.ctl``` files to have ```omega = 0.1```, like this:
@@ -125,7 +127,7 @@ seqtype = 1								* 1:codons
 CodonFreq = 2								* 0:equal, 1:F1X4, 2:F3X4, 3:F61
 model = 0								* 0:one omega ratio for all branches
 NSsites = 0								* 0:one omega ratio (M0 in Tables 2 and 4)
-icode = 5								* 0:universal code
+icode = 4								* 0:universal code
 fix_kappa = 0								* 1:kappa fixed, 0:kappa to be estimated
 kappa = 2								* initial or fixed kappa
 fix_omega = 1								* 1:omega fixed, 0:omega to be estimated
@@ -136,7 +138,6 @@ which we can then save as ```ND2_omega_0.1.ctl```.
 
 
 Then we need to have another ```.ctl``` with ```omega = 2```     
-
  
 ```
 seqfile = ND2_p_aligned.n.gb.fasta					* sequence data filename
@@ -149,38 +150,67 @@ seqtype = 1								* 1:codons
 CodonFreq = 2								* 0:equal, 1:F1X4, 2:F3X4, 3:F61
 model = 0								* 0:one omega ratio for all branches
 NSsites = 0								* 0:one omega ratio (M0 in Tables 2 and 4)
-icode = 5								* 0:universal code
+icode = 4								* 0:universal code
 fix_kappa = 0								* 1:kappa fixed, 0:kappa to be estimated
 kappa = 2								* initial or fixed kappa
 fix_omega = 1								* 1:omega fixed, 0:omega to be estimated
 omega = 2 								* initial omega
 ```
  
-and we can save it as ```ND2_omega_2.0.ctl```.
+and we can save it as ```ND2_omega_2.0.ctl```. 
 
 
 Remember to give different names to the ```outfile``` parameter so that the outputs do not get overwritten. 
 Also take care in selecting the correct gencode, otherwise it's likely that stop codons will be found and CODEML will give an error 
-- I used 5 which is the correct one for the mitogenomes of arthropoda.
+- I used 4 which is the correct one for the mitogenomes of arthropods but here is the full list:
+
+* 0 for the universal code
+* 1 for the mammalian mitochondrial code
+* 3 for mold mt., 
+* 4 for invertebrate mt.;
+* 5 for ciliate nuclear code; 
+* 6 for echinoderm mt.; 
+* 7 for euplotid mt.;
+* 8 for alternative yeast nuclear; 
+* 9 for ascidian mt.; 
+* 10 for blepharisma nuclear. 
+
 You can also notice how we set ```fix_omega = 1``` in order to force an omega value; 
 if you put it to 0 omega will be estimated with a ML search.
-
-
 
 To run codeml all we need to do is type 'codeml' in the same folder that the codeml.ctl file is in;
 all of the options are already in the codeml.ctl file, including all the other inputs required for the analysis. 
 
 Let's take a look at the outputs:
 
-* ```.out```
-* ```rub```, ```rst``` and ```rst1```
-*
+* the ```.out``` file which we specified is what we are really interested in.
+* ```2NG.t```, ```2NG.dS```, ```2NG.dN``` subs rates, dN & dS distances
+* ```4fold.nuc``` 4-fold [degenerate](https://en.wikipedia.org/wiki/Codon_degeneracy) sites
+* ```rub```, ```rst```, ```rst1``` and ```lnf``` are some rather misterios intermediate files
+
+Here is the line we are interested in from the ```.out``` file:
+
+
+
+
 
 
 Subsequently we can compare which was the best model. Of course this is just an example and
 if we are really interested in the dNdS value which better describes our data, we should definitively
 try more values. We can also make hypotheses different than omega, for example if the 
 transition rates k or NSsites.
+
+```
+LRT <- -2*(likelihood.summary$Model1LnL-likelihood.summary$Model2LnL)
+degrees.of.freedom <- likelihood.summary$Model2np-likelihood.summary$Model1np
+p.value <- 1-pchisq(LRT,df=degrees.of.freedom)
+adj.p.value <- p.adjust(p.value, method = "hochberg", n = length(p.value))
+```
+
+
+
+
+
 
 
 As we can see 0.1 is a much better fit for our data compared to 2, implying that the gene selection regime 
@@ -194,7 +224,6 @@ fenomena as pseudogenization and misalignment. The latter brings us back to the 
 we learned that among the many ways of filtering out entire alignments dNdS was a possibility.
 
 
-But let's do a couple tests more, let's compare models with different number of parameters!
 
 
 
