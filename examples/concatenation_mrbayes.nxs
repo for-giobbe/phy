@@ -42,6 +42,5 @@ begin mrbayes;
 
 	prset applyto=(all) ratepr=variable;
 	unlink statefreq=(all) revmat=(all) shape=(all) pinvar=(all) tratio=(all);
-	mcmc ngen=500000 printfreq=5000 samplefreq=5000 nruns=2 nchains=8 temp=0.02;
 
 end;
