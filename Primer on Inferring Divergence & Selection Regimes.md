@@ -23,7 +23,7 @@ Due to the severe time constrains of the course, we just have time to deal with 
 which may be the topic which is more fit for this course. But remember that the interaction of
 molecular phylogenetics and paleontology & morphological studies is extremely exciting and
 relies on very serious informatics skills as well. I have selected two papers (respectively on
-[molecular dating](https://doi.org/10.1111/brv.12390) and [comparative methods]()), 
+[molecular dating](https://doi.org/10.1111/brv.12390) and [comparative methods](https://doi.org/10.1073/pnas.1817794116)), 
 along with two excellent tutorials which you will find in the last section of this class.
 
 
@@ -37,12 +37,13 @@ along with two excellent tutorials which you will find in the last section of th
 ## Inferring selection regimes: 
 
 A powerful approach to molecular evolution comes from the comparison of 
-the relative rates of synonymous and nonsynonymous substitutions (dN & dS).
-Synonymous mutations do not change the amino acid sequence; hence their substitution rate (dS) is neutral 
-with respect to selective pressure on the protein product of a gene.
+the relative rates of synonymous and nonsynonymous substitutions: dN & dS).
+dN are the ratio of the number of nonsynonymous substitutions per non-synonymous site while
+ds are the ratio of the number of synonymous substitutions per synonymous site.
+Synonymous mutations do not change the amino acid sequence; hence their substitution rate (dS) is assumed to be neutral 
+with respect to selective pressure on the protein product of a gene (_n.b._ this assumption is heavily contested).
 Nonsynonymous mutations do change the amino acid sequence, so their substitution rate (dN) is a
 function of selective pressure on the protein. 
-
 The ratio of these rates (ω = dN/dS) is a measure of selective regime which a gene underwent. 
 It's generally accepted that nonsynonymous mutations which are deleterious will be counterselected for
 (purifying selection) and dN/dS will be less than 1, whereas if nonsynonymous mutations
@@ -50,15 +51,9 @@ are advantageous they will be fixed at a higher rate than synonymous mutations, 
 be greater than 1. A dN/dS ratio equal to one is consistent with neutral evolution.
 
 
- maximum
-likelihood estimation of the dN/dS ratio (Goldman and Yang 1994; Muse and Gaut 1994) and the
-likelihood ratio test for positively selected genes (e.g., Nielsen and Yang 1998; Yang et al. 2000)
-SCALED TO SYNONIMOUS SUBST.  It is calculated as the ratio of the number of nonsynonymous substitutions per non-synonymous site (Ka), in a given period of time, to the number of synonymous substitutions per synonymous site (Ks), in the same period. The latter are assumed to be neutral, so that the ratio indicates the net balance between deleterious and beneficial mutations. 
-
-
-
-PAML [(Ziheng Yang, 2007)](https://academic.oup.com/mbe/article/24/8/1586/1103731) 
-is an extremely versatile piece of software whose features include:
+Here we are going to carry out likelihood estimations of the dN/dS ratio [Goldman and Yang 1994](https://doi.org/10.1093/oxfordjournals.molbev.a040153) using
+CODEML, which is part of the PAML package [(Ziheng Yang, 2007)](https://academic.oup.com/mbe/article/24/8/1586/1103731). 
+PAML is an extremely versatile piece of software whose features include:
 
 * estimating synonymous and nonsynonymous rates
 * testing hypotheses concerning dN/dS rate ratios
@@ -68,11 +63,13 @@ is an extremely versatile piece of software whose features include:
 * ...
 
 Just an extensive reding of the [manual](http://abacus.gene.ucl.ac.uk/software/pamlDOC.pdf) will disclose all
-of its possibilities! Several great and newer alternative exist, the most notable being HyPhy which is also
-implemented in the Datamonkey [web server](https://www.datamonkey.org/).
+of its possibilities! 
 
-The server is currently down because it's being fully used to study COVID-19: you can follow this effort [here](http://covid19.datamonkey.org/).
-It includes an almost real-time update on which sites are found to be undergoing postive selection, which is quite [impressive](https://observablehq.com/@spond/natural-selection-analysis-of-sars-cov-2-covid-19).
+
+Several great and newer alternative exist, the most notable being HyPhy which is also
+implemented in the Datamonkey [web server](https://www.datamonkey.org/). The server is currently down because it's being fully used 
+to study COVID-19: you can follow this effort [here](http://covid19.datamonkey.org/). It includes an almost real-time update on which sites 
+are found to be undergoing postive selection, which is quite [impressive](https://observablehq.com/@spond/natural-selection-analysis-of-sars-cov-2-covid-19).
 This is not just some super-cool bioinformatics but it can prove very useful to identify new strains of the virus.
 
 
@@ -84,10 +81,11 @@ Anyway, let's check what we need in order to run CODEML:
 
 Since the last tree we calculated for our PCG contains bootstrap we can quickly recalculate it using
 ```iqtree -s ND2_p_aligned.n.gb.fasta```. Anyway my[alignment](https://github.com/for-giobbe/phy/blob/master/examples/ND2_p_aligned.n.gb.fasta) and 
-[tree]() are available.  Another possible option could be to to use something similar to ```sed "s/\)[0-9]/)/g"``` on the command-line.
+[tree]() are available.  Another possible option could be to to use ```sed``` and a [regexp](https://en.wikipedia.org/wiki/Regular_expression) (```sed "s/\)[0-9]/)/g"```)
+on the command-line to remove bootstrap values.
 
 
-Now we just miss the ```.ctl```, which stads for control and has a similar role to the ```.ctl``` we've seen earlier.
+Now we just miss the ```.ctl``` - which stads for control file - and has a similar role to the ```.cfg``` we've seen earlier.
 Here is how it looks like:
 
 ```
