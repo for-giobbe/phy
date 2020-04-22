@@ -21,7 +21,7 @@ just what I stumbled upon during my research:
 
 Due to the severe time constrains of the course, we just have time to deal with the analysis of selection regimes,
 which may be the topic which is more fit for this course. But remember that the interaction of
-molecular phylogenetics and paleontology & morphological studies is extremely exciting and
+molecular phylogenetics and paleontology & morphology is extremely exciting and
 relies on very serious informatics skills as well. I have selected two papers (respectively on
 [molecular dating](https://doi.org/10.1111/brv.12390) and [comparative methods](https://doi.org/10.1073/pnas.1817794116)), 
 along with two excellent tutorials which you will find in the last section of this class.
@@ -79,9 +79,10 @@ Anyway, let's check what we need in order to run CODEML:
 * a ```.nwk``` tree
 * a ```.ctl``` file 
 
-Since the last tree we calculated for our PCG contains bootstrap we can quickly recalculate it using
+Since the last tree we calculated for our PCG contains bootstrap - and that can mess up with CODEML - we can quickly recalculate it using
 ```iqtree -s ND2_p_aligned.n.gb.fasta```. Anyway my [alignment](https://github.com/for-giobbe/phy/blob/master/examples/ND2_p_aligned.n.gb.fasta) and 
-[tree]() are available.  Another possible option could be to to use ```sed``` and a [regexp](https://en.wikipedia.org/wiki/Regular_expression) (```sed "s/\)[0-9]/)/g"```)
+[tree](https://github.com/for-giobbe/phy/raw/master/examples/ND2_p_aligned.n.gb.fasta.treefile) are available.  
+Another possible option could be to to use ```sed``` and a [regexp](https://en.wikipedia.org/wiki/Regular_expression) (something like ```sed "s/\)[0-9]/)/g"```)
 on the command-line to remove bootstrap values.
 
 
