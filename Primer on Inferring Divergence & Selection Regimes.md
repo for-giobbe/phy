@@ -314,15 +314,13 @@ tree length for dS:       1.7078
 
 But we can extract the more important information using respectively:
 
-```cat ND2_omega_0.1.out | grep lnL```
-
-```lnL(ntime: 33  np: 34):  -9504.175938      +0.000000```
-
+```cat ND2_omega_0.1.out | grep lnL
+lnL(ntime: 33  np: 34):  -9504.175938      +0.000000```
 
 
-```cat ND2_omega_0.1.out | grep lnL```
 
-```lnL(ntime: 33  np: 34): -11041.325358      +0.000000```
+```cat ND2_omega_0.1.out | grep lnL
+lnL(ntime: 33  np: 34): -11041.325358      +0.000000```
 
 Of course this is just an example and if we are really interested in the dNdS value which better describes our data, 
 we should definitively try more values. Anyway, in this analysis we can compare which was the best-fit model & assumption by just comparing the lnL. 
