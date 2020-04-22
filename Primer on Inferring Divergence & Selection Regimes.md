@@ -37,7 +37,7 @@ along with two excellent tutorials which you will find in the last section of th
 ## Inferring selection regimes: 
 
 A powerful approach to molecular evolution comes from the comparison of 
-the relative rates of synonymous and nonsynonymous substitutions: dN & dS (_a.k.a._ ω)).
+the relative rates of synonymous and nonsynonymous substitutions: dN & dS (_a.k.a._ ω).
 dN are the ratio of the number of nonsynonymous substitutions per non-synonymous site while
 dS are the ratio of the number of synonymous substitutions per synonymous site.
 Synonymous mutations do not change the amino acid sequence; hence their substitution rate (dS) is assumed to be neutral 
