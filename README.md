@@ -1,4 +1,4 @@
-# bioinf_2020
+# MP_bioinfo_2020
 *Forni Giobbe*
 
 
