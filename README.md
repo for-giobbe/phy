@@ -36,7 +36,7 @@ _arguments which we ignored due to time constrains:_
 ---
 
 # MP_bioinfo_2021
-*Martelossi Jacopo*. 
+*Martelossi Jacopo*.  
 Teaching assistantship for the molecular phylogenetics classes of the Master in Bioinformatics at the University of Bologna.
 
 
