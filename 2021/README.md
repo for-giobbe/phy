@@ -48,7 +48,7 @@ wget https://github.com/brettc/partitionfinder/archive/v2.1.1.tar.gz
 tar xfz v2.1.1.tar.gz
 chmod +x partitionfinder-2.1.1/PartitionFinder.py
 ```
-If you encounter any problem you can try to install all dependecies for each envoirnment while creating it. Download [this] and [this](https://raw.githubusercontent.com/for-giobbe/phy/master/2021/environments/spec-file_PF-envs.txt) files for respectively the python 3.6 and 2.7 envoirnments, then run the following codes:
+If you encounter any problem you can try to install all dependecies for each envoirnment while creating it. Download [this](https://raw.githubusercontent.com/for-giobbe/phy/master/2021/environments/spec-file_bio_info-env.txt) and [this](https://raw.githubusercontent.com/for-giobbe/phy/master/2021/environments/spec-file_PF-envs.txt) files for respectively the python 3.6 and 2.7 envoirnments, then run the following codes:
 
 ```
 conda create --name bio_info-env --file spec-file_bio_info-env.txt
