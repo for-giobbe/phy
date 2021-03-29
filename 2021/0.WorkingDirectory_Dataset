@@ -1,7 +1,7 @@
 ## Working directory and dataset
 
-To donowload the workind directory for the course of this year (2021) use the following code
+The master directory for this year is the "2021". So clone the entire git repo and move into the correct folder. If you don't want other stuf you can locally remove anything else beside the working dir.
 
 ```
-git clone 
+git clone https://github.com/for-giobbe/phy
 ```
