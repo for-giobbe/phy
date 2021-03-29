@@ -29,7 +29,7 @@ conda install -c bioconda <packagename>
 ```
 to cafe/cafe_commands.cpp
 
-If is still failing try to search a solution in their [ghithub page](https://github.com/hahnlab/CAFE/issues?q=is%3Aissue+) - at the end you are bioinformaticians ;). 
+If is still failing try to find a solution in their [ghithub page](https://github.com/hahnlab/CAFE/issues?q=is%3Aissue+) - at the end you are bioinformaticians ;). 
 
 #### 2nd environment: python 2.7 (necessary for PartitionFinder)
 
