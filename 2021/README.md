@@ -22,6 +22,7 @@ conda install -c bioconda <packagename>
   * **[AMAS](https://pypi.org/project/amas/)**.
   * **[CAFE](https://hahnlab.github.io/CAFE/manual.html)**
   * **[TrimAl](http://trimal.cgenomics.org/)**
+  * **[kalign2](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2647288/)**
  
 **NB** Conda installation of CAFE can fails. In that case you should download and compile it manually. Follow instructions [here](https://github.com/hahnlab/CAFE/blob/master/docs/cafe_manual.pdf). If compilation fails try to add
 
