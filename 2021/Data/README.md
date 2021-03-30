@@ -1,12 +1,4 @@
-# Sub-sampled Proteoms
+# Data
 
-Species:
+ 1. **Proteoms** = Sub-sampled proteoms. 
 
-  * *A. granulata*
-  * *B. glabrata*
-  * *C. virginica*
-  * *H. robusta*
-  * *L. gigantea*
-  * *O. bimaculoides*
-  * *P. fucata*
-  * *S. constricta*
