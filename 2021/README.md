@@ -57,7 +57,12 @@ conda create --name PF-env --file spec-file_PF-envs.txt
 
 >Remember to install manually PartitionFinder and CAFE if you go directly for this solution (the latest one is not present in the spec-file).
 
- if you get stuck feel free to ask for help both through Teams and e-mail (jacopo.martelossi2@unibo.it).
+#### Super light executables
+
+ * [Aliview](https://github.com/AliView/AliView)
+ * [FigTree](http://tree.bio.ed.ac.uk/software/figtree/)
+
+**If you get stuck feel free to ask for help both through Teams and e-mail (jacopo.martelossi2@unibo.it).**
 
 ## Table of content
 
