@@ -1,4 +1,4 @@
-# Sumbsampled Proteoms
+# Sub-sampled Proteoms
 
 Species:
 
