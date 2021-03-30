@@ -21,6 +21,7 @@ conda install -c bioconda <packagename>
   * **[T-Coffee](http://www.tcoffee.org/Projects/tcoffee/index.html#DOWNLOAD)**. NB: Use [this](https://anaconda.org/bioconda/t-coffee) link.
   * **[AMAS](https://pypi.org/project/amas/)**.
   * **[CAFE](https://hahnlab.github.io/CAFE/manual.html)**
+  * **[TrimAl](http://trimal.cgenomics.org/)**
  
 **NB** Conda installation of CAFE can fails. In that case you should download and compile it manually. Follow instructions [here](https://github.com/hahnlab/CAFE/blob/master/docs/cafe_manual.pdf). If compilation fails try to add
 
