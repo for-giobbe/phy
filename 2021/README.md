@@ -57,7 +57,7 @@ conda create --name PF-env --file spec-file_PF-envs.txt
 
 >Remember to install manually PartitionFinder and CAFE if you go directly for this solution (the latest one is not present in the spec-file).
 
- if you get stuck feel free to ask for help both through Teams or e-mail (jacopo.martelossi2@unibo.it).
+ if you get stuck feel free to ask for help both through Teams and e-mail (jacopo.martelossi2@unibo.it).
 
 ## Table of content
 
