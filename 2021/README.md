@@ -66,7 +66,7 @@ conda create --name PF-env --file spec-file_PF-envs.txt
 
 **If you get stuck feel free to ask for help both through Teams and e-mail (jacopo.martelossi2@unibo.it).**
 
-> Small notes: As bionformations maybe some of you will develop softwares. For not-bioinformations people (like me), installation of softwares is one of the biggest obstacles in using a specific tool. So please, try to implement the *usability* of conda.
+> Small note: As bioinformatics maybe some of you are going to develop softwares during their scientific carrier. For not-bioinformatician people (like me), installation of softwares is one of the biggest obstacles in using a specific, maybe interesting tool. So please, try to implement the *usability* of conda.
 
 ## Table of content
 
