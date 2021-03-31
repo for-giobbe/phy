@@ -66,11 +66,14 @@ conda create --name PF-env --file spec-file_PF-envs.txt
 
 **If you get stuck feel free to ask for help both through Teams and e-mail (jacopo.martelossi2@unibo.it).**
 
-> Small note: As bioinformatics maybe some of you are going to develop softwares during their scientific carrier. For not-bioinformatician people (like me), installation of softwares is one of the biggest obstacles in using a specific, maybe interesting tool. So please, try to implement the *usability* of conda.
+> Small note: As bioinformatics maybe some of you are going to develop softwares during their scientific carrier. For not-bioinformatician people (like me), installation of softwares is one of the biggest obstacles in using a specific, maybe interesting, tool. So please, try to implement the *usability* of conda.
 
 ## Table of content
 
- * 1. Orthology inference, MSA and masking of the alignment.
- * 2. Model selection, Maximum-likelihood inference and divergence time estimation in a Maximum-likelihood framework.
- * 3. Bayesian inference.
- * 4. Gene family evolutionary analyses +  hints of natural selection regimes detection.
+ * **1. Orthology inference, MSA and masking of the alignment.**
+ <br>
+ * **2. Model selection, Maximum-likelihood inference and divergence time estimation in a Maximum-likelihood framework.**
+ <br>
+ * **3. Bayesian inference.**
+ <br>
+ * **4. Gene family evolutionary analyses +  hints of natural selection regimes detection.**
