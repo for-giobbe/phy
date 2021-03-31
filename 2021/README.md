@@ -71,9 +71,9 @@ conda create --name PF-env --file spec-file_PF-envs.txt
 ## Table of content
 
  * **1. Orthology inference, MSA and masking of the alignment.**
- <br>
+ <br/><br/>
  * **2. Model selection, Maximum-likelihood inference and divergence time estimation in a Maximum-likelihood framework.**
- <br>
+ <br/><br/>
  * **3. Bayesian inference.**
- <br>
+ <br/><br/>
  * **4. Gene family evolutionary analyses +  hints of natural selection regimes detection.**
