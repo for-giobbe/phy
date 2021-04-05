@@ -149,10 +149,10 @@ when using concatenated alignments we don't want to loose *a priori* the informa
 ```
 iqtree -s Analyses/IQ-TREE/My_Concat.fa -sp Analyses/IQ-TREE/partitions.txt -m TESTONLY
 ```
-where the ```-sp``` option allows to take into consideration [heterotachy](https://en.wikipedia.org/wiki/Heterotachy) ( allowing each partitions to have its own set of branch lengths. **NB** very parameter rich, take a look at [this](https://academic.oup.com/mbe/article/37/4/1202/5673393?login=true) pubblication). Other options are:
+where the ```-sp``` option allows to take into consideration **[heterotachy](https://en.wikipedia.org/wiki/Heterotachy)** ( allowing each partitions to have its own set of branch lengths. **NB** very parameter rich, take a look at [this](https://academic.oup.com/mbe/article/37/4/1202/5673393?login=true) pubblication). Other options are:
 
-* -q:   all partitions share the same set of branch lengths (unrealistic).
-* -spp: allows each partition to have its own evolution rate (recommended for typical analysis).
+* ```-q```:   all partitions share the same set of branch lengths (unrealistic).
+* ```-spp```: allows each partition to have its own evolution rate (recommended for typical analysis).
 
 The resulting file should look something like this:
 
@@ -188,20 +188,19 @@ begin sets;
 end; 
 ```
 Here we can see the best-fit model for each partition, but take a look at the iqtree file for detailed informations.
-
-Now, we can rerun the analyses using the -spp option:
+Now, we can rerun the analyses using the ```-spp``` option:
 
 ```
 iqtree -s Analyses/IQ-TREE/My_Concat.fa -spp Analyses/IQ-TREE/partitions.txt -m TESTONLY --prefix spp
 ```
-The choice between -spp and -sp model can be made by looking at the BIC scores of the resulting models
+The choice between -spp and -sp model can be made by looking at the **BIC scores** of the resulting models
 
 ```
 varSP=$( grep "Bayesian information criterion (BIC) score:"  Analyses/IQ-TREE/partitions.txt.iqtree | cut -d" " -f6)
 varSPP=$( grep "Bayesian information criterion (BIC) score:" spp.iqtree | cut -d" " -f6)
 echo -e "$varSP\n$varSPP"
 ```
-As we can see in this case the best-fit partitioning scheme is with the -spp option (the lower the BIC score, the higher the fitness of the model).
+As we can see in this case the best-fit partitioning scheme is with the ```-spp option``` (the **lower** the BIC score, the **higher** the fitness of the model).
 
 The previous analysis will result in separate models for each partion. Nonetheless, there are several reasons for which we wanto to merge partitions which can be described by similar models of evolution,
 possibly including a better estimation of model parameters. 
