@@ -4,7 +4,7 @@ Currently, two divergent systematic methods are commonly applied for inferring s
 
 Before starting you should have all aligned & filtered MSA, or if you missed the previous lesson you can grab them from [here](https://github.com/for-giobbe/phy/blob/master/2021/Analyses/Precomputed_1-to-1_Alignments.tar.gz)
 
-## CONCATENATION OF MSA
+## CONCATENATION OF MSAs
 
 After having aligned and filtere our genes, we will concatenate them using AMAS, a nice Python toolkit. However, as preliminar steps we need to: 
   * Convert the gblock format into standard fasta. 
