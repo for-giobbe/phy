@@ -202,10 +202,17 @@ echo -e "$varSP\n$varSPP"
 ```
 As we can see in this case the best-fit partitioning scheme is with the ```-spp option``` (the **lower** the BIC score, the **higher** the fitness of the model).
 
-The previous analysis will result in separate models for each partion. Nonetheless, there are several reasons for which we wanto to merge partitions which can be described by similar models of evolution,
-possibly including a better estimation of model parameters. 
+---
+
+The previous analysis will result in separate models for each partion. Nonetheless, there are several reasons for which we wanto to **merge partitions** which can be described by similar models of evolution, possibly including a better estimation of model parameters (less parameters to estimates = better estimation). 
 
 To carry out simultaneously model of evolution & partitioning scheme selection let's use:
+
+```
+iqtree -s Analyses/IQ-TREE/My_Concat.fa -spp Analyses/IQ-TREE/partitions.txt -m TESTMERGEONLY --prefix Analyses/IQ-TREE/spp_MergedPartitions
+```
+
+
 
 
 
