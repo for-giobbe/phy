@@ -120,6 +120,10 @@ For all ML analyses we will use IQ-TREE. Some of the greates advantages of this 
  * Really faster compared to other softwares.
  * Very easy to run as you want (if you study a bit the manual).
 
+For a *quick-and-dirty* Model Selection on our concat we can just type:
 
-
+```
+iqtree -s Analyses/IQ-TREE/My_Concat.fa -m TESTONLY
+```
+The ```-m TESTONLY``` word stands for  standard model selection, which tells IQ-TREE to perform ModelFinder without taking into consideration FreeRate model (, due to computational limitis, look at them [here](https://www.nature.com/articles/nmeth.4285)): this tool computes the log-likelihoods of an initial parsimony tree for many different models and the Akaike information criterion (AIC), corrected Akaike information criterion (AICc), and the Bayesian information criterion (BIC). Then ModelFinder chooses the model that minimizes the BIC score (you can also change to AIC or AICc by adding the option ```-AIC``` or ```-AICc```, respectively)
 
