@@ -108,3 +108,7 @@ Begin sets;
 	charset p17_OG0000046 = 7228-7383;
 ```
 >NOTE: We are working with proteins so our partitions file just store the starting and the ending position of each gene. However, if we were using nucleotide sequences of PCGs, we might also want the coordinates of all the first, second and third codon positions. Indeed, they evolve differently due to the gen code degeneracy and codon usage bias.
+
+Now we are ready to carry out our model selection and tree inference in a Maximum Likelihood framework...
+
+## MODEL SELECTION AND MAXIMUM LIKELIHOOD INFERENCE
