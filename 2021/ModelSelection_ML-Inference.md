@@ -112,3 +112,14 @@ Begin sets;
 Now we are ready to carry out our model selection and tree inference in a Maximum Likelihood framework...
 
 ## MODEL SELECTION AND MAXIMUM LIKELIHOOD INFERENCE
+
+For all ML analyses we will use IQ-TREE. Some of the greates advantages of this software are:
+
+	* It can do almost everything (take a look at the [manual](http://www.iqtree.org/doc/).
+	* Each analysis can be highly customizable.
+	* Really faster compared to other softwares.
+	* Very easy to run as you want (if you study a bit the manual).
+
+
+
+
