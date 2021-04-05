@@ -125,7 +125,89 @@ For a *quick-and-dirty* Model Selection on our concat we can just type:
 ```
 iqtree -s Analyses/IQ-TREE/My_Concat.fa -m TESTONLY
 ```
-The ```-m TESTONLY``` word stands for  standard model selection, which tells IQ-TREE to perform ModelFinder without taking into consideration FreeRate model (, due to computational limitis, look at them [here](https://www.nature.com/articles/nmeth.4285)): this tool computes the log-likelihoods of an initial parsimony tree for many different models and the Akaike information criterion (AIC), corrected Akaike information criterion (AICc), and the Bayesian information criterion (BIC). Then ModelFinder chooses the model that minimizes the BIC score (you can also change to AIC or AICc by adding the option ```-AIC``` or ```-AICc```, respectively)
+The ```-m TESTONLY``` word stands for  standard model selection, which tells IQ-TREE to perform ModelFinder without taking into consideration FreeRate model (due to computational limitis, look at them [here](https://www.nature.com/articles/nmeth.4285). You should just add ```-m MF ``` flag to compute a full Model Selection): this tool computes the log-likelihoods of an initial parsimony tree for many different models and the Akaike information criterion (AIC), corrected Akaike information criterion (AICc), and the Bayesian information criterion (BIC). Then ModelFinder chooses the model that minimizes the BIC score (you can also change to AIC or AICc by adding the option ```-AIC``` or ```-AICc```, respectively)
 
-The -m flag can also specify a model name to use during the analyses, which can be a priori specified by the user (here's a [list](http://www.iqtree.org/doc/Substitution-Models) of models implemented in ModelFinder). Usually this is done to save computational time or because best-fit model was already computed.
+The output are:
+
+ * **My_Concat.fa.ckp.gz:** checkpoint file.
+ * **My_Concat.fa.iqtree:** summary human readble file.
+ * **My_Concat.fa.log:** log file.
+ * **My_Concat.fa.model.gz** computer readble result file.
+ * **My_Concat.fa.treefile** Tree used for ModelFinder.
+
+Let's take a look at the iqtree summary file, where we can find a lot of usefull informations:
+
+```
+cat Analyses/IQ-TREE/My_Concat.fa.iqtree
+```
+
+>The -m flag can also specify a model name to use during the analyses, which can be a priori specified by the user (here's a [list](http://www.iqtree.org/doc/Substitution-Models) of models implemented in ModelFinder). Usually this is done to save computational time when the best-fit model has been already pre-computed.
+
+What we've seen until now is the process through which we select the "best" model of evolution for our sequence data, according to a metric of choice. However,
+when using concatenated alignments we don't want to loose *a priori* the information of the single genes boundaries. So let's use our partition file:
+
+```
+iqtree -s Analyses/IQ-TREE/My_Concat.fa -sp Analyses/IQ-TREE/partitions.txt -m TESTONLY
+```
+where the ```-sp``` option allows to take into consideration [heterotachy](https://en.wikipedia.org/wiki/Heterotachy) ( allowing each partitions to have its own set of branch lengths. **NB** very parameter rich, take a look at [this](https://academic.oup.com/mbe/article/37/4/1202/5673393?login=true) pubblication). Other options are:
+
+* -q:   all partitions share the same set of branch lengths (unrealistic).
+* -spp: allows each partition to have its own evolution rate (recommended for typical analysis).
+
+The resulting file should look something like this:
+
+```
+cat Analyses/IQ-TREE/partitions.txt.best_scheme.nex
+#nexus
+begin sets;
+  charset p1_OG0000030 = 1-197;
+  charset p2_OG0000031 = 198-348;
+  charset p3_OG0000032 = 349-1070;
+  charset p4_OG0000033 = 1071-1512;
+  charset p5_OG0000034 = 1513-1925;
+  charset p6_OG0000035 = 1926-2300;
+  charset p7_OG0000036 = 2301-2463;
+  charset p8_OG0000037 = 2464-2867;
+  charset p9_OG0000038 = 2868-3281;
+  charset p10_OG0000039 = 3282-3703;
+  charset p11_OG0000040 = 3704-4054;
+  ...
+  charpartition mymodels =
+    LG+G4: p8_OG0000037,
+    LG+G4: p9_OG0000038,
+    LG+G4: p10_OG0000039,
+    LG+G4: p11_OG0000040,
+    JTT+F+G4: p12_OG0000041,
+    LG+G4: p13_OG0000042,
+    JTT+I: p14_OG0000043,
+    LG+F+G4: p15_OG0000044,
+    LG+F+G4: p16_OG0000045,
+    LG+G4: p17_OG0000046,
+    LG+G4: p18_OG0000047,
+    ...
+end; 
+```
+Here we can see the best-fit model for each partition, but take a look at the iqtree file for detailed informations.
+
+Now, we can rerun the analyses using the -spp option:
+
+```
+iqtree -s Analyses/IQ-TREE/My_Concat.fa -spp Analyses/IQ-TREE/partitions.txt -m TESTONLY --prefix spp
+```
+The choice between -spp and -sp model can be made by looking at the BIC scores of the resulting models
+
+```
+varSP=$( grep "Bayesian information criterion (BIC) score:"  Analyses/IQ-TREE/partitions.txt.iqtree | cut -d" " -f6)
+varSPP=$( grep "Bayesian information criterion (BIC) score:" spp.iqtree | cut -d" " -f6)
+echo -e "$varSP\n$varSPP"
+```
+As we can see in this case the best-fit partitioning scheme is with the -spp option (the lower the BIC score, the higher the fitness of the model).
+
+The previous analysis will result in separate models for each partion. Nonetheless, there are several reasons for which we wanto to merge partitions which can be described by similar models of evolution,
+possibly including a better estimation of model parameters. 
+
+To carry out simultaneously model of evolution & partitioning scheme selection let's use:
+
+
+
 
