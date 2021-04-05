@@ -199,6 +199,8 @@ The choice between -spp and -sp model can be made by looking at the **BIC scores
 varSP=$( grep "Bayesian information criterion (BIC) score:"  Analyses/IQ-TREE/partitions.txt.iqtree | cut -d" " -f6)
 varSPP=$( grep "Bayesian information criterion (BIC) score:" spp.iqtree | cut -d" " -f6)
 echo -e "$varSP\n$varSPP"
+481216.3913
+478647.5903
 ```
 As we can see in this case the best-fit partitioning scheme is with the ```-spp option``` (the **lower** the BIC score, the **higher** the fitness of the model).
 
