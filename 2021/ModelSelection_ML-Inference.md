@@ -127,3 +127,5 @@ iqtree -s Analyses/IQ-TREE/My_Concat.fa -m TESTONLY
 ```
 The ```-m TESTONLY``` word stands for  standard model selection, which tells IQ-TREE to perform ModelFinder without taking into consideration FreeRate model (, due to computational limitis, look at them [here](https://www.nature.com/articles/nmeth.4285)): this tool computes the log-likelihoods of an initial parsimony tree for many different models and the Akaike information criterion (AIC), corrected Akaike information criterion (AICc), and the Bayesian information criterion (BIC). Then ModelFinder chooses the model that minimizes the BIC score (you can also change to AIC or AICc by adding the option ```-AIC``` or ```-AICc```, respectively)
 
+The -m flag can also specify a model name to use during the analyses, which can be a priori specified by the user (here's a [list](http://www.iqtree.org/doc/Substitution-Models) of models implemented in ModelFinder). Usually this is done to save computational time or because best-fit model was already computed.
+
