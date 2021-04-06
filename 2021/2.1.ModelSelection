@@ -206,15 +206,15 @@ As we can see in this case the best-fit partitioning scheme is with the ```-spp 
 
 ---
 
-The previous analysis will result in separate models for each partion. Nonetheless, there are several reasons for which we wanto to **merge partitions** which can be described by similar models of evolution, possibly including a better estimation of model parameters (less parameters to estimates = better estimation). 
+The previous analysis will result in separate models for each partion. Nonetheless, there are several reasons for which we wanto to **merge partitions** which can be described by similar models of evolution, possibly including a better estimation of model parameters (less parameters to estimates = better estimation). ModelFinder implements a *greedy* strategy ([Lanfear et al., 2012](https://academic.oup.com/mbe/article/29/6/1695/1000514)) that starts with the full partition model and subsequentially merges two genes until the model fit does not increase any further. Since this process can be very long when analyszing a lot of partitions, ModelFinder implements the *relaxed hierarchical clustering algorithm* ([Lanfear et al., 2014](https://bmcecolevol.biomedcentral.com/articles/10.1186/1471-2148-14-82)), which is invoked via ```-rcluster``` option and can save a great amount of computational time.
 
 To carry out simultaneously model of evolution & partitioning scheme selection let's use:
 
 ```
-iqtree -s Analyses/IQ-TREE/My_Concat.fa -spp Analyses/IQ-TREE/partitions.txt -m TESTMERGEONLY --prefix Analyses/IQ-TREE/spp_MergedPartitions
+iqtree -s Analyses/IQ-TREE/My_Concat.fa -spp Analyses/IQ-TREE/partitions.txt -m TESTMERGEONLY --prefix Analyses/IQ-TREE/spp_MergedPartitions -rcluster 10
 ```
 
-
+where with ```-rcluster 10``` we are only examining the top 10% partition merging schemes (better to carry on a full *greedy* search in real scenarios).
 
 
 
