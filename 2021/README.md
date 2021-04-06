@@ -76,4 +76,4 @@ conda create --name PF-env --file spec-file_PF-envs.txt
  <br/><br/>
  * **3. Bayesian inference.**
  <br/><br/>
- * **4. Gene family evolutionary analyses +  hints of natural selection regimes detection.**
+ * **4. Gene families evolutionary analyses +  hints of natural selection regimes detection.**
