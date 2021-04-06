@@ -1,0 +1,33 @@
+# Building a Tree in a ML Framework
+
+<br/>
+<br/>
+
+## intro:
+
+Maximum likelihood is a general statistical method for estimating parameters of a
+probability model: for example a normal distribution can be described by two parameters: 
+the mean and variance. Instead, in molecular phylogenetics there are a wide plethora of parameters, which include:
+
+* rates of transitions / trasversions / ... between bases
+* base composition
+* descriptors of rate heterogeneity across sites
+* branchlengths
+* the tree itself!
+
+The likelihood is defined as a quantity proportional to the probability of observing the data given the model: 
+```
+P(D|M)
+```
+If we have a model, we can calculate the probability the observations would have actually been observed as a function of the model. 
+We then examine this likelihood function to see where it is at its greatest, and the value of the parameter of
+interests at that point is the maximum likelihood estimate of the parameter (_e.g._ the tree and branch lengths).
+
+In this lesson we are going to compute a phylogenetic tree in a ML framework and explore a bit the relative support metrics,
+which can inform us of the confidence relative to a split. At this point you should have a concatenation and a partition file; 
+if not you can use mine [here](https://github.com/for-giobbe/phy/tree/master/examples).
+
+---
+
+<br/>
+<br/>
